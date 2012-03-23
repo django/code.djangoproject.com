@@ -1,0 +1,173 @@
+/* 
+djangoproject.com by Wilson Miner (wilson@lawrence.com)
+updated for new trac by Armin Ronacher.
+Copyright (c) 2005 Lawrence Journal-World. Please don't steal.
+Copyright (c) 2010 Armin Ronacher.
+*/
+
+
+/* SETUP */
+body { margin:0; padding:0; background:#092e20; color:white; }
+body, th, td { font:12px/1.4em Verdana,sans-serif; }
+#django-container { position:relative; min-width:55em; max-width:100em; }
+
+/* LINKS */
+a {text-decoration: none; border: none!important;}
+a img {border: none;}
+#django-nav-global a, #django-footer a { color:#ffc757; }
+a:hover { color:#ffe761; }
+#django-content-main a:hover { background-color:#E0FFB8; color:#234f32; text-decoration:none; }
+#django-content-main h2 a, #django-content-main h3 a { text-decoration:none !important; }
+#django-header a { border: none!important; }
+#django-header h1 { margin: 0!important; padding: 0!important; }
+#django-header h1 a { background: transparent!important; padding: 0!important; margin: 0!important; }
+#django-content-main :link, #django-content-main :visited { color: #AB5603; }
+
+/* HEADER */
+#django-header { position:relative; height:6.5em; background:#092e20; }
+#django-header h1#django-logo { margin:0; width:111px; height:41px; position:absolute; bottom:10px; left:25px; }
+
+/* NAV */
+#django-nav-global { position:absolute; margin:0; bottom:0; right:0; font-family:"Trebuchet MS",sans-serif; white-space:nowrap; }
+#django-nav-global li { display:block; float:left; list-style-type:none; margin:0; padding:0; }
+#django-nav-global a { display:block; float:left; padding:5em 16px 10px 16px; background:#092e20; }
+#django-nav-global a:hover { color:white; background:#234f32; }
+#django-active-nav a { color:white; background:#092e20 url(https://www.djangoproject.com/m/img/site/nav_bg.gif) bottom repeat-x; }
+#metanav li.active a { text-decoration: underline!important; }
+
+/* COLUMNS */
+#django-columnwrap { background:#234f32; padding-bottom:10px; }
+#django-content-main { background:white; color:black; padding: 20px; }
+
+/* CONTENT */
+h1,h2,h3 { margin-top:.8em; font-family:"Trebuchet MS",sans-serif; font-weight:normal; }
+h1 { font-size:218%; margin-top:.6em; margin-bottom:.6em; color:#092e20; line-height:1.1em; }
+h2 { font-size:150%; margin-top:1em; margin-bottom:.2em; line-height:1.2em; color:#092e20; }
+#homepage h2 { font-size:140%; }
+h3 { font-size:125%; font-weight:bold; margin-bottom:.2em; color:#487858; }
+h4 { font-size:100%; font-weight:bold; margin-bottom:-3px; margin-top:1.2em; text-transform:uppercase; letter-spacing:1px; }
+h4 pre, h4 tt, h4 .literal { text-transform:none; }
+h5 { font-size:1em; font-weight:bold; margin-top:1.5em; margin-bottom:3px; }
+p, ul, dl { margin-top:.6em; margin-bottom:.8em; }
+hr { color:#ccc; background-color:#ccc; height:1px; border:0; }
+p.date { color:#487858; margin-top:-.2em; }
+p.more { margin-top:-.4em; }
+#content-main h2, #content-main h3 { margin-top:1.2em; }
+h2.deck { margin-bottom:.6em; color:#487858; }
+ins { text-decoration: none; }
+ins a { text-decoration: none; }
+
+/* LISTS */
+ul { padding-left:2em; }
+ol { padding-left:30px; }
+ul li { list-style-type:square; margin-bottom:.4em; }
+ul ul { padding-left:1.2em; }
+ul ul ul { padding-left:1em; }
+ul.linklist, ul.toc { padding-left:0; }
+ul.toc ul { margin-left:.6em; }
+ul.toc ul li { list-style-type:square; }
+ul.toc ul ul li { list-style-type:disc; }
+ul.linklist li, ul.toc li { list-style-type:none; }
+dl.index dt { font-weight: normal; }
+
+/* BLOCKQUOTES */
+.sidebar blockquote { margin-top:1.5em; margin-bottom:1.5em; }
+.sidebar blockquote p { font:italic 175%/1.2em "Trebuchet MS",sans-serif; color:#94da3a; }
+.sidebar blockquote cite { display:block; font-style:normal; line-height:1.2em; margin-top:-.8em; color:#94da3a; }
+.sidebar cite strong { font-weight:normal; color:white; }
+
+/* CODE BLOCKS */
+.literal { white-space:nowrap; }
+.literal, .literal-block { color:#234f32; }
+.sidebar .literal { color:white; background:transparent; font-size:11px; }
+pre, .literal-block { font-size:medium; background:#E0FFB8; border:1px solid #94da3a; border-width:1px 0; margin: 1em 0; padding: .3em .4em; overflow: auto; }
+dt .literal, table .literal { background:none; }
+textarea.codedump { font-size:10px; color:#234f32; width:100%; background:#E0FFB8; border:1px solid #94da3a; border-width:1px 0; padding: .3em .4em; }
+
+/* NOTES & ADMONITIONS */
+.note, .admonition, .caution { padding:.8em 1em .8em; margin: 1em 0; border:1px solid #94da3a; }
+.admonition-title { font-weight:bold; margin-top:0 !important; margin-bottom:0 !important;}
+.admonition .last { margin-bottom:0 !important; }
+.admonition, .admonition-note, .caution { padding-left:65px; background:url(https://www.djangoproject.com/m/img/doc/icons/docicons-note.gif) .8em .8em no-repeat;}
+div.admonition-philosophy { padding-left:65px; background:url(https://www.djangoproject.com/m/img/doc/icons/docicons-philosophy.gif) .8em .8em no-repeat;}
+div.admonition-behind-the-scenes { padding-left:65px; background:url(https://www.djangoproject.com/m/img/doc/icons/docicons-behindscenes.gif) .8em .8em no-repeat;}
+
+/* BILLBOARDS */
+#django-billboard { background:#94da3a url(https://www.djangoproject.com/m/img/site/bbdsm_bg.gif) repeat-x; border-bottom:6px solid #092e20; }
+#django-billboard h2 { margin:0; border:none!important; background: transparent!important; }
+#django-billboard h2 a { display:block; margin:0; text-indent:-5000px; height:60px; width:184px; background:url(https://www.djangoproject.com/m/img/site/bbd_code.gif) no-repeat; border: none!important; }
+
+/* FOOTER */
+#django-footer { clear:both; color:#487858; padding:10px 20px; font-size:90%; }
+#django-footer a:hover { background: transparent!important; }
+
+/* MISC */
+.small { font-size:90%; }
+h3 .small { font-size:80%; }
+
+/* TRAC FIXES */
+#header { display: none; }
+#mainnav { background: transparent; border: none; }
+#mainnav li { padding: 0; font-size: 12px; margin: 0 1px; }
+#mainnav li a { background: #eee!important; color: black!important; padding: 2px 10px!important; text-decoration: none!important; }
+#mainnav li.active a { background: #AB5603!important; color: white!important; font-weight: normal!important; }
+#mainnav li a:hover { background: #ddd!important; color: #333!important; }
+.wikitoolbar { border-left: 1px solid #ddd!important; }
+.wikitoolbar a { border: 1px solid #ddd!important; }
+.wikitoolbar a:hover { border-color: #ab5603!important; }
+.nav ul { font-size: 11px; }
+#metanav { float: left; }
+#metanav ul { padding: 0; margin: 0 0 0 -5px; }
+#ctxtnav { margin-top: 8px; }
+#pagepath, div.trac-modifiedby { font-size: 11px; }
+
+/* TIMELINE */
+div.timeline dt { font-weight: normal; }
+div.timeline dt a { display: block; color: #000 !important; }
+div.timeline dt em { color: #AB5603; }
+
+/* DIFF */
+.diff table.trac-diff tbody td { font-family: 'Consolas', monospace; font-size: 13px; padding: 2px 10px; }
+.diff pre { font-family: 'Consolas', monospace; font-size: 13px; padding: 2px 10px; }
+.diff table.trac-diff tbody th { vertical-align: middle; }
+div.changeset dd { padding-left: 10px!important; }
+div.changeset #file-legend dd { padding-left: 3px!important; }
+div.changeset dt { margin-top: -1px!important; }
+
+/* PREFS */
+div.prefs ul#tabs, div.prefs ul#tabs li { list-style: none!important; }
+
+/* TICKETS */
+#content.ticket { width: 100%; }
+table.listing a:hover { background-color: transparent!important; }
+dl.attachments dt { font-weight: normal; }
+table.dirlist td.rev a.chgset { padding-left: 7px; }
+#ticket table.properties td, #ticket table.properties th { font-size: 11px; }
+#batchmod_form fieldset input#batchmod_submit { font-size: 11px; }
+#ticket div.inlinebuttons { margin-top: 10px; }
+div.ticket-readme { background: #f8f8f8; border: 1px solid #ddd; padding: 10px; border-right: 1px solid #aaa; border-bottom: 1px solid #aaa; }
+div.ticket-readme h2 { margin: 0; }
+div.ticket-readme ul { margin-bottom: 0; }
+table.dirlist span.expander { float: left; }
+table.dirlist a.dir { padding-left: 22px!important; background-position: 0!important; }
+#changelog h3 span.core,
+#attachments span.cla {
+    background-color: #ffd;
+}
+
+/* BROWSER */
+table.dirlist td.rev a, table.dirlist td.change a { display: inline; }
+
+/* CODE */
+table.code tbody td { font-family: 'Consolas', monospace; font-size: 13px; padding: 0 10px; border-bottom: 1px solid #eee; }
+table.code tbody th, table.code tbody td { height: 22px; line-height: 22px; }
+
+/* WIKI */
+div.wiki-toc ul li { margin-left: 10px; }
+pre.wiki { font-family: 'Consolas', monospace; font-size: 13px; }
+
+/* ADMIN */
+div.admin h1 { margin: 0; }
+div.admin #tabs ul, div.admin #tabs li { list-style: none!important; }
+div.admin #tabcontent { padding-top: 40px; }
+div.admin table.listing a { display: inline!important; }

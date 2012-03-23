@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      py:strip="">
+  <head py:match="head" py:attrs="select('@*')">
+    ${select('*|comment()|text()')}
+  </head>
+  <body py:match="body" py:attrs="select('@*')">
+    <div class="ticket-readme">
+      <h2>Please read this first:</h2>
+      <ul>
+        <li>
+          <a href="https://docs.djangoproject.com/en/dev/faq/">Check the FAQ</a>
+          for common issues.
+        </li>
+        <li>
+          <a href="https://docs.djangoproject.com/en/dev/internals/contributing/#reporting-security-issues">Don't report security issues here!</a>
+          Contact <a href="mailto:security@djangoproject.com">security@djangoproject.com</a> instead.
+        </li>
+        <li>
+          Don't use the ticket system for
+          <a href="https://docs.djangoproject.com/en/dev/faq/help/">help with support questions</a>.
+        </li>
+        <li>
+          Patches should be attached to the ticket as files, not included in the
+          description.
+        </li>
+        <li>
+          Follow our
+          <a href="https://docs.djangoproject.com/en/dev/internals/contributing/#reporting-bugs">bug reporting guidelines</a>
+          and our <a href="https://docs.djangoproject.com/en/dev/internals/contributing/#submitting-patches">patch submission guidelines</a>
+          for the best response.
+        </li>
+        <li>
+          Use the "Preview" button to check your <a href="https://code.djangoproject.com/wiki/WikiFormatting">formatting</a>.
+        </li>
+      </ul>
+    </div>
+    ${select('*|text()')}
+  </body>
+  <xi:include href="ticket.html" />
+</html>

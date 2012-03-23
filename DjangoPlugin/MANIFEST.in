@@ -1,0 +1,3 @@
+recursive-include tracdjangoplugin *
+recursive-exclude tracdjangoplugin *.pyc
+recursive-exclude tracdjangoplugin *.pyo

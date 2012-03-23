@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      py:strip="">
+  <head py:match="head" py:attrs="select('@*')">
+    ${select('*|comment()|text()')}
+    <link rel="stylesheet" type="text/css" href="${href.chrome('site/style.css')}" />  
+    
+    <py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
+      <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
+    </py:if>
+  
+  </head>
+
+  <body py:match="body" py:attrs="select('@*')">
+    <div id="django-code">
+      <div id="django-container">
+        <div id="django-header">
+          <h1 id="django-logo"><a href="https://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/site/hdr_logo.gif" alt="Django" /></a></h1>
+          <ul id="django-nav-global">
+            <li><a href="https://www.djangoproject.com/">Home</a></li>
+            <li><a href="https://www.djangoproject.com/download/">Download</a></li>
+            <li><a href="https://docs.djangoproject.com/">Documentation</a></li>
+            <li><a href="https://www.djangoproject.com/weblog/">Weblog</a></li>
+            <li><a href="https://www.djangoproject.com/community/">Community</a></li>
+            <li id="django-active-nav"><a href="/">Code</a></li>
+          </ul>
+        </div>
+
+        <div id="django-billboard"><h2><a href="/">Code</a></h2></div>
+        <div id="django-columnwrap">
+          <div id="django-content-main">
+            ${select('*|text()')}
+          </div>
+        </div>
+        <div id="django-footer">
+          <p>&copy; 2005-2010 <a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a> unless otherwise noted. Django is a registered trademark of the Django Software Foundation. 
+          <a href="http://mediatemple.net/">Linux Web hosting</a> graciously provided by Media Temple.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

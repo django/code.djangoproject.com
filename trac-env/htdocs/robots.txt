@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /search
+Disallow: /timeline
+Disallow: /simpleticket
+Disallow: /query
+Disallow: /newticket
+Disallow: /log
+Disallow: /browser
+Disallow: /changeset

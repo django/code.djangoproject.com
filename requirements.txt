@@ -1,0 +1,11 @@
+Trac == 0.12.2
+Pygments == 1.4
+dnspython == 1.8.0
+psycopg2 == 2.2.2
+docutils == 0.7
+
+# Trac plugins
+svn+http://trac-hacks.org/svn/batchmodifyplugin/0.12/trunk@9250
+svn+http://svn.edgewall.com/repos/trac/plugins/0.12/spam-filter-captcha@10597
+svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@9250
+./DjangoPlugin
