@@ -1,0 +1,4 @@
+# Requirements for working with this code locally.
+
+Fabric
+Unipath
