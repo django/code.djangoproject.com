@@ -48,10 +48,11 @@ def update_dependencies():
     """
     Update dependencies in the virtualenv.
     """
-    pip = env.virtualenv.child('bin', 'pip')
-    reqs = env.code_dir.child('requirements.txt')
-    sudo('%s -q install -U pip' % pip)
-    sudo('%s -q install -r %s' % (pip, reqs))
+    with cd(env.code_dir):
+        pip = env.virtualenv.child('bin', 'pip')
+        reqs = env.code_dir.child('requirements.txt')
+        sudo('%s -q install -U pip' % pip)
+        sudo('%s -q install -r %s' % (pip, reqs))
 
 @task
 def copy_db():
