@@ -3,12 +3,10 @@
       py:strip="">
   <head py:match="head" py:attrs="select('@*')">
     ${select('*|comment()|text()')}
-    <link rel="stylesheet" type="text/css" href="${href.chrome('site/style.css')}" />  
-    
+    <link rel="stylesheet" type="text/css" href="${href.chrome('site/style.css')}" />
     <py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
       <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
     </py:if>
-  
   </head>
 
   <body py:match="body" py:attrs="select('@*')">
@@ -33,7 +31,7 @@
           </div>
         </div>
         <div id="django-footer">
-          <p>&copy; 2005-2010 <a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a> unless otherwise noted. Django is a registered trademark of the Django Software Foundation. 
+          <p>&copy; 2005-2012 <a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a> unless otherwise noted. Django is a registered trademark of the Django Software Foundation.
           <a href="http://mediatemple.net/">Linux Web hosting</a> graciously provided by Media Temple.
           </p>
         </div>
