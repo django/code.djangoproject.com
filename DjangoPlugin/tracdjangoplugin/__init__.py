@@ -60,3 +60,25 @@ class CustomNavigationBar(Component):
                 Markup('<a href="https://www.djangoproject.com/accounts/password/reset/">Forgot your password?</a>')))
         items.append(('mainnav', 'custom_reports', Markup('<a href="%s">Reports</a>' % req.href.wiki('Reports'))))
         return items
+
+
+try:
+    # Provided by https://github.com/aaugustin/trac-github
+    from tracext.github import GitHubBrowser
+except ImportError:
+    pass
+else:
+    from genshi.builder import tag
+
+    class GitHubBrowserWithSVNChangesets(GitHubBrowser):
+
+        def _format_changeset_link(self, formatter, ns, chgset, label,
+                                   fullmatch=None):
+            # Dead-simple version for SVN changesets
+            if chgset.isnumeric():
+                href = formatter.href.changeset(chgset, None, '/')
+                return tag.a(label, class_="changeset", href=href)
+
+            # Fallback to the default implemntation
+            return (super(GitHubBrowserWithSVNChangesets,self)
+                    ._format_changeset_link(formatter, ns, chgset, label, fullmatch))
