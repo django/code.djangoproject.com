@@ -1,4 +1,4 @@
-Trac == 0.12.2
+Trac == 1.0
 Pygments == 1.4
 dnspython == 1.8.0
 psycopg2 == 2.2.2
