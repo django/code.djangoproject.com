@@ -94,7 +94,7 @@ div.admonition-behind-the-scenes { padding-left:65px; background:url(https://www
 
 /* BILLBOARDS */
 #django-billboard { background:#94da3a url(https://www.djangoproject.com/m/img/site/bbdsm_bg.gif) repeat-x; border-bottom:6px solid #092e20; }
-#django-billboard h2 { margin:0; border:none!important; background: transparent!important; }
+#django-billboard h2 { margin:0; padding:0; box-shadow: none; border:none!important; background: transparent!important; }
 #django-billboard h2 a { display:block; margin:0; text-indent:-5000px; height:60px; width:184px; background:url(https://www.djangoproject.com/m/img/site/bbd_code.gif) no-repeat; border: none!important; }
 
 /* FOOTER */
