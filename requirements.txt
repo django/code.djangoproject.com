@@ -10,5 +10,4 @@ svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@9250
 TracWatchlistPlugin==1.0
 
 -e git://github.com/aaugustin/trac-github.git@23a0ab9f3b08a4a50b08bcd067e30d8149ed8635#egg=GitHubPlugin
-
-./DjangoPlugin
+-e ./DjangoPlugin
