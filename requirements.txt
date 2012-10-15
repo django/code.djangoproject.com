@@ -9,5 +9,5 @@ svn+http://svn.edgewall.com/repos/trac/plugins/0.12/spam-filter-captcha@10597
 svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@9250
 TracWatchlistPlugin==1.0
 
--e git://github.com/aaugustin/trac-github.git@23a0ab9f3b08a4a50b08bcd067e30d8149ed8635#egg=GitHubPlugin
+-e git://github.com/aaugustin/trac-github.git@0a0e31176b37727d8e4018801cfcc54a796ee768#egg=GitHubPlugin
 -e ./DjangoPlugin
