@@ -8,6 +8,6 @@ docutils == 0.7
 svn+http://svn.edgewall.com/repos/trac/plugins/1.0/spam-filter/#egg=TracSpamFilter-dev
 svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@9250
 TracWatchlistPlugin == 1.0
-trac-github == 1.0
+trac-github == 1.1
 
 -e ./DjangoPlugin
