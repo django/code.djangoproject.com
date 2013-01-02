@@ -1,4 +1,4 @@
-/* 
+/*
 djangoproject.com by Wilson Miner (wilson@lawrence.com)
 updated for new trac by Armin Ronacher.
 Copyright (c) 2005 Lawrence Journal-World. Please don't steal.
@@ -107,19 +107,21 @@ h3 .small { font-size:80%; }
 
 /* TRAC FIXES */
 #header { display: none; }
-#mainnav { background: transparent; border: none; }
-#mainnav li { padding: 0; font-size: 12px; margin: 0 1px; }
+#mainnav { background: transparent; font: inherit; margin: 0; }
+#mainnav li {padding: 0; font-size: 12px; }
+#mainnav li:hover { border: 1px solid #E4E4E4 !important; }
 #mainnav li a { background: #eee!important; color: black!important; padding: 2px 10px!important; text-decoration: none!important; }
 #mainnav li.active a { background: #AB5603!important; color: white!important; font-weight: normal!important; }
-#mainnav li a:hover { background: #ddd!important; color: #333!important; }
+#mainnav li a:hover { background: #ddd!important; color: #333!important; box-shadow: 0 0.1em 0.3em 0 #999999 !important; }
 .wikitoolbar { border-left: 1px solid #ddd!important; }
 .wikitoolbar a { border: 1px solid #ddd!important; }
 .wikitoolbar a:hover { border-color: #ab5603!important; }
 .nav ul { font-size: 11px; }
-#metanav { float: left; }
-#metanav ul { padding: 0; margin: 0 0 0 -5px; }
+#metanav { float: left; padding: 0; }
+#metanav ul li { border: none; }
 #ctxtnav { margin-top: 8px; }
 #pagepath, div.trac-modifiedby { font-size: 11px; }
+form#search { float:right; margin: 20px 20px 0 0; }
 
 /* TIMELINE */
 div.timeline dt { font-weight: normal; }

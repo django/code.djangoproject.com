@@ -24,9 +24,13 @@
           </ul>
         </div>
 
-        <div id="django-billboard"><h2><a href="/">Code</a></h2></div>
+        <div id="django-billboard">
+          ${select('div/form[id=search]')} <!-- move the search form up -->
+          <h2><a href="/">Code</a></h2>
+        </div>
         <div id="django-columnwrap">
           <div id="django-content-main">
+            <span py:match='div/form[id=search]'/>
             ${select('*|text()')}
           </div>
         </div>
