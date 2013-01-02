@@ -105,6 +105,9 @@ div.admonition-behind-the-scenes { padding-left:65px; background:url(https://www
 .small { font-size:90%; }
 h3 .small { font-size:80%; }
 
+/* hide the search form with css instead of x-path queries for more speed */
+div#banner form#search { display: none; }
+
 /* TRAC FIXES */
 #header { display: none; }
 #mainnav { background: transparent; font: inherit; margin: 0; }

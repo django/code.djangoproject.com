@@ -25,8 +25,7 @@
         </div>
 
         <div id="django-billboard">
-          ${select('div/form[@id="search"]')} <!-- move the search form up from it's original position -->
-          <py:match path='form[@id="search"]'/> <!-- drop the search form from the input stream -->
+          ${select('./div/form[@id="search"]')} <!-- move the search form up from it's original position -->
           <h2><a href="/">Code</a></h2>
         </div>
         <div id="django-columnwrap">
