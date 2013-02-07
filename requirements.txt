@@ -1,6 +1,7 @@
 Trac == 1.0
 Pygments == 1.4
 dnspython == 1.8.0
+spambayes == 1.1b1
 psycopg2 == 2.2.2
 docutils == 0.7
 
