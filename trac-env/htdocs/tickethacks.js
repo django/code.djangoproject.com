@@ -7,6 +7,35 @@ $(function() {
     $("#modify").parent().removeClass('collapsed');
     
     //
+    // Link field names to the corresponding sections in the Triaging doc.
+    //
+
+    var linkMap = {
+        "h_stage": "triage-stages",
+        "h_ui_ux": "ui-ux",
+        "h_version": "version",
+        "h_component": "component",
+        "h_severity": "severity",
+        "h_needs_docs": "needs-documentation",
+        "h_needs_better_patch": "patch-needs-improvement",
+        "h_cc": "cc",
+        "h_has_patch": "has-patch",
+        "h_easy": "easy-pickings",
+        "h_keywords": "keywords",
+        "h_needs_tests": "needs-tests"
+    }
+
+    $("table.properties th").each(function(){
+        var $this = $(this);
+        var anchor = linkMap[$this.attr("id")];
+        if (anchor) {
+            $this.wrapInner(function(){
+                return "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets/#" + anchor + "' target='_blank'></a>";
+            });
+        }
+    });
+
+    //
     // Show extra user info in the change history and attachment data.
     //
 
