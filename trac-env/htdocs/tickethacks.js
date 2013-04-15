@@ -44,7 +44,7 @@ $(function() {
     var users = [];
 
     // Tickets first:
-    var attribution_regex = /by ([\w\-]+)/;
+    var attribution_regex = /by (\S+)/;
     $('#changelog h3.change').each(function() { 
         users.push(this.innerHTML.match(attribution_regex)[1]);
     });
