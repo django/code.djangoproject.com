@@ -38,6 +38,21 @@ $(function() {
     //
     // Show extra user info in the change history and attachment data.
     //
+    function getUsername(elt) {
+        // Extract the username from the given element,
+        // To find a username, we look for a text node that follows
+        // a <a class="timeline"> element.
+        // We exclude usernames containing "@" because we want actual
+        // usernames, not a "Full Name <email@...>" that trac can sometimes
+        // generate.
+        var raw = $('.timeline', elt)[0].nextSibling.data.trim();
+        if (raw && raw.substring(0, 3) === 'by ' && raw.indexOf('@') < 0) {
+            return raw.substring(3);
+        }
+        else {
+            return '';
+        }
+    }
 
     // To avoid doing lots of XHRs, grab a list of everyone who's listed in
     // a ticket comment or an attachment.
@@ -45,12 +60,15 @@ $(function() {
 
     // Tickets first:
     var attribution_regex = /by (\S+)/;
-    $('#changelog h3.change').each(function() { 
-        users.push(this.innerHTML.match(attribution_regex)[1]);
+    $('#changelog h3.change').each(function() {
+        var username = getUsername(this);
+        if (username) {
+            users.push(username);
+        }
     });
 
     // Attachment are easier:
-    $("#attachments div dt em").each(function() { 
+    $("#attachments div dt em").each(function() {
         users.push($(this).text());
     });
 
@@ -61,11 +79,9 @@ $(function() {
         
         // Add "(core developer)" to comments by core devs.
         $('#changelog h3.change').each(function() {
-            var username = this.innerHTML.match(attribution_regex)[1];
-            if (data[username] !== undefined) {
-                if (data[username].core) {
-                    $(this).append("<span class='core'>(core developer)</span>");
-                }
+            var username = getUsername(this);
+            if (username && data[username] && data[username].core) {
+                $(this).append("<span class='core'>(core developer)</span>");
             }
         });
 
