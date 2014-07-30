@@ -51,7 +51,6 @@ class DjangoAuth:
     message = getattr(settings, 'BASIC_AUTH_MESSAGE', "Authorization required.")
     message_type = getattr(settings, 'BASIC_AUTH_MESSAGE_TYPE', 'text/plain')
     realm = getattr(settings, 'BASIC_AUTH_REALM', "Authenticate")
-    redirect_url = getattr(settings, 'BASIC_AUTH_REDIRECT_URL', '')
 
     def __init__(self, application):
         self.application = application
@@ -59,24 +58,14 @@ class DjangoAuth:
     def __call__(self, environ, start_response):
 
         try:
-            username = self.process_authorization(environ)
-
             if get_path_info(environ) == self.login_url:
+                username = self.process_authorization(environ)
                 if username is None:
                     start_response('401 Unauthorized', [
                         ('Content-Type', self.message_type),
                         ('WWW-Authenticate', 'Basic realm="%s"' % self.realm),
                     ])
                     return [self.message]
-                else:
-                    if self.redirect_url:
-                        location = self.redirect_url
-                    else:
-                        location = environ.get('HTTP_REFERER', '/')
-                    start_response('302 Found', [
-                        ('Location', location)
-                    ])
-                    return []
         finally:
             close_old_connections()
 
