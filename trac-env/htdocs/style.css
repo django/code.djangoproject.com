@@ -9,7 +9,7 @@ Copyright (c) 2010 Armin Ronacher.
 /* SETUP */
 body { margin:0; padding:0; background:#092e20; color:white; }
 body, th, td { font:12px/1.4em Verdana,sans-serif; }
-#django-container { position:relative; min-width:55em; max-width:100em; }
+#django-container { position:relative; min-width:55em; max-width:100em; margin: 0 auto;}
 
 /* LINKS */
 a {text-decoration: none; border: none!important;}
