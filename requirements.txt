@@ -5,7 +5,7 @@ spambayes == 1.1b1
 psycopg2 == 2.2.2
 docutils == 0.7
 
-wsgi-oauth2
+git+https://github.com/aaugustin/wsgi-oauth2.git
 
 # Trac plugins
 svn+http://svn.edgewall.com/repos/trac/plugins/1.0/spam-filter@12543
