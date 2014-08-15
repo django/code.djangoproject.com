@@ -52,17 +52,9 @@ class CustomNavigationBar(Component):
         return ''
 
     def get_navigation_items(self, req):
-        items = []
-        if req.authname == 'anonymous':
-            items.append(('metanav', 'register',
-                Markup('<a href="https://www.djangoproject.com/accounts/register/">Register</a>')))
-            items.append(('metanav', 'reset_password',
-                Markup('<a href="https://www.djangoproject.com/accounts/password/reset/">Forgot your password?</a>')))
-        else:
-            items.append(('metanav', 'change_password',
-                Markup('<a href="https://www.djangoproject.com/accounts/password/change/">Change your password</a>')))
-        items.append(('mainnav', 'custom_reports', Markup('<a href="%s">Reports</a>' % req.href.wiki('Reports'))))
-        return items
+        return [
+            ('mainnav', 'custom_reports', Markup('<a href="%s">Reports</a>' % req.href.wiki('Reports'))),
+        ]
 
 
 try:

@@ -6,6 +6,8 @@ psycopg2 == 2.2.2
 docutils == 0.7
 Django == 1.6.5
 
+git+https://github.com/aaugustin/wsgi-oauth2.git
+
 # Trac plugins
 svn+http://svn.edgewall.com/repos/trac/plugins/1.0/spam-filter@12543
 svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@13710
