@@ -5,7 +5,7 @@ import trac.web.main
 application = trac.web.main.dispatch_request
 
 # Add GitHub authentication
-with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'oauth2-secrets.json')) as f:
+with open('/home/www/trac/conf/oauth2-secrets.json') as f:
     oauth2_secrets = json.loads(f.read())
 oauth2_secrets = dict((str(k), str(v)) for (k, v) in oauth2_secrets.items())
 
