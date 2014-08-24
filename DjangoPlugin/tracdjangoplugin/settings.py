@@ -1,7 +1,6 @@
 import json
 import os
 
-# It's a secret to everybody
 with open(os.environ.get('SECRETS_FILE')) as handle:
     SECRETS = json.load(handle)
 
@@ -24,4 +23,5 @@ INSTALLED_APPS = [
 
 
 SECRET_KEY = str(SECRETS['secret_key'])
-BASIC_AUTH_REALM="Django's Trac"
+
+BASIC_AUTH_REALM = "Django's Trac"
