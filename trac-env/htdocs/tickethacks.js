@@ -5,7 +5,7 @@
 $(function() {
     // Don't collapse ticket properties.
     $("#modify").parent().removeClass('collapsed');
-    
+
     //
     // Link field names to the corresponding sections in the Triaging doc.
     //
@@ -76,7 +76,7 @@ $(function() {
     // the comments and attachments.
     var params = $.param({'user': $.makeArray(users)}, true);
     $.getJSON("https://www.djangoproject.com/accounts/_trac/userinfo/?"+params, function (data) {
-        
+
         // Add "(core developer)" to comments by core devs.
         $('#changelog h3.change').each(function() {
             var username = getUsername(this);
@@ -96,13 +96,111 @@ $(function() {
         });
     });
 
-    // Show Pull Requests from Github with matching descriptions/titles
+    // Show Pull Requests from Github with titles matching any of the following
+    // patterns: "#<ticket_id> ", "#<ticket_id>,", "#<ticket_id>:", "#<ticket_id>)
     var ticket_id = window.location.pathname.split('/')[2];
-    $.getJSON("https://api.github.com/search/issues?q=repo:django/django+in:title+type:pr+%23"+ticket_id+"%20", function(data) {
-        var links = data.items.map(function (item) {
+    $.getJSON("https://api.github.com/search/issues?q=repo:django/django+in:title+type:pr+"
+        + "%23"+ticket_id+"%20"
+        + "+%23"+ticket_id+"%2C"
+        + "+%23"+ticket_id+"%3A"
+        + "+%23"+ticket_id+"%29",
+        function(data) {
+        var links = data.items.map(function(item) {
+            // open or closed
+            var pr_state = item.state;
+            var build_state;
+            var merged = false;
             var url = item.pull_request.html_url;
-            return "<a href='" + url + "'>" + item.number + "</a>"
+            var link_text = item.number;
+
+            if (pr_state === "closed") {
+                link_text = "<del>"+link_text+"</del>";
+            }
+
+            // Check if our rate limit is exceeded. If it is, just display
+            // the PRs without additional infos
+            var core_rate_limit_exceeded = false;
+            $.ajax({
+                url: "https://api.github.com/rate_limit",
+                dataType: 'json',
+                async: false,
+                success: function (data, textStatus, xhr) {
+                    // We need to perform a maximum of 3 extra requests to get status infos
+                    if(data.resources.core.remaining < 3) {
+                        core_rate_limit_exceeded = true;
+                    }
+                }
+            });
+
+            if(!core_rate_limit_exceeded) {
+                // Get merge state of PR
+                $.ajax({
+                    url: "https://api.github.com/repos/django/django/pulls/" + item.number + "/merge",
+                    dataType: 'json',
+                    async: false,
+                    success: function (data, textStatus, xhr) {
+                        merged = true;
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 404) {
+                            merged = false;
+                        }
+                    }
+                });
+
+                if(!merged) {
+                    // Check if the PR was merged manually
+                    $.ajax({
+                        url: "https://api.github.com/repos/django/django/issues/"+ item.number +"/comments",
+                        dataType: 'json',
+                        async: false,
+                        success: function(data) {
+                            $.each(data, function(index, value) {
+                                // Look for "merged/fixed in sha1..."
+                                if(value.body.match(/(merged|fixed) in \b[0-9a-f]{40}\b/i)) {
+                                    merged = true;
+                                }
+                            });
+                        }
+                    });
+                }
+
+                if (pr_state === 'open') {
+                    // Get build state of PR if pr_state is open
+                    $.ajax({
+                        url: "https://api.github.com/repos/django/django/pulls/" + item.number,
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            $.ajax({
+                                url: data.statuses_url,
+                                dataType: 'json',
+                                async: false,
+                                success: function (data) {
+                                    if (data.length > 0) {
+                                        build_state = data[0].state;
+                                        link_text += " build:" + build_state;
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    // if PR state is closed, display if it was merged or not
+                    if (merged === true) {
+                        link_text += " merged";
+                    } else {
+                        link_text += " unmerged";
+                    }
+                }
+            }
+            return "<a href='" + url + "'>" + link_text + "</a>";
         });
-        $("table.properties").append("<tr><th>Pull Requests:</th><td>" + links.join(", ") + "</td><tr>")
+
+        var link = '<a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/working-with-git/#publishing-work">How to create a pull request</a>';
+        if (links.length > 0) {
+            link = links.join(", ");
+        }
+        $("table.properties").append("<tr><th>Pull Requests:</th><td>" + link + "</td><tr>");
     });
 });
