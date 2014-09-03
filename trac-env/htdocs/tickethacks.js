@@ -95,4 +95,14 @@ $(function() {
             }
         });
     });
+
+    // Show Pull Requests from Github with matching descriptions/titles
+    var ticket_id = window.location.pathname.split('/')[2];
+    $.getJSON("https://api.github.com/search/issues?q=repo:django/django+in:title+type:pr+%23"+ticket_id+"%20", function(data) {
+        var links = data.items.map(function (item) {
+            var url = item.pull_request.html_url;
+            return "<a href='" + url + "'>" + item.number + "</a>"
+        });
+        $("table.properties").append("<tr><th>Pull Requests:</th><td>" + links.join(", ") + "</td><tr>")
+    });
 });
