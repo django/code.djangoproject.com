@@ -7,7 +7,7 @@ docutils == 0.12
 Django == 1.6.6
 
 # Trac plugins
-svn+http://svn.edgewall.com/repos/trac/plugins/1.0/spam-filter@13100
+svn+https://svn.edgewall.org/repos/trac/plugins/1.0/spam-filter@13100
 svn+http://trac-hacks.org/svn/xmlrpcplugin/trunk@13776
 TracWatchlistPlugin == 1.0
 trac-github == 2.1
