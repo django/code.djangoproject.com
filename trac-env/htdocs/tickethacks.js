@@ -106,6 +106,10 @@ $(function() {
         + "+%23"+ticket_id+"%29",
         function(data) {
         var links = data.items.map(function(item) {
+            if (item.number == ticket_id) {
+                return undefined;  // skip this element if PR id == ticket id
+            }
+
             // open or closed
             var pr_state = item.state;
             var build_state;
