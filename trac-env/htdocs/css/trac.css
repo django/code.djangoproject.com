@@ -22,4 +22,54 @@ a:hover {
 .subfooter a:hover {
   color: #F1FFF7 !important; }
 
+div[role="main"] #metanav {
+  font-family: sans-serif; }
+  div[role="main"] #metanav ul {
+    text-align: left; }
+    div[role="main"] #metanav ul li {
+      border-right: 0;
+      padding: 1em; }
+      div[role="main"] #metanav ul li a {
+        font-size: 16px;
+        color: #20AA76; }
+        div[role="main"] #metanav ul li a:hover {
+          text-decoration: underline; }
+      div[role="main"] #metanav ul li.first {
+        padding-left: 0; }
+div[role="main"] #mainnav {
+  box-shadow: 0 0 0;
+  border: 0;
+  border-radius: 0;
+  margin: .66em 0 .33em 7px; }
+  div[role="main"] #mainnav ul {
+    text-align: left;
+    font-size: 16px; }
+    div[role="main"] #mainnav ul li {
+      background: #C9F0DD;
+      border: 0;
+      border-radius: 0;
+      text-align: center;
+      padding: 0.5em 0 0.5em 0; }
+      div[role="main"] #mainnav ul li a, div[role="main"] #mainnav ul li a:hover {
+        box-shadow: 0 0 0;
+        background: none;
+        font-family: sans-serif;
+        color: #0C4B33 !important; }
+      div[role="main"] #mainnav ul li.first {
+        padding-left: 0;
+        border-radius: 3px 0 0 3px; }
+      div[role="main"] #mainnav ul li.last {
+        padding-left: 0;
+        border-radius: 0 3px 3px 0; }
+      div[role="main"] #mainnav ul li:hover {
+        background: #93D7B7; }
+      div[role="main"] #mainnav ul li.active {
+        background: #44B78B; }
+        div[role="main"] #mainnav ul li.active a {
+          background: none;
+          color: #F1FFF7 !important;
+          text-shadow: 0 0; }
+div[role="main"] #ctxtnav {
+  display: none; }
+
 /*# sourceMappingURL=trac.css.map */

@@ -16,7 +16,7 @@ a {text-decoration: none; border: none!important;}
 a img {border: none;}
 #django-nav-global a, #django-footer a { color:#ffc757; }
 a:hover { color:#ffe761; }
-#django-content-main a:hover { background-color:#E0FFB8; color:#234f32; text-decoration:none; }
+#django-content-main a:hover { color:#234f32; text-decoration:none; }
 #django-content-main h2 a, #django-content-main h3 a { text-decoration:none !important; }
 #django-header a { border: none!important; }
 #django-header h1 { margin: 0!important; padding: 0!important; }

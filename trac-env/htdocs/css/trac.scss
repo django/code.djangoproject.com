@@ -12,6 +12,79 @@ a:hover {
 
 div[role="main"]{
   #metanav {
+    font-family: sans-serif;
+
+    ul {
+      text-align: left;
+
+
+      li {
+        border-right: 0;
+        padding: 1em;
+
+        a {
+          font-size: 16px;
+          color: $green;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &.first {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  #mainnav {
+    box-shadow: 0 0 0;
+    border: 0;
+    border-radius: 0;
+    margin: .66em 0 .33em 7px;
     
+    ul {
+      text-align: left;
+      font-size: 16px;
+
+      li {
+        background: $green-very-light;
+        border: 0;
+        border-radius: 0;
+        text-align: center;
+        padding: 0.5em 0 0.5em 0;
+
+        a, a:hover {
+          box-shadow: 0 0 0;
+          background: none;
+          font-family: sans-serif;
+          color: $green-dark !important;
+        }
+        &.first {
+            padding-left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        &.last {
+            padding-left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        &:hover {
+          background: $green-light;
+        }
+        &.active {
+          background: $green-medium;
+          a {
+            background: none;
+            color: $white !important;
+            text-shadow: 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  #ctxtnav {
+    display: none;
   }
 }
