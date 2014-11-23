@@ -1,0 +1,17 @@
+@import "utils";
+
+a {
+  border-bottom: 0px !important;
+}
+a:hover {
+  background: none !important;
+}
+.subfooter a:hover {
+  color: $white !important;
+}
+
+div[role="main"]{
+  #metanav {
+    
+  }
+}

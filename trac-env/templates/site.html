@@ -10,6 +10,7 @@
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="${href.chrome('site/css/output.css')}" />
     <!--<![endif]-->
+    <link rel="stylesheet" href="${href.chrome('site/css/trac.css')}" />
 
     <script src="${href.chrome('site/js/lib/modernizr.js')}"></script>
     <py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
@@ -73,20 +74,20 @@
           <div class="col learn">
             <h2>Learn More</h2>
             <ul>
-              <li><a href="#XXX">About Django</a></li>
-              <li><a href="/foundation/">Django Software Foundation</a></li>
-              <li><a href="#XXX">Getting Started with Django</a></li>
+              <li><a href="https://www.djangoproject.com/overview/">About Django</a></li>
+              <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+              <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+              <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
             </ul>
           </div>
 
           <div class="col involved">
             <h2>Get Involved</h2>
             <ul>
-              <li><a href="#XXX">Join a Group</a></li>
-              <li><a href="#">Find a Job</a></li>
-              <li><a href="#">Submit a Bug</a></li>
-              <li><a href="#">Report a Security Issue</a></li>
-              <li><a href="#">Attend an Event</a></li>
+              <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+              <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+              <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/#reporting-security-issues">Submit a Bug</a></li>
+              <li><a href="https://docs.djangoproject.com/en/dev/internals/security/">Report a Security Issue</a></li>
             </ul>
           </div>
 
@@ -95,8 +96,8 @@
             <ul>
               <li><a href="http://github.com/django">Github</a></li>
               <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
-              <li><a href="#">News &amp; Event RSS</a></li>
-              <li><a href="https://docs.djangoproject.com/en/stable/internals/mailing-lists/#django-users">Django Users Mailing List</a></li>
+              <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+              <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
             </ul>
           </div>
 
@@ -106,7 +107,7 @@
       <div class="footer">
         <div class="container">
           <div class="footer-logo">
-            <a class="logo" href="#XXX">Django</a>
+            <a class="logo" href="https://djangoproject.com/">Django</a>
           </div>
           <ul class="thanks">
             <li><span>Hosting by</span> <a class="rackspace" href="http://rackspace.com">Rackspace</a></li>
@@ -114,9 +115,9 @@
             <li class="design"><span>Design by</span> <a class="threespot" href="http://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
           </ul>
           <p class="copyright">&copy; 2005-${date.today().year}
-              <a href="/foundation/"> Django Software
+              <a href="https://djangoproject.com/foundation/"> Django Software
               Foundation</a> unless otherwise noted. Django is a
-              <a href="/trademarks/">registered
+              <a href="https://djangoproject.com/trademarks/">registered
               trademark</a> of the Django Software Foundation.
           </p>
         </div>
