@@ -115,7 +115,7 @@ div#banner form#search { display: none; }
 #mainnav li:hover { border: 1px solid #E4E4E4 !important; }
 #mainnav li a { background: #eee!important; color: black!important; padding: 2px 10px!important; text-decoration: none!important; }
 #mainnav li.active a { background: #AB5603!important; color: white!important; font-weight: normal!important; }
-#mainnav li a:hover { background: #ddd!important; color: #333!important; box-shadow: 0 0.1em 0.3em 0 #999999 !important; }
+#mainnav li a:hover { background: #ddd!important; color: #333!important; box-shadow: 0 0 0 !important; }
 .wikitoolbar { border-left: 1px solid #ddd!important; }
 .wikitoolbar a { border: 1px solid #ddd!important; }
 .wikitoolbar a:hover { border-color: #ab5603!important; }

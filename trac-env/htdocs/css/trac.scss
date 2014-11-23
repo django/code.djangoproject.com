@@ -43,7 +43,7 @@ div[role="main"]{
     border: 0;
     border-radius: 0;
     margin: .66em 0 .33em 7px;
-    
+
     ul {
       text-align: left;
       font-size: 16px;
@@ -78,6 +78,80 @@ div[role="main"]{
             background: none;
             color: $white !important;
             text-shadow: 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  #main {
+    font-family: sans-serif !important;
+    text-shadow: 0 0 !important;
+    box-shadow: 0 0 0 !important;
+
+    fieldset {
+      box-shadow: 0 0 0 !important;
+      background: white !important;
+      border: 1px solid $gray-line;
+      table, th, tr {
+        font-family: sans-serif !important;
+        font-size: 14px !important;
+      }
+      legend {
+        a {
+          box-shadow: 0 0 0 !important;
+          text-shadow: 0 0 !important;
+          color: $text;
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+    }
+
+    button, input[type="submit"] {
+  		background: $green-medium;
+  		border: none;
+  		color: $white;
+  		padding: 0.7em 1em;
+      font-size: 16px;
+      font-weight: normal;
+      box-shadow: 0 0 0 !important;
+      text-shadow: 0 0 !important;
+
+  		@include device-min(768px) {
+  			right: 1%;
+  		}
+
+  		i {
+  			@include font-size(20);
+  			line-height: 1;
+  		}
+
+  		&:hover,
+  		&:focus,
+  		&:active {
+  			outline: none;
+        background: lighten($green-medium, 4%);
+  		}
+  	}
+
+    table.listing {
+      box-shadow: 0 0 0;
+      thead {
+        tr {
+          background: $green-very-light;
+
+          th {
+            background: $green-very-light;
+            border-bottom-color: #d7d7d7;
+            font-family: sans-serif !important;
+            font-size: 14px;
+            font-weight: normal;
+            color: $text;
+            padding: 0.5em;
+            a {
+              color: $text;
+            }
           }
         }
       }

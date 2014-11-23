@@ -69,6 +69,56 @@ div[role="main"] #mainnav {
           background: none;
           color: #F1FFF7 !important;
           text-shadow: 0 0; }
+div[role="main"] #main {
+  font-family: sans-serif !important;
+  text-shadow: 0 0 !important;
+  box-shadow: 0 0 0 !important; }
+  div[role="main"] #main fieldset {
+    box-shadow: 0 0 0 !important;
+    background: white !important;
+    border: 1px solid #CFE3DC; }
+    div[role="main"] #main fieldset table, div[role="main"] #main fieldset th, div[role="main"] #main fieldset tr {
+      font-family: sans-serif !important;
+      font-size: 14px !important; }
+    div[role="main"] #main fieldset legend a {
+      box-shadow: 0 0 0 !important;
+      text-shadow: 0 0 !important;
+      color: #0C3C26;
+      font-weight: normal;
+      font-size: 14px; }
+  div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
+    background: #44B78B;
+    border: none;
+    color: #F1FFF7;
+    padding: 0.7em 1em;
+    font-size: 16px;
+    font-weight: normal;
+    box-shadow: 0 0 0 !important;
+    text-shadow: 0 0 !important; }
+    @media screen and (min-device-width: 768px) {
+      div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
+        right: 1%; } }
+    div[role="main"] #main button i, div[role="main"] #main input[type="submit"] i {
+      font-size: 20px;
+      font-size: 2rem;
+      line-height: 1; }
+    div[role="main"] #main button:hover, div[role="main"] #main button:focus, div[role="main"] #main button:active, div[role="main"] #main input[type="submit"]:hover, div[role="main"] #main input[type="submit"]:focus, div[role="main"] #main input[type="submit"]:active {
+      outline: none;
+      background: #51be95; }
+  div[role="main"] #main table.listing {
+    box-shadow: 0 0 0; }
+    div[role="main"] #main table.listing thead tr {
+      background: #C9F0DD; }
+      div[role="main"] #main table.listing thead tr th {
+        background: #C9F0DD;
+        border-bottom-color: #d7d7d7;
+        font-family: sans-serif !important;
+        font-size: 14px;
+        font-weight: normal;
+        color: #0C3C26;
+        padding: 0.5em; }
+        div[role="main"] #main table.listing thead tr th a {
+          color: #0C3C26; }
 div[role="main"] #ctxtnav {
   display: none; }
 
