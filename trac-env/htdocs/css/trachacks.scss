@@ -1,13 +1,70 @@
 @import "utils";
 
-a {
-  border-bottom: 0px !important;
+:link, :visited {
+  border-bottom: 0;
+  color: $green;
+  &:hover{
+    background-color: transparent;
+    color: lighten($green, 20%);
+  }
 }
-a:hover {
-  background: none !important;
+.subfooter :link {
+  &:hover,
+  &:hover {
+    color: $white;
+  }
 }
-.subfooter a:hover {
-  color: $white !important;
+
+.inlinebuttons {
+  input {
+    border-radius: 5px;
+    height: 2.5em;
+  }
+}
+
+div.trac-content {
+  box-shadow: 0 0 0;
+}
+
+.foldable {
+  :link, :visited {
+    box-shadow: 0 0 0;
+    text-shadow: 0 0;
+    border-color: $gray-line;
+    border-radius: 5px;
+    background-color: $green-very-light;
+    color: $text;
+    &:hover {
+      background-color: $green-light;
+      color: $text;
+    }
+  }
+}
+
+#ticket {
+  background-color: $white;
+  border-color: $gray-line;
+  table.properties {
+    border-top-color: $gray-line;
+    th, th.missing {
+      color: $text;
+    }
+  }
+  .description {
+    h3 {
+      color: $text;
+      border-bottom-color: $gray-line;
+    }
+  }
+  h2 :link {
+    color: $green;
+    &:hover {
+      color: lighten($green, 20%);
+    }
+  }
+  .date {
+    color: $text;
+  }
 }
 
 div[role="main"]{
@@ -64,10 +121,16 @@ div[role="main"]{
         &.first {
             padding-left: 0;
             border-radius: 3px 0 0 3px;
+            :link {
+              border-radius: 0;
+            }
         }
         &.last {
             padding-left: 0;
             border-radius: 0 3px 3px 0;
+            :link {
+              border-radius: 0;
+            }
         }
         &:hover {
           background: $green-light;
