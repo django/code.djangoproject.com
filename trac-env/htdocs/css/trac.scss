@@ -109,31 +109,31 @@ div[role="main"]{
     }
 
     button, input[type="submit"] {
-  		background: $green-medium;
-  		border: none;
-  		color: $white;
-  		padding: 0.7em 1em;
+      background: $green-medium;
+      border: none;
+      color: $white;
+      padding: 0.7em 1em;
       font-size: 16px;
       font-weight: normal;
       box-shadow: 0 0 0 !important;
       text-shadow: 0 0 !important;
 
-  		@include device-min(768px) {
-  			right: 1%;
-  		}
+      @include device-min(768px) {
+        right: 1%;
+      }
 
-  		i {
-  			@include font-size(20);
-  			line-height: 1;
-  		}
+      i {
+        @include font-size(20);
+        line-height: 1;
+      }
 
-  		&:hover,
-  		&:focus,
-  		&:active {
-  			outline: none;
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
         background: lighten($green-medium, 4%);
-  		}
-  	}
+      }
+    }
 
     table.listing {
       box-shadow: 0 0 0;
