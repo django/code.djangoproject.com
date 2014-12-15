@@ -218,6 +218,13 @@ div[role="main"]{
           }
         }
       }
+      tbody {
+        tr {
+          td {
+            padding: 0.5em !important;
+          }
+        }
+      }
     }
   }
 
