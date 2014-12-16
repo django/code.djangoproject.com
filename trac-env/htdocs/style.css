@@ -16,7 +16,7 @@ a {text-decoration: none; border: none!important;}
 a img {border: none;}
 #django-nav-global a, #django-footer a { color:#ffc757; }
 a:hover { color:#ffe761; }
-#django-content-main a:hover { background-color:#E0FFB8; color:#234f32; text-decoration:none; }
+#django-content-main a:hover { color:#234f32; text-decoration:none; }
 #django-content-main h2 a, #django-content-main h3 a { text-decoration:none !important; }
 #django-header a { border: none!important; }
 #django-header h1 { margin: 0!important; padding: 0!important; }
@@ -115,7 +115,7 @@ div#banner form#search { display: none; }
 #mainnav li:hover { border: 1px solid #E4E4E4 !important; }
 #mainnav li a { background: #eee!important; color: black!important; padding: 2px 10px!important; text-decoration: none!important; }
 #mainnav li.active a { background: #AB5603!important; color: white!important; font-weight: normal!important; }
-#mainnav li a:hover { background: #ddd!important; color: #333!important; box-shadow: 0 0.1em 0.3em 0 #999999 !important; }
+#mainnav li a:hover { background: #ddd!important; color: #333!important; box-shadow: 0 0 0 !important; }
 .wikitoolbar { border-left: 1px solid #ddd!important; }
 .wikitoolbar a { border: 1px solid #ddd!important; }
 .wikitoolbar a:hover { border-color: #ab5603!important; }

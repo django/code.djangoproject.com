@@ -1,0 +1,234 @@
+@import "utils";
+
+:link, :visited {
+  border-bottom: 0;
+  color: $green;
+  &:hover{
+    background-color: transparent;
+    color: lighten($green, 20%);
+  }
+}
+.subfooter :link {
+  &:hover,
+  &:hover {
+    color: $white;
+  }
+}
+
+.inlinebuttons {
+  input {
+    border-radius: 5px;
+    height: 2.5em;
+  }
+}
+
+div.trac-content {
+  box-shadow: 0 0 0;
+}
+
+.foldable {
+  :link, :visited {
+    box-shadow: 0 0 0;
+    text-shadow: 0 0;
+    border-color: $gray-line;
+    border-radius: 5px;
+    background-color: $green-very-light;
+    color: $text;
+    &:hover {
+      background-color: $green-light;
+      color: $text;
+    }
+  }
+}
+
+#ticket {
+  background-color: $white;
+  border-color: $gray-line;
+  table.properties {
+    border-top-color: $gray-line;
+    th, th.missing {
+      color: $text;
+    }
+  }
+  .description {
+    h3 {
+      color: $text;
+      border-bottom-color: $gray-line;
+    }
+  }
+  h2 :link {
+    color: $green;
+    &:hover {
+      color: lighten($green, 20%);
+    }
+  }
+  .date {
+    color: $text;
+  }
+}
+
+div[role="main"]{
+  #metanav {
+    font-family: sans-serif;
+
+    ul {
+      text-align: left;
+
+
+      li {
+        border-right: 0;
+        padding: 1em;
+
+        a {
+          font-size: 16px;
+          color: $green;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &.first {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  #mainnav {
+    box-shadow: 0 0 0;
+    border: 0;
+    border-radius: 0;
+    margin: .66em 0 .33em 7px;
+
+    ul {
+      text-align: left;
+      font-size: 16px;
+
+      li {
+        background: $green-very-light;
+        border: 0;
+        border-radius: 0;
+        text-align: center;
+        padding: 0.5em 0 0.5em 0;
+
+        a, a:hover {
+          box-shadow: 0 0 0;
+          background: none;
+          font-family: sans-serif;
+          color: $green-dark !important;
+        }
+        &.first {
+            padding-left: 0;
+            border-radius: 3px 0 0 3px;
+            :link {
+              border-radius: 0;
+            }
+        }
+        &.last {
+            padding-left: 0;
+            border-radius: 0 3px 3px 0;
+            :link {
+              border-radius: 0;
+            }
+        }
+        &:hover {
+          background: $green-light;
+        }
+        &.active {
+          background: $green-medium;
+          a {
+            background: none;
+            color: $white !important;
+            text-shadow: 0 0;
+          }
+        }
+      }
+    }
+  }
+
+  #main {
+    font-family: sans-serif !important;
+    text-shadow: 0 0 !important;
+    box-shadow: 0 0 0 !important;
+
+    fieldset {
+      box-shadow: 0 0 0 !important;
+      background: white !important;
+      border: 1px solid $gray-line;
+      table, th, tr {
+        font-family: sans-serif !important;
+        font-size: 14px !important;
+      }
+      legend {
+        a {
+          box-shadow: 0 0 0 !important;
+          text-shadow: 0 0 !important;
+          color: $text;
+          font-weight: normal;
+          font-size: 14px;
+        }
+      }
+    }
+
+    button, input[type="submit"] {
+      background: $green-medium;
+      border: none;
+      color: $white;
+      padding: 0.7em 1em;
+      font-size: 16px;
+      font-weight: normal;
+      box-shadow: 0 0 0 !important;
+      text-shadow: 0 0 !important;
+
+      @include device-min(768px) {
+        right: 1%;
+      }
+
+      i {
+        @include font-size(20);
+        line-height: 1;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        outline: none;
+        background: lighten($green-medium, 4%);
+      }
+    }
+
+    table.listing {
+      box-shadow: 0 0 0;
+      thead {
+        tr {
+          background: $green-very-light;
+
+          th {
+            background: $green-very-light;
+            border-bottom-color: #d7d7d7;
+            font-family: sans-serif !important;
+            font-size: 14px;
+            font-weight: normal;
+            color: $text;
+            padding: 0.5em;
+            a {
+              color: $text;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 0.5em !important;
+          }
+        }
+      }
+    }
+  }
+
+  #ctxtnav {
+    display: none;
+  }
+}
