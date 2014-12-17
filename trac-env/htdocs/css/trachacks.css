@@ -45,76 +45,81 @@ div.trac-content {
   color: #0C3C26;
 }
 
-/* line 44, trachacks.scss */
+/* line 45, trachacks.scss */
+#field-description {
+  width: 80%;
+}
+
+/* line 49, trachacks.scss */
 #ticket {
   background-color: #F1FFF7;
   border-color: #CFE3DC;
 }
-/* line 47, trachacks.scss */
+/* line 52, trachacks.scss */
 #ticket table.properties {
   border-top-color: #CFE3DC;
 }
-/* line 49, trachacks.scss */
+/* line 54, trachacks.scss */
 #ticket table.properties th, #ticket table.properties th.missing {
   color: #0C3C26;
 }
-/* line 54, trachacks.scss */
+/* line 59, trachacks.scss */
 #ticket .description h3 {
   color: #0C3C26;
   border-bottom-color: #CFE3DC;
 }
-/* line 59, trachacks.scss */
+/* line 64, trachacks.scss */
 #ticket h2 :link {
   color: #20AA76;
 }
-/* line 61, trachacks.scss */
+/* line 66, trachacks.scss */
 #ticket h2 :link:hover {
   color: #52dea9;
 }
-/* line 65, trachacks.scss */
+/* line 70, trachacks.scss */
 #ticket .date {
   color: #0C3C26;
 }
 
-/* line 71, trachacks.scss */
+/* line 76, trachacks.scss */
 div[role="main"] #metanav {
   font-family: sans-serif;
 }
-/* line 74, trachacks.scss */
+/* line 79, trachacks.scss */
 div[role="main"] #metanav ul {
   text-align: left;
 }
-/* line 78, trachacks.scss */
+/* line 83, trachacks.scss */
 div[role="main"] #metanav ul li {
   border-right: 0;
   padding: 1em;
 }
-/* line 82, trachacks.scss */
+/* line 87, trachacks.scss */
 div[role="main"] #metanav ul li a {
   font-size: 16px;
   color: #20AA76;
 }
-/* line 86, trachacks.scss */
+/* line 91, trachacks.scss */
 div[role="main"] #metanav ul li a:hover {
   text-decoration: underline;
 }
-/* line 91, trachacks.scss */
+/* line 96, trachacks.scss */
 div[role="main"] #metanav ul li.first {
   padding-left: 0;
 }
-/* line 98, trachacks.scss */
+/* line 103, trachacks.scss */
 div[role="main"] #mainnav {
   box-shadow: 0 0 0;
   border: 0;
   border-radius: 0;
   margin: .66em 0 .33em 7px;
 }
-/* line 104, trachacks.scss */
+/* line 109, trachacks.scss */
 div[role="main"] #mainnav ul {
   text-align: left;
   font-size: 16px;
 }
-/* line 108, trachacks.scss */
+/* line 113, trachacks.scss */
 div[role="main"] #mainnav ul li {
   background: #C9F0DD;
   border: 0;
@@ -122,69 +127,69 @@ div[role="main"] #mainnav ul li {
   text-align: center;
   padding: 0.5em 0 0.5em 0;
 }
-/* line 115, trachacks.scss */
+/* line 120, trachacks.scss */
 div[role="main"] #mainnav ul li a, div[role="main"] #mainnav ul li a:hover {
   box-shadow: 0 0 0;
   background: none;
   font-family: sans-serif;
   color: #0C4B33;
 }
-/* line 121, trachacks.scss */
+/* line 126, trachacks.scss */
 div[role="main"] #mainnav ul li.first {
   padding-left: 0;
   border-radius: 3px 0 0 3px;
 }
-/* line 124, trachacks.scss */
+/* line 129, trachacks.scss */
 div[role="main"] #mainnav ul li.first :link {
   border-radius: 0;
 }
-/* line 128, trachacks.scss */
+/* line 133, trachacks.scss */
 div[role="main"] #mainnav ul li.last {
   padding-left: 0;
   border-radius: 0 3px 3px 0;
 }
-/* line 131, trachacks.scss */
+/* line 136, trachacks.scss */
 div[role="main"] #mainnav ul li.last :link {
   border-radius: 0;
 }
-/* line 135, trachacks.scss */
+/* line 140, trachacks.scss */
 div[role="main"] #mainnav ul li:hover {
   background: #93D7B7;
 }
-/* line 138, trachacks.scss */
+/* line 143, trachacks.scss */
 div[role="main"] #mainnav ul li.active {
   background: #44B78B;
 }
-/* line 140, trachacks.scss */
+/* line 145, trachacks.scss */
 div[role="main"] #mainnav ul li.active a {
   background: none;
   color: #F1FFF7;
   text-shadow: 0 0;
 }
-/* line 150, trachacks.scss */
+/* line 155, trachacks.scss */
 div[role="main"] #main {
   font-family: sans-serif;
   text-shadow: 0 0;
   box-shadow: 0 0 0;
 }
-/* line 155, trachacks.scss */
+/* line 160, trachacks.scss */
 div[role="main"] #main fieldset {
   box-shadow: 0 0 0;
   background: white;
   border: 1px solid #CFE3DC;
 }
-/* line 159, trachacks.scss */
+/* line 164, trachacks.scss */
 div[role="main"] #main fieldset table, div[role="main"] #main fieldset th, div[role="main"] #main fieldset tr {
   font-size: 14px;
 }
-/* line 163, trachacks.scss */
+/* line 168, trachacks.scss */
 div[role="main"] #main fieldset legend a {
   text-shadow: 0 0;
   color: #0C3C26;
   font-weight: normal;
   font-size: 14px;
 }
-/* line 172, trachacks.scss */
+/* line 177, trachacks.scss */
 div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
   background: #44B78B;
   border: none;
@@ -196,31 +201,31 @@ div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
   text-shadow: 0 0;
 }
 @media screen and (min-device-width: 768px) {
-  /* line 172, trachacks.scss */
+  /* line 177, trachacks.scss */
   div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
     right: 1%;
   }
 }
-/* line 186, trachacks.scss */
+/* line 191, trachacks.scss */
 div[role="main"] #main button i, div[role="main"] #main input[type="submit"] i {
   font-size: 20px;
   font-size: 2rem;
   line-height: 1;
 }
-/* line 191, trachacks.scss */
+/* line 196, trachacks.scss */
 div[role="main"] #main button:hover, div[role="main"] #main button:focus, div[role="main"] #main button:active, div[role="main"] #main input[type="submit"]:hover, div[role="main"] #main input[type="submit"]:focus, div[role="main"] #main input[type="submit"]:active {
   outline: none;
   background: #51be95;
 }
-/* line 199, trachacks.scss */
+/* line 204, trachacks.scss */
 div[role="main"] #main table.listing {
   box-shadow: 0 0 0;
 }
-/* line 202, trachacks.scss */
+/* line 207, trachacks.scss */
 div[role="main"] #main table.listing thead tr {
   background: #C9F0DD;
 }
-/* line 205, trachacks.scss */
+/* line 210, trachacks.scss */
 div[role="main"] #main table.listing thead tr th {
   background: #C9F0DD;
   border-bottom-color: #d7d7d7;
@@ -229,15 +234,15 @@ div[role="main"] #main table.listing thead tr th {
   color: #0C3C26;
   padding: 0.5em;
 }
-/* line 212, trachacks.scss */
+/* line 217, trachacks.scss */
 div[role="main"] #main table.listing thead tr th a {
   color: #0C3C26;
 }
-/* line 220, trachacks.scss */
+/* line 225, trachacks.scss */
 div[role="main"] #main table.listing tbody tr td {
   padding: 0.5em !important;
 }
-/* line 228, trachacks.scss */
+/* line 233, trachacks.scss */
 div[role="main"] #ctxtnav {
   display: none;
 }
