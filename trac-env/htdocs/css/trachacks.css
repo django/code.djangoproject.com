@@ -235,7 +235,7 @@ div[role="main"] #main table.listing thead tr th a {
 }
 /* line 220, trachacks.scss */
 div[role="main"] #main table.listing tbody tr td {
-  padding: 0.5em;
+  padding: 0.5em !important;
 }
 /* line 228, trachacks.scss */
 div[role="main"] #ctxtnav {
