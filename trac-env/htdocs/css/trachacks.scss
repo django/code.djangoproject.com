@@ -1,5 +1,10 @@
 @import "utils";
 
+body, th, tr { // reset trac default
+    font-size: medium;
+    line-height: normal;
+}
+
 :link, :visited {
   border-bottom: 0;
   color: $green;
@@ -42,8 +47,20 @@ div.trac-content {
 }
 
 
-#field-description {
-  width: 80%;
+#field-description,
+#comment {
+  width: 97%; // XXX: it should be 100% - 1em
+}
+
+legend {
+  color: $text;
+  font-weight: normal;
+  font-size: medium;
+}
+
+#filters td label {
+  // reset trac default
+  font-size: medium;
 }
 
 #ticket {
@@ -157,20 +174,30 @@ div[role="main"]{
     text-shadow: 0 0;
     box-shadow: 0 0 0;
 
+    form input[type="search"],
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form textarea {
+      // reset some general styles from output.css
+      height: auto;
+      padding: 0.25em 0.5em;
+      margin: 2px;
+      font-size: medium;
+    }
+    form select {
+      height: auto;
+      padding: 0.25em 0.5em;
+      margin: 2px;
+      font-size: medium;
+    }
+
     fieldset {
       box-shadow: 0 0 0;
       background: white;
       border: 1px solid $gray-line;
       table, th, tr {
         font-size: 14px;
-      }
-      legend {
-        a {
-          text-shadow: 0 0;
-          color: $text;
-          font-weight: normal;
-          font-size: 14px;
-        }
       }
     }
 

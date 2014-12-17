@@ -4,33 +4,39 @@ html {
 }
 
 /* line 3, trachacks.scss */
+body, th, tr {
+  font-size: medium;
+  line-height: normal;
+}
+
+/* line 8, trachacks.scss */
 :link, :visited {
   border-bottom: 0;
   color: #20AA76;
 }
-/* line 6, trachacks.scss */
+/* line 11, trachacks.scss */
 :link:hover, :visited:hover {
   background-color: transparent;
   color: #52dea9;
 }
 
-/* line 12, trachacks.scss */
+/* line 17, trachacks.scss */
 .subfooter :link:hover, .subfooter :link:hover {
   color: #F1FFF7;
 }
 
-/* line 19, trachacks.scss */
+/* line 24, trachacks.scss */
 .inlinebuttons input {
   border-radius: 5px;
   height: 2.5em;
 }
 
-/* line 25, trachacks.scss */
+/* line 30, trachacks.scss */
 div.trac-content {
   box-shadow: 0 0 0;
 }
 
-/* line 30, trachacks.scss */
+/* line 35, trachacks.scss */
 .foldable :link, .foldable :visited {
   box-shadow: 0 0 0;
   text-shadow: 0 0;
@@ -39,87 +45,100 @@ div.trac-content {
   background-color: #C9F0DD;
   color: #0C3C26;
 }
-/* line 37, trachacks.scss */
+/* line 42, trachacks.scss */
 .foldable :link:hover, .foldable :visited:hover {
   background-color: #93D7B7;
   color: #0C3C26;
 }
 
-/* line 45, trachacks.scss */
-#field-description {
-  width: 80%;
+/* line 50, trachacks.scss */
+#field-description,
+#comment {
+  width: 97%;
 }
 
-/* line 49, trachacks.scss */
+/* line 55, trachacks.scss */
+legend {
+  color: #0C3C26;
+  font-weight: normal;
+  font-size: medium;
+}
+
+/* line 61, trachacks.scss */
+#filters td label {
+  font-size: medium;
+}
+
+/* line 66, trachacks.scss */
 #ticket {
   background-color: #F1FFF7;
   border-color: #CFE3DC;
 }
-/* line 52, trachacks.scss */
+/* line 69, trachacks.scss */
 #ticket table.properties {
   border-top-color: #CFE3DC;
 }
-/* line 54, trachacks.scss */
+/* line 71, trachacks.scss */
 #ticket table.properties th, #ticket table.properties th.missing {
   color: #0C3C26;
 }
-/* line 59, trachacks.scss */
+/* line 76, trachacks.scss */
 #ticket .description h3 {
   color: #0C3C26;
   border-bottom-color: #CFE3DC;
 }
-/* line 64, trachacks.scss */
+/* line 81, trachacks.scss */
 #ticket h2 :link {
   color: #20AA76;
 }
-/* line 66, trachacks.scss */
+/* line 83, trachacks.scss */
 #ticket h2 :link:hover {
   color: #52dea9;
 }
-/* line 70, trachacks.scss */
+/* line 87, trachacks.scss */
 #ticket .date {
   color: #0C3C26;
 }
 
-/* line 76, trachacks.scss */
+/* line 93, trachacks.scss */
 div[role="main"] #metanav {
   font-family: sans-serif;
 }
-/* line 79, trachacks.scss */
+/* line 96, trachacks.scss */
 div[role="main"] #metanav ul {
   text-align: left;
 }
-/* line 83, trachacks.scss */
+/* line 100, trachacks.scss */
 div[role="main"] #metanav ul li {
   border-right: 0;
   padding: 1em;
 }
-/* line 87, trachacks.scss */
+/* line 104, trachacks.scss */
 div[role="main"] #metanav ul li a {
   font-size: 16px;
   color: #20AA76;
 }
-/* line 91, trachacks.scss */
+/* line 108, trachacks.scss */
 div[role="main"] #metanav ul li a:hover {
   text-decoration: underline;
 }
-/* line 96, trachacks.scss */
+/* line 113, trachacks.scss */
 div[role="main"] #metanav ul li.first {
   padding-left: 0;
 }
-/* line 103, trachacks.scss */
+/* line 120, trachacks.scss */
 div[role="main"] #mainnav {
   box-shadow: 0 0 0;
   border: 0;
   border-radius: 0;
   margin: .66em 0 .33em 7px;
 }
-/* line 109, trachacks.scss */
+/* line 126, trachacks.scss */
 div[role="main"] #mainnav ul {
   text-align: left;
   font-size: 16px;
 }
-/* line 113, trachacks.scss */
+/* line 130, trachacks.scss */
 div[role="main"] #mainnav ul li {
   background: #C9F0DD;
   border: 0;
@@ -127,69 +146,80 @@ div[role="main"] #mainnav ul li {
   text-align: center;
   padding: 0.5em 0 0.5em 0;
 }
-/* line 120, trachacks.scss */
+/* line 137, trachacks.scss */
 div[role="main"] #mainnav ul li a, div[role="main"] #mainnav ul li a:hover {
   box-shadow: 0 0 0;
   background: none;
   font-family: sans-serif;
   color: #0C4B33;
 }
-/* line 126, trachacks.scss */
+/* line 143, trachacks.scss */
 div[role="main"] #mainnav ul li.first {
   padding-left: 0;
   border-radius: 3px 0 0 3px;
 }
-/* line 129, trachacks.scss */
+/* line 146, trachacks.scss */
 div[role="main"] #mainnav ul li.first :link {
   border-radius: 0;
 }
-/* line 133, trachacks.scss */
+/* line 150, trachacks.scss */
 div[role="main"] #mainnav ul li.last {
   padding-left: 0;
   border-radius: 0 3px 3px 0;
 }
-/* line 136, trachacks.scss */
+/* line 153, trachacks.scss */
 div[role="main"] #mainnav ul li.last :link {
   border-radius: 0;
 }
-/* line 140, trachacks.scss */
+/* line 157, trachacks.scss */
 div[role="main"] #mainnav ul li:hover {
   background: #93D7B7;
 }
-/* line 143, trachacks.scss */
+/* line 160, trachacks.scss */
 div[role="main"] #mainnav ul li.active {
   background: #44B78B;
 }
-/* line 145, trachacks.scss */
+/* line 162, trachacks.scss */
 div[role="main"] #mainnav ul li.active a {
   background: none;
   color: #F1FFF7;
   text-shadow: 0 0;
 }
-/* line 155, trachacks.scss */
+/* line 172, trachacks.scss */
 div[role="main"] #main {
   font-family: sans-serif;
   text-shadow: 0 0;
   box-shadow: 0 0 0;
 }
-/* line 160, trachacks.scss */
+/* line 177, trachacks.scss */
+div[role="main"] #main form input[type="search"],
+div[role="main"] #main form input[type="text"],
+div[role="main"] #main form input[type="email"],
+div[role="main"] #main form input[type="password"],
+div[role="main"] #main form textarea {
+  height: auto;
+  padding: 0.25em 0.5em;
+  margin: 2px;
+  font-size: medium;
+}
+/* line 188, trachacks.scss */
+div[role="main"] #main form select {
+  height: auto;
+  padding: 0.25em 0.5em;
+  margin: 2px;
+  font-size: medium;
+}
+/* line 195, trachacks.scss */
 div[role="main"] #main fieldset {
   box-shadow: 0 0 0;
   background: white;
   border: 1px solid #CFE3DC;
 }
-/* line 164, trachacks.scss */
+/* line 199, trachacks.scss */
 div[role="main"] #main fieldset table, div[role="main"] #main fieldset th, div[role="main"] #main fieldset tr {
   font-size: 14px;
 }
-/* line 168, trachacks.scss */
-div[role="main"] #main fieldset legend a {
-  text-shadow: 0 0;
-  color: #0C3C26;
-  font-weight: normal;
-  font-size: 14px;
-}
-/* line 177, trachacks.scss */
+/* line 204, trachacks.scss */
 div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
   background: #44B78B;
   border: none;
@@ -201,31 +231,31 @@ div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
   text-shadow: 0 0;
 }
 @media screen and (min-device-width: 768px) {
-  /* line 177, trachacks.scss */
+  /* line 204, trachacks.scss */
   div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
     right: 1%;
   }
 }
-/* line 191, trachacks.scss */
+/* line 218, trachacks.scss */
 div[role="main"] #main button i, div[role="main"] #main input[type="submit"] i {
   font-size: 20px;
   font-size: 2rem;
   line-height: 1;
 }
-/* line 196, trachacks.scss */
+/* line 223, trachacks.scss */
 div[role="main"] #main button:hover, div[role="main"] #main button:focus, div[role="main"] #main button:active, div[role="main"] #main input[type="submit"]:hover, div[role="main"] #main input[type="submit"]:focus, div[role="main"] #main input[type="submit"]:active {
   outline: none;
   background: #51be95;
 }
-/* line 204, trachacks.scss */
+/* line 231, trachacks.scss */
 div[role="main"] #main table.listing {
   box-shadow: 0 0 0;
 }
-/* line 207, trachacks.scss */
+/* line 234, trachacks.scss */
 div[role="main"] #main table.listing thead tr {
   background: #C9F0DD;
 }
-/* line 210, trachacks.scss */
+/* line 237, trachacks.scss */
 div[role="main"] #main table.listing thead tr th {
   background: #C9F0DD;
   border-bottom-color: #d7d7d7;
@@ -234,15 +264,15 @@ div[role="main"] #main table.listing thead tr th {
   color: #0C3C26;
   padding: 0.5em;
 }
-/* line 217, trachacks.scss */
+/* line 244, trachacks.scss */
 div[role="main"] #main table.listing thead tr th a {
   color: #0C3C26;
 }
-/* line 225, trachacks.scss */
+/* line 252, trachacks.scss */
 div[role="main"] #main table.listing tbody tr td {
   padding: 0.5em !important;
 }
-/* line 233, trachacks.scss */
+/* line 260, trachacks.scss */
 div[role="main"] #ctxtnav {
   display: none;
 }
