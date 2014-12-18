@@ -33,13 +33,13 @@ body, th, tr {
 
 /* line 30, trachacks.scss */
 div.trac-content {
-  box-shadow: 0 0 0;
+  box-shadow: none;
 }
 
 /* line 35, trachacks.scss */
 .foldable :link, .foldable :visited {
-  box-shadow: 0 0 0;
-  text-shadow: 0 0;
+  box-shadow: none;
+  text-shadow: none;
   border-color: #CFE3DC;
   border-radius: 5px;
   background-color: #C9F0DD;
@@ -128,7 +128,7 @@ div[role="main"] #metanav ul li.first {
 }
 /* line 120, trachacks.scss */
 div[role="main"] #mainnav {
-  box-shadow: 0 0 0;
+  box-shadow: none;
   border: 0;
   border-radius: 0;
   margin: .66em 0 .33em 7px;
@@ -148,7 +148,7 @@ div[role="main"] #mainnav ul li {
 }
 /* line 137, trachacks.scss */
 div[role="main"] #mainnav ul li a, div[role="main"] #mainnav ul li a:hover {
-  box-shadow: 0 0 0;
+  box-shadow: none;
   background: none;
   font-family: sans-serif;
   color: #0C4B33;
@@ -183,13 +183,13 @@ div[role="main"] #mainnav ul li.active {
 div[role="main"] #mainnav ul li.active a {
   background: none;
   color: #F1FFF7;
-  text-shadow: 0 0;
+  text-shadow: none;
 }
 /* line 172, trachacks.scss */
 div[role="main"] #main {
   font-family: sans-serif;
-  text-shadow: 0 0;
-  box-shadow: 0 0 0;
+  text-shadow: none;
+  box-shadow: none;
 }
 /* line 177, trachacks.scss */
 div[role="main"] #main form input[type="search"],
@@ -211,7 +211,7 @@ div[role="main"] #main form select {
 }
 /* line 195, trachacks.scss */
 div[role="main"] #main fieldset {
-  box-shadow: 0 0 0;
+  box-shadow: none;
   background: white;
   border: 1px solid #CFE3DC;
 }
@@ -227,8 +227,8 @@ div[role="main"] #main button, div[role="main"] #main input[type="submit"] {
   padding: 0.7em 1em;
   font-size: 16px;
   font-weight: normal;
-  box-shadow: 0 0 0;
-  text-shadow: 0 0;
+  box-shadow: none;
+  text-shadow: none;
 }
 @media screen and (min-device-width: 768px) {
   /* line 204, trachacks.scss */
@@ -249,7 +249,7 @@ div[role="main"] #main button:hover, div[role="main"] #main button:focus, div[ro
 }
 /* line 231, trachacks.scss */
 div[role="main"] #main table.listing {
-  box-shadow: 0 0 0;
+  box-shadow: none;
 }
 /* line 234, trachacks.scss */
 div[role="main"] #main table.listing thead tr {

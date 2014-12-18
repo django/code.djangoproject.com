@@ -28,13 +28,13 @@ body, th, tr { // reset trac default
 }
 
 div.trac-content {
-  box-shadow: 0 0 0;
+  box-shadow: none;
 }
 
 .foldable {
   :link, :visited {
-    box-shadow: 0 0 0;
-    text-shadow: 0 0;
+    box-shadow: none;
+    text-shadow: none;
     border-color: $gray-line;
     border-radius: 5px;
     background-color: $green-very-light;
@@ -118,7 +118,7 @@ div[role="main"]{
   }
 
   #mainnav {
-    box-shadow: 0 0 0;
+    box-shadow: none;
     border: 0;
     border-radius: 0;
     margin: .66em 0 .33em 7px;
@@ -135,7 +135,7 @@ div[role="main"]{
         padding: 0.5em 0 0.5em 0;
 
         a, a:hover {
-          box-shadow: 0 0 0;
+          box-shadow: none;
           background: none;
           font-family: sans-serif;
           color: $green-dark;
@@ -162,7 +162,7 @@ div[role="main"]{
           a {
             background: none;
             color: $white;
-            text-shadow: 0 0;
+            text-shadow: none;
           }
         }
       }
@@ -171,8 +171,8 @@ div[role="main"]{
 
   #main {
     font-family: sans-serif;
-    text-shadow: 0 0;
-    box-shadow: 0 0 0;
+    text-shadow: none;
+    box-shadow: none;
 
     form input[type="search"],
     form input[type="text"],
@@ -193,7 +193,7 @@ div[role="main"]{
     }
 
     fieldset {
-      box-shadow: 0 0 0;
+      box-shadow: none;
       background: white;
       border: 1px solid $gray-line;
       table, th, tr {
@@ -208,8 +208,8 @@ div[role="main"]{
       padding: 0.7em 1em;
       font-size: 16px;
       font-weight: normal;
-      box-shadow: 0 0 0;
-      text-shadow: 0 0;
+      box-shadow: none;
+      text-shadow: none;
 
       @include device-min(768px) {
         right: 1%;
@@ -229,7 +229,7 @@ div[role="main"]{
     }
 
     table.listing {
-      box-shadow: 0 0 0;
+      box-shadow: none;
       thead {
         tr {
           background: $green-very-light;
