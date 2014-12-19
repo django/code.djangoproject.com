@@ -63,6 +63,14 @@ legend {
   font-size: medium;
 }
 
+blockquote.citation {
+  // Replace trac's default with values from _style.css for blockquote
+  // TODO: figure out how to centralize this instead of copy/pasting it here
+  margin: 25px 0;
+  border: 1px solid $green-very-light;
+  padding: 15px 20px 15px 70px;
+}
+
 #ticket {
   background-color: $white;
   border-color: $gray-line;
