@@ -54,46 +54,57 @@
       </div>
     </div>
 
-    <div class="container sidebar-right">
-      <div role="main">
-        ${select('./div[@id="banner"]/div[@id="metanav"]')}
-        ${select('./div[@id="mainnav"]')}
-        ${select('./div[@id="main"]')}
-        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+    <py:if test="req.environ['PATH_INFO'] == '/'">
+      <div class="container sidebar-right">
+        <div role="main">
+          ${select('./div[@id="banner"]/div[@id="metanav"]')}
+          ${select('./div[@id="mainnav"]')}
+          ${select('./div[@id="main"]')}
+          <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+        </div>
+        <div role="complementary">
+          <form action="/search/" id="sidebar_search" class="search form-input" role="search">
+            <label class="visuallyhidden" for="q">Search:</label>
+            <input id="id_sidebar_search_q" name="q" placeholder="Search Trac" type="search" />
+
+            <button type="submit">
+              <i class="icon icon-search"></i>
+              <span class="visuallyhidden">Search</span>
+            </button>
+          </form>
+          <h3>Useful links</h3>
+          <dl>
+            <dt><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribution Guide</a></dt>
+            <dd>You'd like to contribute to Django but don't know how? This document will explain our process and how to get involved.</dd>
+
+            <dt><a href="/query?status=!closed&amp;easy=1">"Easy Pickings"</a></dt>
+            <dd>First time contributor and you're looking for something manageable? The "easy pickings" list is a good start.</dd>
+
+            <dt><a href="https://docs.djangoproject.com/en/dev/internals/security/">Security Policy</a></dt>
+            <dd>You found a security issue in Django? You'd like to know more about our security policy? It's all in there.</dd>
+
+            <dt><a href="https://github.com/django/django">GitHub</a></dt>
+            <dd>Want to peek under the hood and see Django's source code, file or help review a pull request? It's all on GitHub.</dd>
+
+            <dt><a href="https://dashboard.djangoproject.com/">Django Dashboard</a></dt>
+            <dd>Confused about Trac's filtering system? This dashboard shows easy-to-read metrics and has links to pre-set filters to get you started.</dd>
+
+            <dt><a href="irc://irc.freenode.net/django-dev">#django-dev IRC channel</a></dt>
+            <dd>Questions about a ticket? Stuck on how to write a unit test for your pull request? Come chat with us!</dd>
+          </dl>
+        </div>
       </div>
-      <div role="complementary">
-        <form action="/search/" id="sidebar_search" class="search form-input" role="search">
-          <label class="visuallyhidden" for="q">Search:</label>
-          <input id="id_sidebar_search_q" name="q" placeholder="Search Trac" type="search" />
-
-          <button type="submit">
-            <i class="icon icon-search"></i>
-            <span class="visuallyhidden">Search</span>
-          </button>
-        </form>
-        <h3>Useful links</h3>
-        <dl>
-          <dt><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribution Guide</a></dt>
-          <dd>You'd like to contribute to Django but don't know how? This document will explain our process and how to get involved.</dd>
-
-          <dt><a href="/query?status=!closed&amp;easy=1">"Easy Pickings"</a></dt>
-          <dd>First time contributor and you're looking for something manageable? The "easy pickings" list is a good start.</dd>
-
-          <dt><a href="https://docs.djangoproject.com/en/dev/internals/security/">Security Policy</a></dt>
-          <dd>You found a security issue in Django? You'd like to know more about our security policy? It's all in there.</dd>
-
-          <dt><a href="https://github.com/django/django">GitHub</a></dt>
-          <dd>Want to peek under the hood and see Django's source code, file or help review a pull request? It's all on GitHub.</dd>
-
-          <dt><a href="https://dashboard.djangoproject.com/">Django Dashboard</a></dt>
-          <dd>Confused about Trac's filtering system? This dashboard shows easy-to-read metrics and has links to pre-set filters to get you started.</dd>
-
-          <dt><a href="irc://irc.freenode.net/django-dev">#django-dev IRC channel</a></dt>
-          <dd>Questions about a ticket? Stuck on how to write a unit test for your pull request? Come chat with us!</dd>
-        </dl>
+    </py:if>
+    <py:if test="req.environ['PATH_INFO'] != '/'">
+      <div class="container full-width">
+        <div role="main">
+          ${select('./div[@id="banner"]/div[@id="metanav"]')}
+          ${select('./div[@id="mainnav"]')}
+          ${select('./div[@id="main"]')}
+          <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+        </div>
       </div>
-    </div>
-
+    </py:if>
 
     <div role="contentinfo">
       <div class="subfooter">

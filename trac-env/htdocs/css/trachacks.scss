@@ -31,6 +31,43 @@ div.trac-content {
   box-shadow: none;
 }
 
+.full-width [role="main"] {
+  max-width: 960px;
+}
+
+#changelog h3 {
+  box-shadow: 0 .4em .4em 0 #f2f2f2;
+  margin-bottom: 30px;
+  padding: 5px;
+}
+
+#changelog .comment {
+  width: 70%;
+}
+
+#changelog p {
+  line-height: 1.4;
+}
+
+.trac-ticket-buttons {
+  float: right;
+  padding-bottom: 20px;
+  width: 30%;
+}
+
+pre.wiki {
+  box-shadow: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.5em;
+  overflow: scroll;
+  white-space: pre;
+}
+
+#content.ticket {
+  width: auto;
+}
+
 .foldable {
   :link, :visited {
     box-shadow: none;
@@ -234,6 +271,17 @@ div[role="main"]{
         outline: none;
         background: lighten($green-medium, 4%);
       }
+    }
+
+    .inlinebuttons input[type="submit"] {
+      background: #ddd;
+      color: #444;
+      font-size: 1.1rem;
+    }
+
+    .inlinebuttons input[type="submit"]:hover {
+      background: #666;
+      color: #eee;
     }
 
     table.listing {
