@@ -336,7 +336,7 @@ div[role="main"] #main table.listing tbody tr td {
 }
 /* line 316, trachacks.scss */
 div[role="main"] #ctxtnav {
-  display: none;
+  float: right;
 }
 
 /*# sourceMappingURL=trachacks.css.map */
