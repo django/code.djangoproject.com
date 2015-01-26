@@ -334,9 +334,9 @@ div[role="main"] #main table.listing thead tr th a {
 div[role="main"] #main table.listing tbody tr td {
   padding: 0.5em !important;
 }
-/* line 316, trachacks.scss */
-div[role="main"] #ctxtnav {
-  float: right;
+/* line 315, trachacks.scss */
+div[role="main"] #main .timeline h1 {
+  margin: 0;
 }
 
 /*# sourceMappingURL=trachacks.css.map */
