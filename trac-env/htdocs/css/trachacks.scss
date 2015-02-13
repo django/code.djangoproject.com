@@ -41,18 +41,21 @@ div.trac-content {
   padding: 5px;
 }
 
-#changelog .comment {
-  width: 70%;
-}
-
 #changelog p {
   line-height: 1.4;
 }
 
+#changelog .inlinebuttons {
+  float: none;
+}
+
 .trac-ticket-buttons {
   float: right;
-  padding-bottom: 20px;
-  width: 30%;
+  padding-left: 20px;
+}
+
+.trac-ticket-buttons form {
+  display: inline-block;
 }
 
 pre.wiki {
