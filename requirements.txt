@@ -4,7 +4,7 @@ dnspython == 1.11.1
 spambayes == 1.1b1
 psycopg2 == 2.5.3
 docutils == 0.12
-Django == 1.7.1
+Django == 1.7.6
 
 # Trac plugins
 svn+https://svn.edgewall.org/repos/trac/plugins/1.0/spam-filter@13100
