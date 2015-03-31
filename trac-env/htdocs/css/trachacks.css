@@ -1,4 +1,18 @@
-/* line 77, _utils.scss */
+@font-face {
+  font-family: 'Fira Mono';
+  src: url("../fonts/fira-mono/FiraMono-Regular.eot");
+  src: url("../fonts/fira-mono/FiraMono-Regular.eot") format("embedded-opentype"), url("../fonts/fira-mono/FiraMono-Regular.woff") format("woff"), url("../fonts/fira-mono/FiraMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Mono';
+  src: url("../fonts/fira-mono/FiraMono-Bold.eot");
+  src: url("../fonts/fira-mono/FiraMono-Bold.eot") format("embedded-opentype"), url("../fonts/fira-mono/FiraMono-Bold.woff") format("woff"), url("../fonts/fira-mono/FiraMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+/* line 102, _utils.scss */
 html {
   font-size: 62.5%;
 }
