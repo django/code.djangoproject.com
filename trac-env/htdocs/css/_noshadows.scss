@@ -1,0 +1,115 @@
+// Trac uses box-shadow and text-shadow everywhere but their 90s look doesn't
+// fit well with our design.
+// I grepped through Trac's source and undid all the box/text-shadows
+
+// trac.css
+h1, h2, h3, h4, h5, h6, span {
+  &:target {
+    box-shadow: none;
+  }
+}
+input[type=button], input[type=submit], input[type=reset] {
+  box-shadow: none;
+  text-shadow: none;
+  &:hover {
+    box-shadow: none;
+    text-shadow: none;
+  }
+}
+fieldset {
+  box-shadow: none;
+}
+.inlinebuttons input {
+  box-shadow: none;
+}
+.inlinebuttons {
+  input[type=button], input[type=submit] {
+    &:hover {
+      box-shadow: none;
+      text-shadow: none;
+    }
+  }
+}
+#mainnav {
+  box-shadow: none;
+  :link, :visited {
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  .active {
+    :link, :visited {
+      text-shadow: none;
+    }
+  }
+}
+div.trac-content {
+  box-shadow: none;
+}
+.foldable {
+  :link, :visited {
+    box-shadow: none;
+    text-shadow: none;
+  }
+}
+fieldset > legend.foldable {
+  :link, :visited {
+    text-shadow: none;
+  }
+}
+#prefs {
+  box-shadow: none;
+}
+pre {
+  .wiki, .literal-block {
+    box-shadow: none;
+  }
+}
+table.wiki {
+  box-shadow: none;
+}
+table.listing {
+  box-shadow: none;
+}
+div.system-message {
+  box-shadow: none;
+  .trac-close-msg:hover {
+    box-shadow: none;
+    text-shadow: none;
+  }
+}
+
+// report.css
+.report div.reports h2 {
+  box-shadow: none;
+}
+h2.report-result {
+  box-shadow: none;
+}
+
+// wiki.css
+.wikipage h2 {
+  box-shadow: none;
+}
+
+// ticket.css
+#changelog, #ticketchange {
+  h3 {
+    box-shadow: none;
+  }
+}
+
+// admin.css
+#tabs {
+  box-shadow: none;
+  li {
+    li.active {
+      box-shadow: none;
+    }
+  }
+}
+
+.plugin {
+  box-shadow: none;
+}
