@@ -28,6 +28,20 @@ body, th, tr { // reset trac default
   }
 }
 
+div.trac-content {
+  border: 0;
+}
+.wikipage {
+  padding-left: 0;
+  .trac-content {
+    margin: 0;
+    padding: 0;
+  }
+  h1, h2, h3 {
+    margin-left: 0;
+  }
+}
+
 .full-width [role="main"] {
   max-width: 960px;
 }
