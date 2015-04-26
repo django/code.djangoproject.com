@@ -145,7 +145,7 @@ blockquote.citation {
 
 div[role="main"]{
   #metanav {
-    font-family: sans-serif;
+    @include sans-serif;
 
     ul {
       text-align: left;
@@ -189,7 +189,7 @@ div[role="main"]{
 
         a, a:hover {
           background: none;
-          font-family: sans-serif;
+          @include sans-serif;
           color: $green-dark;
         }
         &.first {
@@ -221,7 +221,7 @@ div[role="main"]{
   }
 
   #main {
-    font-family: sans-serif;
+    @include sans-serif;
 
     form input[type="search"],
     form input[type="text"],
