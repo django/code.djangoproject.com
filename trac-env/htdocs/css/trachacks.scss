@@ -275,15 +275,17 @@ div[role="main"]{
       }
     }
 
-    .inlinebuttons input[type="submit"] {
+    .inlinebuttons input[type="submit"],
+    button.trac-revert {
       background: #ddd;
       color: #444;
       font-size: 1.1rem;
-    }
+      height: initial;
 
-    .inlinebuttons input[type="submit"]:hover {
-      background: #666;
-      color: #eee;
+      &:hover {
+        background: #666;
+        color: #eee;
+      }
     }
 
     table.listing {
