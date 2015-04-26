@@ -61,7 +61,8 @@ div.trac-content {
 
 .trac-ticket-buttons {
   float: right;
-  padding-left: 20px;
+  position: relative;  // needed to be able to use z-index
+  z-index: 100;
 }
 
 .trac-ticket-buttons form {
