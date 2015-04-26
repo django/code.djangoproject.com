@@ -170,7 +170,7 @@ blockquote.citation {
 
 /* line 140, trachacks.scss */
 div[role="main"] #metanav {
-  font-family: sans-serif;
+  font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
 }
 /* line 143, trachacks.scss */
 div[role="main"] #metanav ul {
@@ -218,7 +218,7 @@ div[role="main"] #mainnav ul li {
 div[role="main"] #mainnav ul li a, div[role="main"] #mainnav ul li a:hover {
   box-shadow: none;
   background: none;
-  font-family: sans-serif;
+  font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
   color: #0C4B33;
 }
 /* line 190, trachacks.scss */
@@ -255,7 +255,7 @@ div[role="main"] #mainnav ul li.active a {
 }
 /* line 219, trachacks.scss */
 div[role="main"] #main {
-  font-family: sans-serif;
+  font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
   text-shadow: none;
   box-shadow: none;
 }
