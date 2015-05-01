@@ -118,6 +118,12 @@ blockquote.citation {
   padding: 15px 20px 15px 70px;
 }
 
+#delete,
+#rename,
+#save {
+  margin-left: 0;
+}
+
 #ticket {
   background-color: $white;
   border-color: $gray-line;
