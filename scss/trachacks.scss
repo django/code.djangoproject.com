@@ -319,13 +319,13 @@ div[role="main"]{
           }
 
           #id, #version, #status {
-            max-width: 5%;
+            width: 5%;
           }
           #owner, #type, #component {
-            max-width: 10%;
+            width: 10%;
           }
           #summary {
-            max-width: 45%;
+            width: 45%;
           }
         }
       }
