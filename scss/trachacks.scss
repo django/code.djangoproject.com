@@ -227,6 +227,10 @@ div[role="main"]{
     }
   }
 
+  #tickets-list {
+    max-width: 100%;
+  }
+
   #main {
     @include sans-serif;
 
@@ -295,6 +299,9 @@ div[role="main"]{
     }
 
     table.listing {
+      max-width: 100%;
+      table-layout: fixed;
+
       thead {
         tr {
           background: $green-very-light;
@@ -310,12 +317,23 @@ div[role="main"]{
               color: $text;
             }
           }
+
+          #id, #version, #status {
+            max-width: 5%;
+          }
+          #owner, #type, #component {
+            max-width: 10%;
+          }
+          #summary {
+            max-width: 45%;
+          }
         }
       }
       tbody {
         tr {
           td {
             padding: 0.5em !important; // :(
+            font-size: 12px;
           }
         }
       }
