@@ -29,20 +29,12 @@ from base64 import b64decode
 import django
 from django.conf import settings
 from django.contrib.auth import authenticate
+from django.core.handlers.wsgi import get_path_info
 from django.db import close_old_connections
-if django.VERSION[:2] >= (1, 7):
-    from django.core.handlers.wsgi import get_path_info
-else:
-    def get_path_info(environ):
-        path_info = environ.get('PATH_INFO', '/')
-        if six.PY3:
-            path_info = path_info.encode('iso-8859-1')
-        return path_info.decode('utf-8')
 from django.utils import six
 
 
-if django.VERSION[:2] >= (1, 7):
-    django.setup()
+django.setup()
 
 
 class DjangoAuth:
@@ -70,7 +62,6 @@ class DjangoAuth:
             close_old_connections()
 
         return self.application(environ, start_response)
-
 
     @staticmethod
     def process_authorization(environ):
