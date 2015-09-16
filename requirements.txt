@@ -1,4 +1,4 @@
-Trac == 1.0.8
+Trac == 1.0.9
 Pygments == 1.6
 dnspython == 1.11.1
 spambayes == 1.1b1
