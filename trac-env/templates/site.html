@@ -99,6 +99,12 @@
     <py:if test="req.environ['PATH_INFO'] != '/'">
       <div class="container full-width">
         <div role="main">
+          <py:if test="req.authname != 'anonymous' and not req.session.email">
+            <div class="system-message" id="warning">
+              Add an email address on the <a href="${req.href.prefs()}">Preferences</a>
+              page to receive updates on tickets you own, have created, or been CCed on.
+            </div>
+          </py:if>
           ${select('./div[@id="banner"]/div[@id="metanav"]')}
           ${select('./div[@id="mainnav"]')}
           ${select('./div[@id="main"]')}
