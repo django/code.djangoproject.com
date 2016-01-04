@@ -7,6 +7,9 @@ docutils == 0.12
 Django == 1.8.4
 libsass==0.8.2
 
+# Trac plugins
+svn+https://trac-hacks.org/svn/xmlrpcplugin/trunk@13776
+
 oauthlib==1.0.1
 requests==2.7.0
 requests-oauthlib==0.5.0
