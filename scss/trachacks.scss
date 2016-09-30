@@ -21,6 +21,12 @@ body, th, tr { // reset trac default
   }
 }
 
+h1, h2, h3, h4, h5, h6, span {
+  &:target {
+    background: $green-very-light;
+  }
+}
+
 .inlinebuttons {
   input {
     border-radius: 5px;
@@ -57,6 +63,12 @@ div.trac-content {
 
 #changelog .inlinebuttons {
   float: none;
+}
+
+#changelog .changes {
+  background: $white;
+  border-color: $gray-line;
+  color: $text;
 }
 
 .trac-ticket-buttons {
