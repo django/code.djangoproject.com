@@ -176,6 +176,19 @@ div[role="main"]{
         }
       }
     }
+
+    form.trac-logout {
+      button {
+        color: $green;
+        border-bottom: 0;
+
+        &:hover {
+          background-color: inherit;
+          color: $green;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   #mainnav {
