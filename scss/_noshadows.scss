@@ -1,6 +1,7 @@
 // Trac uses box-shadow and text-shadow everywhere but their 90s look doesn't
 // fit well with our design.
-// I grepped through Trac's source and undid all the box/text-shadows
+// I grepped through Trac's source and undid all the box/text-shadows:
+// $ git grep -n box-shadow -- trac/htdocs/css/ | grep -vF 'shadow: none'
 
 // trac.css
 h1, h2, h3, h4, h5, h6, span {
@@ -8,7 +9,7 @@ h1, h2, h3, h4, h5, h6, span {
     box-shadow: none;
   }
 }
-input[type=button], input[type=submit], input[type=reset] {
+input[type=button], input[type=submit], input[type=reset], .trac-button {
   box-shadow: none;
   text-shadow: none;
   &:hover {
@@ -19,11 +20,11 @@ input[type=button], input[type=submit], input[type=reset] {
 fieldset {
   box-shadow: none;
 }
-.inlinebuttons input {
-  box-shadow: none;
-}
 .inlinebuttons {
-  input[type=button], input[type=submit] {
+  input[type=button],
+  input[type=submit],
+  .trac-button,
+  a {
     &:hover {
       box-shadow: none;
       text-shadow: none;
@@ -61,10 +62,8 @@ fieldset > legend.foldable {
 #prefs {
   box-shadow: none;
 }
-pre {
-  .wiki, .literal-block {
-    box-shadow: none;
-  }
+pre.wiki, pre.literal-block {
+  box-shadow: none;
 }
 table.wiki {
   box-shadow: none;
@@ -95,7 +94,7 @@ h2.report-result {
 
 // ticket.css
 #changelog, #ticketchange {
-  h3 {
+  h3, .changes {
     box-shadow: none;
   }
 }
@@ -111,5 +110,25 @@ h2.report-result {
 }
 
 .plugin {
+  box-shadow: none;
+}
+
+// browser.css
+div.message {
+  box-shadow: none;
+
+// prefs.css
+#content.prefs div.prefs_child h2 {
+  box-shadow: none;
+}
+
+// roadmap.css
+table.progress,
+.milestone .info h2 {
+  box-shadow: none;
+}
+
+// timeline.css
+.timeline h2 {
   box-shadow: none;
 }
