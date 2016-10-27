@@ -13,7 +13,7 @@ svn+https://trac-hacks.org/svn/xmlrpcplugin/trunk@15900
 
 oauthlib==2.0.0
 requests==2.11.1
-requests-oauthlib==0.6.2
+requests-oauthlib==0.7.0
 trac-github==2.2
 
 -e ./DjangoPlugin
