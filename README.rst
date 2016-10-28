@@ -14,7 +14,7 @@ that can help:
   to give all permissions to the anonymous user.
 * Use the command ``tracd --port 9000 -s trac-env`` to serve Trac locally.
 * If you've modified the ``trackhack.scss`` file, use
-  ``sassc trac-env/htdocs/css/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
+  ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
   to compile it to CSS.
 
 How to port the CSS from djangoproject.com
