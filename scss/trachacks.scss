@@ -65,16 +65,24 @@ div.trac-content {
   float: none;
 }
 
-#changelog .changes {
+#ticketchange .changes, #changelog .changes {
   background: $white;
   border-color: $gray-line;
   color: $text;
   float: left;
-  margin: -20px 0 15px 0;
+  margin: 0 0 15px 0;
   border-collapse: separate;
 }
 
-#changelog .comment {
+#ticketchange .changes {
+  margin-top: 5px;
+}
+
+#ticketchange .changes th {
+  vertical-align: middle;
+}
+
+#ticketchange .comment, #changelog .comment {
   clear: both;
 }
 
@@ -286,6 +294,10 @@ div[role="main"]{
       table, th, tr {
         font-size: 14px;
       }
+    }
+
+    .inlinebuttons input[type="submit"] {
+      padding: 0.4em 1em;
     }
 
     button, input[type="submit"] {
