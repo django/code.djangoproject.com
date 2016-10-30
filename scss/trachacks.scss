@@ -177,6 +177,12 @@ blockquote.citation {
   }
 }
 
+#ticket-next-steps {
+    background-color: $warning-yellow;
+    border: 1px solid $gray-line;
+    margin-top: 15px;
+}
+
 div[role="main"]{
   #metanav {
     @include sans-serif;

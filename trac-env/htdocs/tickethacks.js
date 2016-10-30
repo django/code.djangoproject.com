@@ -207,4 +207,107 @@ $(function() {
         }
         $("table.properties").append("<tr><th>Pull Requests:</th><td>" + link + "</td><tr>");
     });
+
+    // Ticket Triage Guidelines: show next steps based on the ticket's status,
+    // flags, etc.
+    function get_boolean_ticket_flag(name) {
+        return $('#h_' + name).next().text().trim() === 'yes';
+    }
+    function get_ticket_flag(name) {
+        return $('#h_' + name).next().text().trim();
+    }
+    var stage = get_ticket_flag('stage');
+    var ticket_status = $('.trac-status').text().trim();
+    var ticket_type = $('.trac-type').text().trim();
+    var has_patch = get_boolean_ticket_flag('has_patch');
+    var patch_needs_improvement = get_boolean_ticket_flag('needs_better_patch');
+    var needs_docs = get_boolean_ticket_flag('needs_docs');
+    var needs_tests = get_boolean_ticket_flag('needs_tests');
+    var next_steps = [];
+    var include_link_to_pr_msg = (
+        "include a link to the pull request in the ticket comment when making " +
+        "that update. The usual format is: <code>[https://github.com/django/django/pull/####&nbsp;PR]</code>."
+    );
+    if (ticket_status == 'closed') {
+        // TODO (e.g. reopening a wontfix or needsinfo, or what to do in the
+        // case of a regression caused by the ticket
+    } else if (stage == 'Unreviewed') {
+        next_steps.push(
+            "For bugs: reproduce the bug. If it's a regression, " +
+            "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets/#bisecting-a-regression'>" +
+            "bisect</a> to find the commit where the behavior changed."
+        );
+        next_steps.push(
+            "For new features or cleanups: give a second opinion of the proposal."
+        );
+        next_steps.push(
+            "In either case, mark the Triage Stage as \"Accepted\" if the issue seems valid, " +
+            "ask for additional clarification from the reporter, or close the ticket."
+        );
+    } else if (stage == 'Accepted') {
+        if (!has_patch) {
+             next_steps.push(
+                "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/'>" +
+                "To provide a patch</a> by sending a pull request. " +
+                "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#claiming-tickets'>" +
+                "Claim the ticket</a> when you start working so that someone else doesn't duplicate effort. " +
+                "Before sending a pull request, review your work against the <a href='" +
+                "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist'>" +
+                "patch review checklist</a>. " +
+                "Check the \"Has patch\" flag on the ticket after sending a pull request and " +
+                include_link_to_pr_msg
+            );
+        } else {
+            if (needs_tests) {
+                next_steps.push('To add tests to the patch, then uncheck the "Needs tests" flag on the ticket.');
+            }
+            if (needs_docs) {
+                next_steps.push('To write documentation for the patch, then uncheck "Needs documentation" on the ticket.');
+            }
+            if (patch_needs_improvement) {
+                next_steps.push(
+                    "To improve the patch as described in the pull request review " +
+                    "comments or on this ticket, then uncheck \"Patch needs improvement\"."
+                );
+            }
+            if (!needs_tests && !needs_docs && !patch_needs_improvement) {
+                next_steps.push(
+                    'For anyone except the patch author to review the patch using the ' +
+                    '<a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist">' +
+                    'patch review checklist</a> and either ' +
+                    'mark the ticket as "Ready for checkin" if everything looks good, ' +
+                    'or leave comments for improvement and mark the ticket as ' +
+                    '"Patch needs improvement".'
+                );
+            } else {
+                next_steps.push("<p>If creating a new pull request, " + include_link_to_pr_msg);
+            }
+        }
+    } else if (stage == 'Ready for checkin') {
+        next_steps.push(
+            'For a Django committer to do a final review of the patch and merge ' +
+            'it if all looks good.'
+        );
+    } else if (stage == 'Someday/Maybe') {
+        next_steps.push(
+            '<p>Unknown. The Someday/Maybe triage stage is used by core developers ' +
+            'to keep track of high-level ideas or long term feature requests.</p>' +
+            '<p>It could be an issue that\'s blocked until a future version of Django ' +
+            '(if so, Keywords will contain that version number). It could also ' +
+            'be an enhancement request that we might consider adding someday to the framework ' +
+            'if an excellent patch is submitted.</p>' +
+            '<p>If you\'re interested in contributing to the issue, ' +
+            'raising your ideas on the <a href="http://groups.google.com/group/django-developers">django-developers</a> ' +
+            'mailing list certainly wouldn\'t hurt.<p>'
+        );
+    }
+    if (next_steps.length) {
+        $("#ticket").after(
+            "<div id='ticket-next-steps' class='trac-content'><p>According to the " +
+            "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets/#triage-workflow'>" +
+            "ticket's flags</a>, the next step(s) to move this issue forward are:</p>" +
+            "<ul><li>" + next_steps.join('</li><li>') + "</li></ul>" +
+            "</div>"
+        );
+    }
 });
