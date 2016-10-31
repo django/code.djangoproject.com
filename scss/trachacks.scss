@@ -211,9 +211,12 @@ div[role="main"]{
     }
 
     form.trac-logout {
+      display: inline-block;
+
       button {
         color: $green;
         border-bottom: 0;
+        height: auto;
 
         &:hover {
           background-color: inherit;
