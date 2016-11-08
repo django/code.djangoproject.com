@@ -4,12 +4,7 @@
   <head py:match="head" py:attrs="select('@*')">
     ${select('*|comment()|text()')}
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="${href.chrome('site/css/output-ie.css')}" />
-     <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="${href.chrome('site/css/output.css')}" />
-    <!--<![endif]-->
+    <link rel="stylesheet" href="${href.chrome('site/css/output.css')}" />
     <link rel="stylesheet" href="${href.chrome('site/css/trachacks.css')}" />
     <!--! uncomment for local version of webfont loader if desired. -->
     <!--! <script src="${href.chrome('site/js/lib/webfont.js')}"></script> -->
