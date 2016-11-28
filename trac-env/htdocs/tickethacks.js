@@ -35,67 +35,6 @@ $(function() {
         }
     });
 
-    //
-    // Show extra user info in the change history and attachment data.
-    //
-    function getUsername(elt) {
-        // Extract the username from the given element,
-        // To find a username, we look for a text node that follows
-        // a <a class="timeline"> element.
-        // We exclude usernames containing "@" because we want actual
-        // usernames, not a "Full Name <email@...>" that trac can sometimes
-        // generate.
-        var raw = $('.timeline', elt)[0].nextSibling.data.trim();
-        if (raw && raw.substring(0, 3) === 'by ' && raw.indexOf('@') < 0) {
-            return raw.substring(3);
-        }
-        else {
-            return '';
-        }
-    }
-
-    // To avoid doing lots of XHRs, grab a list of everyone who's listed in
-    // a ticket comment or an attachment.
-    var users = [];
-
-    // Tickets first:
-    var attribution_regex = /by (\S+)/;
-    $('#changelog h3.change').each(function() {
-        var username = getUsername(this);
-        if (username) {
-            users.push(username);
-        }
-    });
-
-    // Attachment are easier:
-    $("#attachments div dt em").each(function() {
-        users.push($(this).text());
-    });
-
-    // Make an XHR to grab info about the users, then stuff that info into
-    // the comments and attachments.
-    var params = $.param({'user': $.makeArray(users)}, true);
-    $.getJSON("https://www.djangoproject.com/accounts/_trac/userinfo/?"+params, function (data) {
-
-        // Add "(core developer)" to comments by core devs.
-        $('#changelog h3.change').each(function() {
-            var username = getUsername(this);
-            if (username && data[username] && data[username].core) {
-                $(this).append("<span class='core'>(core developer)</span>");
-            }
-        });
-
-        // Add "(cla on file)" to attachments with CLAs.
-        $("#attachments div dt em").each(function() {
-            var username = $(this).text();
-            if (data[username] !== undefined) {
-                if (data[username].cla) {
-                    $(this).after(" <span class='cla'>(cla on file)</span> ");
-                }
-            }
-        });
-    });
-
     // Show Pull Requests from Github with titles matching any of the following
     // patterns: "#<ticket_id> ", "#<ticket_id>,", "#<ticket_id>:", "#<ticket_id>)
     var ticket_id = window.location.pathname.split('/')[2];
