@@ -12,7 +12,7 @@ svn+https://svn.edgewall.org/repos/trac/plugins/1.0/spam-filter@15165
 svn+https://trac-hacks.org/svn/xmlrpcplugin/trunk@15900
 
 oauthlib==2.0.1
-requests==2.11.1
+requests==2.12.3
 requests-oauthlib==0.7.0
 trac-github==2.2
 
