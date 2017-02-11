@@ -5,7 +5,7 @@ spambayes == 1.1b1
 psycopg2==2.6.2
 docutils==0.13.1
 Django==1.10.4
-libsass==0.12.0
+libsass==0.12.3
 
 # Trac plugins
 svn+https://svn.edgewall.org/repos/trac/plugins/1.0/spam-filter@15165
