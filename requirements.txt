@@ -11,7 +11,7 @@ libsass==0.12.3
 TracSpamFilter==1.2.0
 TracXMLRPC==1.1.6
 
-oauthlib==2.0.1
+oauthlib==2.0.2
 requests==2.13.0
 requests-oauthlib==0.8.0
 trac-github==2.3
