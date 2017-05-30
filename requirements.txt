@@ -4,7 +4,7 @@ dnspython==1.15
 spambayes == 1.1b1
 psycopg2==2.7.1
 docutils==0.13.1
-Django==1.10.4
+Django==1.11.1
 libsass==0.12.3
 
 # Trac plugins
