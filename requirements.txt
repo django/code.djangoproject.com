@@ -8,7 +8,7 @@ Django==1.11.1
 libsass==0.13.7
 
 # Trac plugins
-TracSpamFilter==1.2.0
+TracSpamFilter==1.2.5
 TracXMLRPC==1.1.6
 
 oauthlib==2.0.6
