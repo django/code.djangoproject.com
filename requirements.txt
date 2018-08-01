@@ -1,4 +1,4 @@
-Trac==1.2.2
+Trac==1.2.3
 Pygments==2.2.0
 dnspython==1.15
 spambayes == 1.1b1
@@ -8,8 +8,8 @@ Django==1.11.1
 libsass==0.14.5
 
 # Trac plugins
-TracSpamFilter==1.2.5
-TracXMLRPC==1.1.6
+TracSpamFilter==1.2.6
+TracXMLRPC==1.1.7
 
 oauthlib==2.1.0
 requests==2.19.0
