@@ -6,7 +6,7 @@ body, th, tr { // reset trac default
     line-height: normal;
 }
 
-:link, :visited {
+a:link, a:visited {
   border-bottom: 0;
   color: $green;
   &:hover{
