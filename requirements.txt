@@ -12,7 +12,7 @@ TracSpamFilter==1.2.6
 TracXMLRPC==1.1.7
 
 oauthlib==2.1.0
-requests==2.19.1
+requests==2.20.1
 requests-oauthlib==1.0.0
 trac-github==2.3
 
