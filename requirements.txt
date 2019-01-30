@@ -5,7 +5,7 @@ spambayes == 1.1b1
 psycopg2-binary==2.7.6.1
 docutils==0.14
 Django==1.11.16
-libsass==0.16.1
+libsass==0.17.0
 
 # Trac plugins
 TracSpamFilter==1.2.6
