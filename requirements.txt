@@ -1,5 +1,5 @@
 Trac==1.2.6
-Pygments==2.5.2
+Pygments==2.7.4
 dnspython==1.15
 spambayes == 1.1b1
 psycopg2-binary==2.7.6.1
