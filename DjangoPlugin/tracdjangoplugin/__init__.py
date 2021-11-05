@@ -34,9 +34,11 @@ class CustomNewTicket(Component):
         return handler
 
     def post_process_request(self, req, template, data, content_type):
+        if data is None:
+            data = {}
         if req.path_info == '/newticket' and not data.get('preview_mode', False):
             simple_interface = 'TICKET_BATCH_MODIFY' not in req.perm
-            if simple_interface:
+            if simple_interface and 'fields' in data:
                 data['fields'] = [f for f in data['fields']
                                   if f['name'] not in self.hidden_fields]
             data['simple_interface'] = simple_interface
