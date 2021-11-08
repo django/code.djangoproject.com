@@ -229,7 +229,7 @@ $(function() {
         );
     } else if (stage == 'Someday/Maybe') {
         next_steps.push(
-            '<p>Unknown. The Someday/Maybe triage stage is used by triagers ' +
+            '<p>Unknown. The Someday/Maybe triage stage is used ' +
             'to keep track of high-level ideas or long term feature requests.</p>' +
             '<p>It could be an issue that\'s blocked until a future version of Django ' +
             '(if so, Keywords will contain that version number). It could also ' +
