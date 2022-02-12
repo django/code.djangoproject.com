@@ -1,4 +1,5 @@
 *.pyc
 .sass-cache/
 DjangoPlugin/Django_Plugin.egg-info/
+trac-env/conf/trac.ini
 trac-env/htdocs/css/trachacks.css*

@@ -12,6 +12,7 @@ that can help:
   the database creation).
 * Use ``psql -U code.djangoproject -d code.djangoproject -c "INSERT INTO permission (username, action) VALUES ('anonymous', 'TRAC_ADMIN')"``
   to give all permissions to the anonymous user.
+* Copy the file ``trac-env/conf/trac.ini.prod`` to ``trac-env/conf/trac.ini``
 * Use the command ``tracd --port 9000 -s trac-env`` to serve Trac locally.
 * If you've modified the ``trackhack.scss`` file, use
   ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
