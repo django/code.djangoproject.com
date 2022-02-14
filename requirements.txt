@@ -16,4 +16,6 @@ requests==2.20.1
 requests-oauthlib==1.0.0
 trac-github==2.3
 
+gunicorn==19.10.0
+
 -e ./DjangoPlugin

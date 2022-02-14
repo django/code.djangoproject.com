@@ -7,7 +7,6 @@ Local install
 Getting a local Trac install running is a bit tricky. Here are a few tricks
 that can help:
 
-* Install the requirements in the same virtualenv as djangoproject.com.
 * Follow the installation instructions in djangoproject/README.rst (especially
   the database creation).
 * Use ``psql -U code.djangoproject -d code.djangoproject -c "INSERT INTO permission (username, action) VALUES ('anonymous', 'TRAC_ADMIN')"``
@@ -16,6 +15,15 @@ that can help:
 * If you've modified the ``trackhack.scss`` file, use
   ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
   to compile it to CSS.
+
+Using Docker/Podman
+-------------------
+
+* Install Podman, 
+* ``pip install podman-compose``
+* ``podman-compose up``
+* Follow instructions above to create/load the DB, grant permissions, create the
+  config, etc.
 
 How to port the CSS from djangoproject.com
 ------------------------------------------

@@ -1,0 +1,8 @@
+.direnv/
+.dockerignore
+.envrc
+.git/
+.github/
+.gitignore
+docker-compose.yml
+*.pyc
