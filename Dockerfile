@@ -47,6 +47,10 @@ RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
 
+RUN PATH=/venv/bin:${PATH} make compile-scss
+
+VOLUME /code/trac-env/files/
+
 # gunicorn or tracd will listen on this port
 EXPOSE 9000
 
