@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     command: ["/venv/bin/tracd", "--port", "9000", "-s", "trac-env"]
     environment:
-     - DATABASE_URL=postgres://code.djangoproject:code.djangoproject@db/code.djangoproject
+     - TRAC_INI_database=postgres://code.djangoproject:code.djangoproject@db/code.djangoproject
     volumes:
       - ./trac-env/:/code/trac-env/
     ports:
