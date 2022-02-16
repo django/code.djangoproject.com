@@ -35,9 +35,9 @@ RUN set -x \
     && wget -q -O /tmp/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py \
     && python2.7 /tmp/get-pip.py \
     && rm /tmp/get-pip.py \
-    && pip install virtualenv \
+    && python2.7 -m pip install virtualenv \
     && virtualenv /venv \
-    && /venv/bin/pip install --no-cache-dir -r /requirements.txt \
+    && /venv/bin/python -m pip install --no-cache-dir -r /requirements.txt \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
     && rm -rf /var/lib/apt/lists/*
