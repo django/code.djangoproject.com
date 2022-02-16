@@ -4,7 +4,7 @@
 FROM ubuntu:20.04
 
 # Install packages needed to run your application (not build deps).
-RUN set -ex \
+RUN set -x \
     && RUN_DEPS=" \
     ca-certificates \
     git \
@@ -24,7 +24,7 @@ ADD DjangoPlugin /DjangoPlugin
 # Correct the path to your production requirements file, if needed.
 # For installing a python2.7-compatible pip: https://stackoverflow.com/a/54335642/166053
 # Since we are using the system Python, also isolate the code in its own virtualenv.
-RUN set -ex \
+RUN set -x \
     && BUILD_DEPS=" \
     build-essential \
     libpq-dev \
