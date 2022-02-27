@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile
     command: ["/venv/bin/tracd", "--port", "9000", "-s", "trac-env"]
     environment:
-     - TRAC_INI_database=postgres://code.djangoproject:code.djangoproject@db/code.djangoproject
+     - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
     volumes:
       - ./trac-env/:/code/trac-env/
     ports:
@@ -23,5 +23,5 @@ services:
       - 5435:5432
     environment:
       - POSTGRES_USER=code.djangoproject
-      - POSTGRES_PASSWORD=code.djangoproject
+      - POSTGRES_PASSWORD=secret
       - POSTGRES_DB=code.djangoproject
