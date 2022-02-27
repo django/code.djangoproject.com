@@ -11,7 +11,7 @@ services:
     environment:
      - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
     volumes:
-      - ./trac-env/:/code/trac-env/
+      - ./:/code/
     ports:
       - 9000:9000
     depends_on:
