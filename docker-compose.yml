@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  trac:
+    image: ghcr.io/django/code.djangoproject.com:latest
+    # Comment out to use the ghcr.io image:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: ["/venv/bin/tracd", "--port", "9000", "-s", "trac-env"]
+    environment:
+     - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
+    volumes:
+      - ./:/code/
+    ports:
+      - 9000:9000
+    depends_on:
+      - db
+  db:
+    image: postgres:10-alpine
+    ports:
+      # Port 5435 might be handy for loading trac.sql from the djangoproject.com repo
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=code.djangoproject
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=code.djangoproject

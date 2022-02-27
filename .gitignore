@@ -1,4 +1,7 @@
+*.bak
 *.pyc
+.direnv/
+.envrc
 .sass-cache/
 DjangoPlugin/Django_Plugin.egg-info/
 trac-env/htdocs/css/trachacks.css*

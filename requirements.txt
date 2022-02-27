@@ -2,7 +2,7 @@ Trac==1.2.6
 Pygments==2.5.2
 dnspython==1.15
 spambayes == 1.1b1
-psycopg2-binary==2.7.6.1
+psycopg2==2.7.6.1 --no-binary=psycopg2
 docutils==0.14
 Django==1.11.29
 libsass==0.17.0
@@ -15,5 +15,7 @@ oauthlib==2.1.0
 requests==2.20.1
 requests-oauthlib==1.0.0
 trac-github==2.3
+
+gunicorn==19.10.0
 
 -e ./DjangoPlugin
