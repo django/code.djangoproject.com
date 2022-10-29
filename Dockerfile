@@ -59,4 +59,4 @@ ENV DJANGO_SETTINGS_MODULE=tracdjangoplugin.settings TRAC_ENV=/code/trac-env/
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start gunicorn
-CMD ["/venv/bin/gunicorn", "tracdjangoplugin.wsgi:application", "--bind", "0.0.0.0:9000", "--workers", "4", "--max-requests", "1000"]
+CMD ["/venv/bin/newrelic-admin", "run-program", "/venv/bin/gunicorn", "tracdjangoplugin.wsgi:application", "--bind", "0.0.0.0:9000", "--workers", "4", "--max-requests", "1000"]
