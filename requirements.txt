@@ -17,5 +17,6 @@ requests-oauthlib==1.0.0
 trac-github==2.3
 
 gunicorn==19.10.0
+newrelic
 
 -e ./DjangoPlugin
