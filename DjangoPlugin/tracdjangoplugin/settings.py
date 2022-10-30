@@ -12,6 +12,7 @@ DATABASES = {
         'NAME': 'djangoproject',
         'USER': 'djangoproject',
         'HOST': SECRETS.get('db_host', ''),
+        'PORT': SECRETS.get('db_port', 5432),
         'PASSWORD': SECRETS.get('db_password', ''),
     },
 }
