@@ -11,7 +11,7 @@ that can help:
   the database creation).
 * Use ``trac-admin ./trac-env/ permission add anonymous TRAC_ADMIN``
   to give all permissions to the anonymous user.
-* Use the command ``tracd --port 9000 -s trac-env`` to serve Trac locally.
+* Use the command ``DJANGO_SETTINGS_MODULE=tracdjangoplugin.settings TRAC_ENV=`pwd`/trac-env gunicorn tracdjangoplugin.wsgi:application --bind 0.0.0.0:9000 --workers=1 --reload`` to serve Trac locally.
 * If you've modified the ``trackhack.scss`` file, use
   ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
   to compile it to CSS.

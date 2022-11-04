@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="${trac_lang}"> {# jinjacheck: "attribute lang" OK #}
+
+<head>
+    <!-- # block head (placeholder in theme.html) -->
+    # block head
+    # endblock head
+    <!-- # endblock head (placeholder in theme.html) -->
+</head> {# jinjacheck: "()" OK #}
+
+<body>
+    # block body
+    <!-- # block body (content inherited from theme.html) -->
+    <!--   # include 'site_header.html' (theme.html) -->
+    # include 'site_header.html' ignore missing
+    <!--   end of site_header.html -->
+    {# ------------------------------------------------------------------
+  
+      Note: here we produce the main structure of the body element:
+  
+        div id="banner"
+          div id="header"
+          ... logo + metanav ...
+          /div
+          ... mainnav ...
+        /div
+        div id="main"
+          ... ctxtnav [+ warnings][+ notices] ...
+  
+          # block content
+  
+          (here goes the content block produced by the end user page,
+          typically a "content" div, which could (should!) be followed
+          by the parent content produced by the layout.html page)
+  
+          # endblock content
+        /div
+        div id="footer"
+          ...
+        /div
+  
+      It's entirely possible for the end user page to prepend to, append
+      to, or replace this default structure by redefining the body
+      block, but it should be seldom needed.
+  
+      ------------------------------------------------------------------ #}
+
+    # macro navigation(category)
+    <div id="${category}" class="nav">
+        # if chrome.nav[category]:
+        <ul>{%
+          for item in chrome.nav[category]
+          %}<li ${{'class': {
+                'first': loop.first, 'last': loop.last, 'active': item.active
+                }}|htmlattr}>${item.label}</li>{%
+          endfor
+        %}</ul>
+        # endif
+    </div>
+    # endmacro
+
+    <div id="banner">
+        {#
+        <div id="header">
+            # if chrome.logo.src:
+            <a id="logo" href="${chrome.logo.link or
+                   href.wiki('TracIni') + '#header_logo-section'}">
+                <img ${{
+                 'src': chrome.logo.src,
+                 'alt': chrome.logo.alt,
+                 'height': chrome.logo.height,
+                 'width': chrome.logo.width,
+                 }|htmlattr} /></a>
+          ## jinjacheck: "attribute alt" OK
+          ## jinjacheck: "attribute src" OK
+          # else:
+          <h1><a href="${chrome.logo.link}">${project.name}</a></h1>
+          # endif
+        </div>
+        <form id="search" action="${href.search()}" method="get">
+            # if trac_error_rendering is undefined and 'SEARCH_VIEW' in perm:
+            <div>
+                <label for="proj-search">${_("Search:")}</label>
+                <input type="text" id="proj-search" name="q" size="18" ${accesskey("f")} value="" />
+                <input type="submit" value="${_('Search')}" />
+            </div>
+            # endif
+        </form>
+        #}
+        <div class="copy-banner">
+            <div class="container">
+                <h1>Issues</h1>
+            </div>
+        </div>
+
+        <div class="container sidebar-right">
+            <div role="main">
+                ${navigation('metanav')}
+                ${navigation('mainnav')}
+                <div id="main" ${{'class': {
+                        'uisymbols': req.session.get('ui.use_symbols'),
+                        'uinohelp': req.session.get('ui.hide_help'),
+                        }}|htmlattr}>
+                    # if resourcepath_template:
+                    # include resourcepath_template ignore missing
+                    # endif
+                    <div id="ctxtnav" class="nav">
+                        <h2>${_("Context Navigation")}</h2>
+                        # if chrome.ctxtnav:
+                        <ul>
+                            # for elm in chrome.ctxtnav:
+                            <li ${{'class': {'first': loop.first, 'last': loop.last}}|htmlattr}>${
+                                elm}</li>
+                            # endfor
+                        </ul>
+                        # endif
+                        <hr />
+                    </div>
+
+                    ${jmacros.warnings(chrome.warnings)}
+
+                    ${jmacros.notices(chrome.notices)}
+
+                    <!-- # block content (placeholder in theme.html) -->
+                    # block content
+
+                    {# ------------------------------------------------------------------
+               
+                     Note: here should go the content defined by the end user page.
+               
+                     See layout.html which defines an useful default content for this
+                     block and has more detailed usage notes.
+               
+                     ------------------------------------------------------------------ #}
+
+                    # endblock content
+                    <!-- # endblock content (placeholder in theme.html) -->
+                </div>
+                <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+            </div>
+            <div role="complementary">
+                <form action="/search/" id="sidebar_search" class="search form-input" role="search">
+                    <label class="visuallyhidden" for="q">Search:</label>
+                    <input id="id_sidebar_search_q" name="q" placeholder="Search Trac" type="search" />
+
+                    <button type="submit">
+                        <i class="icon icon-search"></i>
+                        <span class="visuallyhidden">Search</span>
+                    </button>
+                </form>
+                <h3>Useful links</h3>
+                <dl>
+                    <dt><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribution Guide</a></dt>
+                    <dd>You'd like to contribute to Django but don't know how? This document will explain our process and how to get involved.</dd>
+
+                    <dt><a href="/query?status=!closed&amp;easy=1">"Easy Pickings"</a></dt>
+                    <dd>First time contributor and you're looking for something manageable? The "easy pickings" list is a good start.</dd>
+
+                    <dt><a href="https://docs.djangoproject.com/en/dev/internals/security/">Security Policy</a></dt>
+                    <dd>You found a security issue in Django? You'd like to know more about our security policy? It's all in there.</dd>
+
+                    <dt><a href="https://github.com/django/django">GitHub</a></dt>
+                    <dd>Want to peek under the hood and see Django's source code, file or help review a pull request? It's all on GitHub.</dd>
+
+                    <dt><a href="https://dashboard.djangoproject.com/">Django Dashboard</a></dt>
+                    <dd>Confused about Trac's filtering system? This dashboard shows easy-to-read metrics and has links to pre-set filters to get you started.</dd>
+
+                    <dt><a href="irc://irc.freenode.net/django-dev">#django-dev IRC channel</a></dt>
+                    <dd>Questions about a ticket? Stuck on how to write a unit test for your pull request? Come chat with us!</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+
+    {#
+      <div id="footer"><hr/>
+        <a id="tracpowered" href="https://trac.edgewall.org/"
+           ><img src="${chrome.htdocs_location}trac_logo_mini.png" height="30"
+                 width="107" alt="${_('Trac Powered')}"/></a>
+        <p class="left">
+          # set trac_version
+          <a href="${href.about()}"><strong>Trac ${trac.version}</strong></a>
+          <br />
+          # endset
+          # set eo
+          <a href="http://www.edgewall.org/">Edgewall Software</a>
+          # endset
+          # trans trac_version, eo
+  
+          Powered by ${trac_version}
+          By ${eo}.
+  
+          # endtrans
+        </p>
+        <p class="right">${chrome.footer}</p>
+      </div>
+      #}
+    <!--   # include 'site_footer.html' (theme.html) -->
+    # include 'site_footer.html' ignore missing
+    <!--   end of site_footer.html -->
+    <!-- # endblock body (content inherited from theme.html) -->
+    # endblock body
+</body> {# jinjacheck: "got (html)" OK #}
+
+</html>

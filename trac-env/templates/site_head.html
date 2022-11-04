@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="${href.chrome('site/css/output.css')}" />
+<link rel="stylesheet" href="${href.chrome('site/css/trachacks.css')}" />
+<!--! uncomment for local version of webfont loader if desired. -->
+<!--! <script src="${href.chrome('site/js/lib/webfont.js')}"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js"></script>
+<script>
+    WebFont.load({
+        google: {
+            families: ['Inconsolata:400,700:latin', 'Roboto:400italic,700italic,300,700,400:latin']
+        }
+    });
+</script>
+<script src="${href.chrome('site/js/lib/modernizr.js')}"></script>
+<py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
+    <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
+</py:if>

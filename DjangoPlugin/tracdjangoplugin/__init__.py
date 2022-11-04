@@ -5,6 +5,17 @@ from trac.wiki.web_ui import WikiModule
 from trac.util import Markup
 
 
+class CustomTheme(Component):
+    implements(IRequestFilter)
+
+    def pre_process_request(self, req, handler):
+        return handler
+
+    def post_process_request(self, req, template, data, metadata):
+        req.chrome["theme"] = "django_theme.html"
+        return template, data, metadata
+
+
 class CustomWikiModule(WikiModule):
     """Works in combination with the CustomNavigationBar and replaces
     the default wiki module.  Has a different logic for active item
