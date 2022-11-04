@@ -1,50 +1,43 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:py="http://genshi.edgewall.org/"
-      xmlns:xi="http://www.w3.org/2001/XInclude"
-      py:strip="">
-  <head py:match="head" py:attrs="select('@*')">
-    ${select('*|comment()|text()')}
-  </head>
-  <body py:match="body" py:attrs="select('@*')">
-    <div class="ticket-readme">
-      <h2>Please read this first:</h2>
-      <ul>
-        <li>
-          <strong><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/#reporting-security-issues">Please don't report security issues here!</a>
-          Contact <a href="mailto:security@djangoproject.com">security@djangoproject.com</a> instead.</strong>
-        </li>
-        <li>
-          Report bugs and suggest features in Django itself (or its
-          documentation) using this ticket tracker.
-        </li>
-        <li>
-          Don't use the ticket system for
-          <a href="https://docs.djangoproject.com/en/dev/faq/help/">help with
-          support questions</a>. <a href="https://docs.djangoproject.com/en/dev/faq/">
-          check the FAQ</a> for common issues.
-        </li>
-        <li>
-          Use <a href="https://www.transifex.com/projects/p/django/">Transifex</a> for
-          <a href="https://docs.djangoproject.com/en/dev/internals/contributing/localizing/#translations">bug reports on translations</a>.
-        </li>
-        <li>
-          Report issues with our web site (www.djangoproject.com) in <a href="https://github.com/django/djangoproject.com/issues">its GitHub issue tracker</a>.
-        </li>
-        <li>
-          Report issues with our bug tracker (code.djangoproject.com) in <a href="https://github.com/django/code.djangoproject.com/issues">its GitHub issue tracker</a>.
-        </li>
-        <li>
-          Follow our
-          <a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/#reporting-bugs">bug reporting guidelines</a>
-          and our <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-style">patch submission guidelines</a> and
-          <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist">checklist</a> for the best response.
-        </li>
-        <li>
-          Use the "Preview" button to check your <a href="https://code.djangoproject.com/wiki/WikiFormatting">formatting</a>.
-        </li>
-      </ul>
-    </div>
-    ${select('*|text()')}
-  </body>
-  <xi:include href="ticket.html" />
-</html>
+# extends 'ticket.html'
+
+# block content
+<div class="ticket-readme">
+  <h2>Please read this first:</h2>
+  <ul>
+    <li>
+      <strong><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/#reporting-security-issues">Please don't report security issues here!</a>
+        Contact <a href="mailto:security@djangoproject.com">security@djangoproject.com</a> instead.</strong>
+    </li>
+    <li>
+      Report bugs and suggest features in Django itself (or its
+      documentation) using this ticket tracker.
+    </li>
+    <li>
+      Don't use the ticket system for
+      <a href="https://docs.djangoproject.com/en/dev/faq/help/">help with
+        support questions</a>. <a href="https://docs.djangoproject.com/en/dev/faq/">
+        check the FAQ</a> for common issues.
+    </li>
+    <li>
+      Use <a href="https://www.transifex.com/projects/p/django/">Transifex</a> for
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/localizing/#translations">bug reports on translations</a>.
+    </li>
+    <li>
+      Report issues with our web site (www.djangoproject.com) in <a href="https://github.com/django/djangoproject.com/issues">its GitHub issue tracker</a>.
+    </li>
+    <li>
+      Report issues with our bug tracker (code.djangoproject.com) in <a href="https://github.com/django/code.djangoproject.com/issues">its GitHub issue tracker</a>.
+    </li>
+    <li>
+      Follow our
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/#reporting-bugs">bug reporting guidelines</a>
+      and our <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-style">patch submission guidelines</a> and
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist">checklist</a> for the best response.
+    </li>
+    <li>
+      Use the "Preview" button to check your <a href="https://code.djangoproject.com/wiki/WikiFormatting">formatting</a>.
+    </li>
+  </ul>
+</div>
+${ super() }
+# endblock content

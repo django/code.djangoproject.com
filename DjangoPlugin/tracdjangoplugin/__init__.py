@@ -48,7 +48,7 @@ class CustomNewTicket(Component):
     def pre_process_request(self, req, handler):
         return handler
 
-    def post_process_request(self, req, template, data, content_type):
+    def post_process_request(self, req, template, data, metadata):
         if data is None:
             data = {}
         if req.path_info == "/newticket" and not data.get("preview_mode", False):
@@ -59,7 +59,7 @@ class CustomNewTicket(Component):
                 ]
             data["simple_interface"] = simple_interface
             template = "custom_ticket.html"
-        return template, data, content_type
+        return template, data, metadata
 
 
 class CustomNavigationBar(Component):
