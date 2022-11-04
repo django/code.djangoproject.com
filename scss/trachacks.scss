@@ -22,9 +22,20 @@ a:link, a:visited {
 }
 
 h1, h2, h3, h4, h5, h6, span {
+  &.section {
+    color: inherit;
+    background: none;
+  }
+  &.section + * {
+    margin-top: unset !important;
+  }
   &:target {
     background: $green-very-light;
   }
+}
+
+[role="main"] .section {
+  padding-bottom: unset;
 }
 
 .inlinebuttons {
@@ -46,6 +57,14 @@ div.trac-content {
   h1, h2, h3 {
     margin-left: 0;
   }
+}
+
+#content.narrow #wikipage {
+  max-width: none;
+}
+
+#trac-wiki-expander {
+  display: none;
 }
 
 .full-width [role="main"] {
@@ -157,8 +176,10 @@ blockquote.citation {
 }
 
 #ticket {
-  background-color: $white;
-  border-color: $gray-line;
+  #ticketbox {
+    background-color: $white;
+    border-color: $gray-line;
+  }
   table.properties {
     border-top-color: $gray-line;
     th, th.missing {
@@ -247,11 +268,13 @@ div[role="main"]{
         border-radius: 0;
         text-align: center;
         padding: 0.5em 0 0.5em 0;
+        font-weight: normal;
 
         a, a:hover {
           background: none;
           @include sans-serif;
           color: $green-dark;
+          text-transform: none;
         }
         &.first {
             padding-left: 0;
