@@ -9,7 +9,7 @@ libsass==0.17.0
 
 # Trac plugins
 TracSpamFilter==1.2.7
-TracXMLRPC==1.1.9
+https://trac-hacks.org/browser/xmlrpcplugin/trunk?rev=18227&format=zip
 
 oauthlib==2.1.0
 requests==2.20.1
