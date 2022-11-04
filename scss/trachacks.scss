@@ -22,9 +22,20 @@ a:link, a:visited {
 }
 
 h1, h2, h3, h4, h5, h6, span {
+  &.section {
+    color: inherit;
+    background: none;
+  }
+  &.section + * {
+    margin-top: unset !important;
+  }
   &:target {
     background: $green-very-light;
   }
+}
+
+[role="main"] .section {
+  padding-bottom: unset;
 }
 
 .inlinebuttons {
@@ -260,6 +271,7 @@ div[role="main"]{
           background: none;
           @include sans-serif;
           color: $green-dark;
+          text-transform: none;
         }
         &.first {
             padding-left: 0;
