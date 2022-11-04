@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="${trac_lang}"> {# jinjacheck: "attribute lang" OK #}
+
+# macro navigation(category)
+<div id="${category}" class="nav">
+  # if chrome.nav[category]:
+  <ul>{%
+        for item in chrome.nav[category]
+        %}<li ${{'class': {
+              'first': loop.first, 'last': loop.last, 'active': item.active
+              }}|htmlattr}>${item.label}</li>{%
+        endfor
+      %}</ul>
+  # endif
+</div>
+# endmacro
+
+# macro main()
+<div role="main">
+  ${navigation('metanav')}
+  ${navigation('mainnav')}
+  <div id="main" ${{'class': {
+                    'uisymbols': req.session.get('ui.use_symbols'),
+                    'uinohelp': req.session.get('ui.hide_help'),
+                    }}|htmlattr}>
+
+    # if req.authname != 'anonymous' and not req.session.email:
+    <div class="system-message" id="warning">
+      Add an email address on the <a href="${req.href.prefs()}">Preferences</a>
+      page to receive updates on tickets you own, have created, or been CCed on.
+    </div>
+    # endif
+
+    # if resourcepath_template:
+    # include resourcepath_template ignore missing
+    # endif
+    <div id="ctxtnav" class="nav">
+      <h2>${_("Context Navigation")}</h2>
+      # if chrome.ctxtnav:
+      <ul>
+        # for elm in chrome.ctxtnav:
+        <li ${{'class': {'first': loop.first, 'last': loop.last}}|htmlattr}>${
+          elm}</li>
+        # endfor
+      </ul>
+      # endif
+      <hr />
+    </div>
+
+    ${jmacros.warnings(chrome.warnings)}
+
+    ${jmacros.notices(chrome.notices)}
+
+    # block content
+    # endblock content
+  </div>
+  <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+</div>
+# endmacro
+
+<head>
+  # block head
+  # endblock head
+</head>
+
+{#  we don't use the modernizer js lib anymore, but the css still uses some classes from it #}
+<body class="mdzr-boxshadow">
+  # block body
+
+  # include 'site_header.html' ignore missing
+
+  <div id="banner">
+    <div class="copy-banner">
+      <div class="container">
+        <h1>Issues</h1>
+      </div>
+    </div>
+
+    # if req.path_info == '/':
+    <div class="container sidebar-right">
+      ${main()}
+      <div role="complementary">
+        <form action="/search/" id="sidebar_search" class="search form-input" role="search">
+          <label class="visuallyhidden" for="q">Search:</label>
+          <input id="id_sidebar_search_q" name="q" placeholder="Search Trac" type="search" />
+
+          <button type="submit">
+            <i class="icon icon-search"></i>
+            <span class="visuallyhidden">Search</span>
+          </button>
+        </form>
+        <h3>Useful links</h3>
+        <dl>
+          <dt><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribution Guide</a></dt>
+          <dd>You'd like to contribute to Django but don't know how? This document will explain our process and how to get involved.</dd>
+
+          <dt><a href="/query?status=!closed&amp;easy=1">"Easy Pickings"</a></dt>
+          <dd>First time contributor and you're looking for something manageable? The "easy pickings" list is a good start.</dd>
+
+          <dt><a href="https://docs.djangoproject.com/en/dev/internals/security/">Security Policy</a></dt>
+          <dd>You found a security issue in Django? You'd like to know more about our security policy? It's all in there.</dd>
+
+          <dt><a href="https://github.com/django/django">GitHub</a></dt>
+          <dd>Want to peek under the hood and see Django's source code, file or help review a pull request? It's all on GitHub.</dd>
+
+          <dt><a href="https://dashboard.djangoproject.com/">Django Dashboard</a></dt>
+          <dd>Confused about Trac's filtering system? This dashboard shows easy-to-read metrics and has links to pre-set filters to get you started.</dd>
+
+          <dt><a href="irc://irc.freenode.net/django-dev">#django-dev IRC channel</a></dt>
+          <dd>Questions about a ticket? Stuck on how to write a unit test for your pull request? Come chat with us!</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  # else
+  <div class="container full-width">
+    ${main()}
+  </div>
+  # endif
+
+  # include 'site_footer.html' ignore missing
+
+  # endblock body
+</body>
+
+</html>

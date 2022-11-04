@@ -7,6 +7,17 @@ from trac.util.html import tag
 from tracext.github import GitHubBrowser
 
 
+class CustomTheme(Component):
+    implements(IRequestFilter)
+
+    def pre_process_request(self, req, handler):
+        return handler
+
+    def post_process_request(self, req, template, data, metadata):
+        req.chrome["theme"] = "django_theme.html"
+        return template, data, metadata
+
+
 class CustomWikiModule(WikiModule):
     """Works in combination with the CustomNavigationBar and replaces
     the default wiki module.  Has a different logic for active item
@@ -37,7 +48,7 @@ class CustomNewTicket(Component):
     def pre_process_request(self, req, handler):
         return handler
 
-    def post_process_request(self, req, template, data, content_type):
+    def post_process_request(self, req, template, data, metadata):
         if data is None:
             data = {}
         if req.path_info == "/newticket" and not data.get("preview_mode", False):
@@ -48,7 +59,7 @@ class CustomNewTicket(Component):
                 ]
             data["simple_interface"] = simple_interface
             template = "custom_ticket.html"
-        return template, data, content_type
+        return template, data, metadata
 
 
 class CustomNavigationBar(Component):
