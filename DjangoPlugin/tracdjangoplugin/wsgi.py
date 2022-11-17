@@ -1,10 +1,6 @@
 import os
 
-import sentry_sdk
 import trac.web.main
-from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
-
-
 application = trac.web.main.dispatch_request
 
 # Massive hack to make Trac fast, otherwise every git call tries to close ulimit -n (1e6) fds
@@ -18,6 +14,8 @@ application = DjangoAuth(application)
 trac_dsn = os.getenv("SENTRY_DSN")
 
 if trac_dsn:
+    import sentry_sdk
+    from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
     sentry_sdk.init(
         dsn=trac_dsn,
 
