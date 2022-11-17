@@ -17,6 +17,6 @@ requests-oauthlib==1.0.0
 trac-github==2.3
 
 gunicorn==19.10.0
-newrelic
+sentry-sdk==1.11.0
 
 -e ./DjangoPlugin

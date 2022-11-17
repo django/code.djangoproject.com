@@ -1,3 +1,5 @@
+import os
+
 import trac.web.main
 application = trac.web.main.dispatch_request
 
@@ -8,3 +10,18 @@ PyGIT.close_fds = False
 
 from .djangoauth import DjangoAuth
 application = DjangoAuth(application)
+
+trac_dsn = os.getenv("SENTRY_DSN")
+
+if trac_dsn:
+    import sentry_sdk
+    from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
+    sentry_sdk.init(
+        dsn=trac_dsn,
+
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production,
+        traces_sample_rate=0.2,
+    )
+    application = SentryWsgiMiddleware(application)
