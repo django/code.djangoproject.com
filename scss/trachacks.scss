@@ -143,8 +143,26 @@ pre.wiki {
   white-space: pre-wrap;
 }
 
-#content.ticket {
-  width: auto;
+// Reduce the options available to guests.
+body.guest #query .option {
+    display: none;
+}
+
+#content {
+  margin-top: 1em;
+  .ticket {
+    width: auto;
+  }
+  .report-result {
+    margin-top: 1em;
+  }
+  .paging {
+    margin: 0;
+  }
+  // Hide the first paging options as also available at the bottom.
+  .report-result + .paging {
+    display: none;
+  }
 }
 
 .foldable {
@@ -246,6 +264,7 @@ div[role="main"]{
       li {
         border-right: 0;
         padding: 1em;
+        margin-top: 0;
 
         a {
           font-size: 16px;
