@@ -434,3 +434,25 @@ div[role="main"]{
     }
   }
 }
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  #metanav {
+    ul {
+      li {
+        padding: 1em 0.5em !important;
+      }
+    }
+  }
+
+  #filters {
+    min-width: inherit;
+    overflow: scroll;
+  }
+
+  div:has(.listing.tickets) {
+    min-width: inherit;
+    overflow: scroll;
+  }
+}
