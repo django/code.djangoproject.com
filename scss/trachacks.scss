@@ -108,8 +108,20 @@ pre.wiki {
   white-space: pre-wrap;
 }
 
-#content.ticket {
-  width: auto;
+#content {
+  margin-top: 1em;
+
+  .ticket {
+    width: auto;
+  }
+
+  .report-result {
+    margin-top: 1em;
+  }
+
+  .paging {
+    margin: 0;
+  }
 }
 
 .foldable {
@@ -382,5 +394,27 @@ div[role="main"]{
     .timeline h1 {
       margin: 0;
     }
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  #metanav {
+    ul {
+      li {
+        padding: 1em 0.5em !important;
+      }
+    }
+  }
+
+  #filters {
+    min-width: inherit;
+    overflow: scroll;
+  }
+
+  div:has(.listing.tickets) {
+    min-width: inherit;
+    overflow: scroll;
   }
 }
