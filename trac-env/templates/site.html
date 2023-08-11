@@ -96,6 +96,14 @@
       </div>
     </py:if>
     <py:if test="req.environ['PATH_INFO'] != '/'">
+      <div class="sub-banner container">
+        <p class="sub-banner-content">Donate to support Django’s ongoing development!</p>
+        <div class="sub-banner-cta">
+          <a class="btn btn-lg btn-primary" href="https://www.djangoproject.com/fundraising/">
+              <i class="icon icon-heart"></i> Donate
+          </a>
+        </div>
+      </div>
       <div class="container full-width">
         <div role="main">
           <py:if test="req.authname != 'anonymous' and not req.session.email">

@@ -34,6 +34,46 @@ h1, h2, h3, h4, h5, h6, span {
   }
 }
 
+// Sponsorship banner
+div.sub-banner {
+  font-family: Arial, Verdana, sans-serif;
+  padding: 1px 10px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px;
+  border-color: $gray-line;
+}
+p.sub-banner-content {
+  width: 70%;
+  padding-right: 1em;
+}
+div.sub-banner-cta {
+  display: flex;
+  align-items: center;
+  border-radius: 0.3em;
+
+  a {
+    border: 1px solid $green-medium;
+    padding: 0.7em 1em;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 0.3em;
+
+    i {
+      color: $red-medium;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      border: 1px solid $green-dark;
+      color: $green-dark;
+      outline: none;
+      background: $green-very-light;
+    }
+  }
+}
+
 div.trac-content {
   border: 0;
 }
@@ -416,5 +456,16 @@ div[role="main"]{
   div:has(.listing.tickets) {
     min-width: inherit;
     overflow: scroll;
+  }
+  // Sponsorship banner
+  div.sub-banner {
+    display: block;
+  }
+  p.sub-banner-content {
+    width: 100%;
+    padding-right: 0;
+  }
+  div.sub-banner-cta {
+    padding-bottom: 10px;
   }
 }
