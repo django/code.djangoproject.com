@@ -38,25 +38,26 @@ django.setup()
 
 
 class DjangoAuth:
-
-    login_url = getattr(settings, 'BASIC_AUTH_LOGIN_URL', '/login')
-    message = getattr(settings, 'BASIC_AUTH_MESSAGE', "Authorization required.")
-    message_type = getattr(settings, 'BASIC_AUTH_MESSAGE_TYPE', 'text/plain')
-    realm = getattr(settings, 'BASIC_AUTH_REALM', "Authenticate")
+    login_url = getattr(settings, "BASIC_AUTH_LOGIN_URL", "/login")
+    message = getattr(settings, "BASIC_AUTH_MESSAGE", "Authorization required.")
+    message_type = getattr(settings, "BASIC_AUTH_MESSAGE_TYPE", "text/plain")
+    realm = getattr(settings, "BASIC_AUTH_REALM", "Authenticate")
 
     def __init__(self, application):
         self.application = application
 
     def __call__(self, environ, start_response):
-
         try:
             if get_path_info(environ) == self.login_url:
                 username = self.process_authorization(environ)
                 if username is None:
-                    start_response('401 Unauthorized', [
-                        ('Content-Type', self.message_type),
-                        ('WWW-Authenticate', 'Basic realm="%s"' % self.realm),
-                    ])
+                    start_response(
+                        "401 Unauthorized",
+                        [
+                            ("Content-Type", self.message_type),
+                            ("WWW-Authenticate", 'Basic realm="%s"' % self.realm),
+                        ],
+                    )
                     return [self.message]
         finally:
             close_old_connections()
@@ -66,24 +67,24 @@ class DjangoAuth:
     @staticmethod
     def process_authorization(environ):
         # Don't override authentication information set by another component.
-        remote_user = environ.get('REMOTE_USER')
+        remote_user = environ.get("REMOTE_USER")
         if remote_user is not None:
             return
 
-        authorization = environ.get('HTTP_AUTHORIZATION')
+        authorization = environ.get("HTTP_AUTHORIZATION")
         if authorization is None:
             return
 
-        if six.PY3:                         # because fuck you PEP 3333.
-           authorization = authorization.encode('iso-8859-1').decode('utf-8')
+        if six.PY3:  # because fuck you PEP 3333.
+            authorization = authorization.encode("iso-8859-1").decode("utf-8")
 
-        method, _, credentials = authorization.partition(' ')
-        if not method.lower() == 'basic':
+        method, _, credentials = authorization.partition(" ")
+        if not method.lower() == "basic":
             return
 
         try:
             credentials = b64decode(credentials.strip())
-            username, _, password = credentials.partition(':')
+            username, _, password = credentials.partition(":")
         except Exception:
             return
 
@@ -92,9 +93,9 @@ class DjangoAuth:
 
         remote_user = username
 
-        if six.PY3:                         # because fuck you PEP 3333.
-           remote_user = remote_user.encode('utf-8').decode('iso-8859-1')
+        if six.PY3:  # because fuck you PEP 3333.
+            remote_user = remote_user.encode("utf-8").decode("iso-8859-1")
 
-        environ['REMOTE_USER'] = remote_user
+        environ["REMOTE_USER"] = remote_user
 
         return username
