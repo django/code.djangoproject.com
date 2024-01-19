@@ -21,6 +21,15 @@ Using Docker
 
 * Install Docker
 * ``pip install docker-compose``
+* Create a ``secrets.json`` file at the root of the repository (next to `Dockerfile`), containing
+  something like::
+
+    {
+      "secret_key": "xyz",
+      "db_host": "localhost",
+      "db_password": "secret"
+    }
+
 * ``docker-compose up --build``
 * Follow instructions above to create/load the DB, grant permissions, create the
   config, etc. For example::
@@ -28,7 +37,7 @@ Using Docker
     docker-compose up --build
     export DATABASE_URL=postgres://code.djangoproject:secret@db/code.djangoproject
     docker-compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
-    docker-compose exec trac /venv/bin/trac-admin /code/trac-env/ permission add anonymous TRAC_ADMIN
+    docker-compose exec trac trac-admin /code/trac-env/ permission add anonymous TRAC_ADMIN
 
 Using Podman
 ------------

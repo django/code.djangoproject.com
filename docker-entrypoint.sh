@@ -10,12 +10,12 @@ set -e
 #   database = postgres://...
 
 for var in "${!TRAC_INI_@}"; do
-    sed -i "s;^${var:9} = .*;${var:9} = ${!var};" trac-env/conf/trac.ini
+    sed -i "s;^${var:9} = .*;${var:9} = ${!var};" /code/trac-env/conf/trac.ini
 done
 
 if [ "x$TRAC_COLLECT_STATIC" = 'xon' ]; then
     # Collect trac static files to be served by nginx
-    /venv/bin/trac-admin ./trac-env/ deploy ./static/
+    trac-admin /code/trac-env/ deploy ./static/
 fi
 
 exec "$@"

@@ -1,9 +1,6 @@
 from functools import partial
 
-try:
-    from unittest.mock import Mock
-except ImportError:
-    from mock import Mock
+from unittest.mock import Mock
 
 from django.core.signals import request_finished, request_started
 from django.contrib.auth.forms import AuthenticationForm

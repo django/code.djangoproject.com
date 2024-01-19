@@ -1,11 +1,10 @@
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from trac.core import Component, implements
 from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
 from trac.wiki.web_ui import WikiModule
-from trac.util import Markup
 from trac.util.html import tag
 from tracext.github import GitHubBrowser
 
@@ -82,7 +81,7 @@ class CustomNavigationBar(Component):
             (
                 "mainnav",
                 "custom_reports",
-                Markup('<a href="%s">Reports</a>' % req.href.wiki("Reports")),
+                tag.a("Reports", href=req.href.wiki("Reports")),
             ),
         ]
 

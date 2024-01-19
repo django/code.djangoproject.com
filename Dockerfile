@@ -1,62 +1,62 @@
-# The official python:2.7 image no longer receives automatic rebuilds (it's
-# a year old as of October, 2021), so use the latest LTS release of Ubuntu
-# that includes Python 2.7 instead.
-FROM ubuntu:20.04
+# pull official base image
+FROM python:3.8-slim-bullseye
 
-# Install packages needed to run your application (not build deps).
-RUN set -x \
-    && RUN_DEPS=" \
-    ca-certificates \
-    git \
-    libpq5 \
-    make \
-    postgresql-client \
-    python2.7 \
-    " \
-    && apt-get update && apt-get install -y --no-install-recommends $RUN_DEPS \
+# set work directory
+WORKDIR /code
+
+# set environment varibles
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# getting postgres from PGDG (https://wiki.postgresql.org/wiki/Apt)
+# gnupg is required to run apt.postgresql.org.sh
+RUN apt-get update \
+    && apt-get install --assume-yes --no-install-recommends \
+        git \
+        gnupg \
+        postgresql-common \
+    && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y\
+    && apt-get install --assume-yes --no-install-recommends postgresql-client-14\
+    && apt-get purge --assume-yes --auto-remove gnupg\
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
-ADD requirements.txt /requirements.txt
-ADD DjangoPlugin /DjangoPlugin
-
-# Install build deps, then run `pip install`, then remove unneeded build deps all in a single step.
-# Correct the path to your production requirements file, if needed.
-# For installing a python2.7-compatible pip: https://stackoverflow.com/a/54335642/166053
-# Since we are using the system Python, also isolate the code in its own virtualenv.
-RUN set -x \
-    && BUILD_DEPS=" \
-    build-essential \
-    libpq-dev \
-    python2.7-dev \
-    wget \
-    " \
-    && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
-    && wget -q -O /tmp/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py \
-    && python2.7 /tmp/get-pip.py \
-    && rm /tmp/get-pip.py \
-    && python2.7 -m pip install virtualenv \
-    && virtualenv /venv \
-    && /venv/bin/python -m pip install --no-cache-dir -r /requirements.txt \
-    \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
+# install deb packages
+RUN apt-get update \
+    && apt-get install --assume-yes --no-install-recommends \
+        make \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy application code
-RUN mkdir /code/
-WORKDIR /code/
-ADD . /code/
+# install python dependencies
+COPY ./requirements.txt ./requirements.txt
+COPY ./DjangoPlugin ./DjangoPlugin
 
-RUN PATH=/venv/bin:${PATH} make compile-scss
+RUN apt-get update \
+    && apt-get install --assume-yes --no-install-recommends \
+        g++ \
+        gcc \
+        libc6-dev \
+        libpq-dev \
+    && python3 -m pip install --no-cache-dir -r requirements.txt \
+    && apt-get purge --assume-yes --auto-remove \
+        gcc \
+        libc6-dev \
+        libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./docker-entrypoint.sh ./docker-entrypoint.sh
+COPY ./Makefile ./Makefile
+COPY ./scss ./scss
+COPY ./trac-env ./trac-env
+RUN make compile-scss
+RUN rm -r ./scss
+
 
 VOLUME /code/trac-env/files/
 
-# gunicorn or tracd will listen on this port
 EXPOSE 9000
-
 ENV DJANGO_SETTINGS_MODULE=tracdjangoplugin.settings TRAC_ENV=/code/trac-env/
 
-ENTRYPOINT ["/code/docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-entrypoint.sh"]
 
 # Start gunicorn
-CMD ["/venv/bin/gunicorn", "tracdjangoplugin.wsgi:application", "--bind", "0.0.0.0:9000", "--workers", "8", "--max-requests", "1000"]
+CMD ["gunicorn", "tracdjangoplugin.wsgi:application", "--bind", "0.0.0.0:9000", "--workers", "8", "--max-requests", "1000"]

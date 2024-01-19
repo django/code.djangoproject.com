@@ -7,9 +7,10 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    command: ["/venv/bin/tracd", "--port", "9000", "-s", "trac-env"]
+    command: ["gunicorn", "--bind", "0:9000", "--reload", "tracdjangoplugin.wsgi"]
     environment:
      - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
+     - SECRETS_FILE=/code/secrets.json
     volumes:
       - ./:/code/
     ports:
