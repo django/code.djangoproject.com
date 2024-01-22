@@ -10,9 +10,7 @@ requirejs.config({
 
 define(function(){
 
-	var mods = [
-		'mod/mobile-menu' //require mobile menu automatically
-	];
+	var mods = [];
 
 	//detect Class function
 	function hasClass( className ) {
