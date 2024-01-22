@@ -3,6 +3,8 @@ from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler
 from trac.wiki.web_ui import WikiModule
 from trac.util import Markup
+from trac.util.html import tag
+from tracext.github import GitHubBrowser
 
 
 class CustomWikiModule(WikiModule):
@@ -55,7 +57,7 @@ class CustomNavigationBar(Component):
     implements(INavigationContributor)
 
     def get_active_navigation_item(self, req):
-        return ""
+        return "custom_reports"
 
     def get_navigation_items(self, req):
         return [
@@ -67,22 +69,14 @@ class CustomNavigationBar(Component):
         ]
 
 
-try:
-    # Provided by https://github.com/aaugustin/trac-github
-    from tracext.github import GitHubBrowser
-except ImportError:
-    pass
-else:
-    from genshi.builder import tag
+class GitHubBrowserWithSVNChangesets(GitHubBrowser):
+    def _format_changeset_link(self, formatter, ns, chgset, label, fullmatch=None):
+        # Dead-simple version for SVN changesets.
+        if chgset.isnumeric():
+            href = formatter.href.changeset(chgset, None, "/")
+            return tag.a(label, class_="changeset", href=href)
 
-    class GitHubBrowserWithSVNChangesets(GitHubBrowser):
-        def _format_changeset_link(self, formatter, ns, chgset, label, fullmatch=None):
-            # Dead-simple version for SVN changesets
-            if chgset.isnumeric():
-                href = formatter.href.changeset(chgset, None, "/")
-                return tag.a(label, class_="changeset", href=href)
-
-            # Fallback to the default implemntation
-            return super(GitHubBrowserWithSVNChangesets, self)._format_changeset_link(
-                formatter, ns, chgset, label, fullmatch
-            )
+        # Fallback to the default implementation.
+        return super(GitHubBrowserWithSVNChangesets, self)._format_changeset_link(
+            formatter, ns, chgset, label, fullmatch
+        )
