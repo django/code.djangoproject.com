@@ -16,13 +16,13 @@
         }
     });
     </script>
-    <script src="${href.chrome('site/js/lib/modernizr.js')}"></script>
     <py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
       <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
     </py:if>
   </head>
 
-  <body py:match="body" py:attrs="select('@*')" id="generic">
+  <!-- we don't use the modernizer js lib anymore, but the css still uses some classes from it -->
+  <body py:match="body" py:attrs="select('@*')" id="generic" class="mdzr-boxshadow">
 
 
     <div role="banner" id="top">
@@ -171,7 +171,6 @@
     </div>
 
 
-  <script data-main="${href.chrome('site/js/main.js')}" src="${href.chrome('site/js/lib/require.js')}"></script>
   <script src="${href.chrome('site/js/mobile-menu.js')}"></script>
   </body>
 </html>
