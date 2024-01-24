@@ -179,15 +179,21 @@ blockquote.citation {
   #ticketbox {
     background-color: $white;
     border-color: $gray-line;
+
+    h1 {
+      color: inherit;
+    }
   }
   table.properties {
     border-top-color: $gray-line;
-    th, th.missing {
-      color: $text;
+    & > tbody > tr {
+      th, th.missing {
+        color: $text;
+      }
     }
   }
-  .description {
-    h3 {
+  div.description {
+    h2 {
       color: $text;
       border-bottom-color: $gray-line;
     }
