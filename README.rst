@@ -13,7 +13,7 @@ that can help:
   to give all permissions to the anonymous user.
 * Use the command ``DJANGO_SETTINGS_MODULE=tracdjangoplugin.settings TRAC_ENV=`pwd`/trac-env gunicorn tracdjangoplugin.wsgi:application --bind 0.0.0.0:9000 --workers=1 --reload`` to serve Trac locally.
 * If you've modified the ``trackhack.scss`` file, use
-  ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
+  ``pysassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
   to compile it to CSS.
 
 Using Docker
@@ -48,7 +48,7 @@ same directory (adjust paths if needed).
 1. Copy the generated CSS:
    ``cp ../djangoproject.com/static/css/*.css trac-env/htdocs/css/``
 2. Copy _utils.scss (needed by trackahacks.scss):
-   ``cp ../djangoproject.com/static/scss/_utils.scss scss/``
+   ``cp ../djangoproject.com/scss/_utils.scss scss/``
 3. Copy the javascript directory:
    ``cp -rT ../djangoproject.com/static/js trac-env/htdocs/js``
 4. Compile trackhacks.scss:
