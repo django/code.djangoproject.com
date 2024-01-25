@@ -9,7 +9,7 @@ libsass==0.17.0
 Genshi==0.7.7  # still required by some plugins
 
 # Trac plugins
-TracSpamFilter==1.2.7
+https://trac.edgewall.org/browser/plugins/1.4/spam-filter?format=zip
 # TracXMLRPC from PyPI does not (yet) have a 1.2.0 release (compatible with Trac 1.4)
 https://trac-hacks.org/browser/xmlrpcplugin/trunk?rev=18591&format=zip
 
