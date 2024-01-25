@@ -10,6 +10,6 @@
     }
   });
 </script>
-<py:if test="req.environ['PATH_INFO'].startswith('/ticket/')">
+# if req.path_info.startswith('/ticket/'):
   <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
-</py:if>
+# endif
