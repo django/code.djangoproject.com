@@ -12,7 +12,6 @@ RUN set -x \
     make \
     postgresql-client \
     python2.7 \
-    subversion \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $RUN_DEPS \
     && rm -rf /var/lib/apt/lists/*
