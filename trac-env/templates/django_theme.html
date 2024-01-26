@@ -34,18 +34,19 @@
     # if resourcepath_template:
     # include resourcepath_template ignore missing
     # endif
+
+    # if chrome.ctxtnav:
     <div id="ctxtnav" class="nav">
       <h2>${_("Context Navigation")}</h2>
-      # if chrome.ctxtnav:
       <ul>
         # for elm in chrome.ctxtnav:
         <li ${{'class': {'first': loop.first, 'last': loop.last}}|htmlattr}>${
           elm}</li>
         # endfor
       </ul>
-      # endif
       <hr />
     </div>
+    # endif
 
     ${jmacros.warnings(chrome.warnings)}
 
