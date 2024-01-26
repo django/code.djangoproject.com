@@ -138,16 +138,15 @@ class NoShadowTestCase(unittest.TestCase):
         )  # attr, colon, value, semicolon
 
     def test_has_shadow(self):
-        (rule,) = parse_stylesheet("html {box-shadow: 10px 5px 5px red;}")
-        self.assertTrue(has_shadow(rule))
-
-    def test_has_shadow_with_box_shadow_none(self):
-        (rule,) = parse_stylesheet("html {box-shadow: none;}")
-        self.assertFalse(has_shadow(rule))
-
-    def test_has_shadow_empty_rule(self):
-        (rule,) = parse_stylesheet("html {}")
-        self.assertFalse(has_shadow(rule))
+        for expected, css in [
+            (True, "html {box-shadow: 10px 5px 5px red;}"),
+            (False, "html {box-shadow: none;}"),
+            (False, "html {}"),
+        ]:
+            with self.subTest(css=css, expected=expected):
+                (rule,) = parse_stylesheet(css)
+                assert_method = self.assertTrue if expected else self.assertFalse
+                assert_method(has_shadow(rule))
 
     def test_selector_str_tag(self):
         (rule,) = parse_stylesheet("html {}")
