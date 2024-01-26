@@ -49,16 +49,25 @@ def skip_whitespace(nodes):
     return filter(lambda node: node.type != "whitespace", nodes)
 
 
+SHADOW_CSS_PROPERTIES = {
+    "box-shadow",
+    "text-shadow",
+}
+
+
 def has_shadow(rule):
     if not rule.content:
         return False
 
     for a, b, c in tripletwise(skip_whitespace(rule.content)):
-        if isinstance(a, tokens.IdentToken) and a.value == "box-shadow":
+        if isinstance(a, tokens.IdentToken) and a.value in SHADOW_CSS_PROPERTIES:
             assert isinstance(
                 c, (tokens.IdentToken, tokens.DimensionToken, tokens.NumberToken)
             ), f"Unexpected node type {c.type}"
-            return isinstance(c, (tokens.DimensionToken, tokens.NumberToken))
+            if isinstance(c, (tokens.DimensionToken, tokens.NumberToken)):
+                return True
+
+    return False
 
 
 def find_shadow(rules):
@@ -140,8 +149,14 @@ class NoShadowTestCase(unittest.TestCase):
     def test_has_shadow(self):
         for expected, css in [
             (True, "html {box-shadow: 10px 5px 5px red;}"),
+            (True, "html {text-shadow: 1px 1px 2px pink;}"),
+            (True, "html {text-shadow: 5px 5px #558ABB;}"),
             (False, "html {box-shadow: none;}"),
+            (False, "html {text-shadow: none;}"),
+            (True, "html {text-shadow: 5px 5px #558ABB; box-shadow: none;}"),
+            (True, "html {text-shadow: none; box-shadow: 10px 5px 5px red;}"),
             (False, "html {}"),
+            (False, "html {color: red; font-weight: bold;}"),
         ]:
             with self.subTest(css=css, expected=expected):
                 (rule,) = parse_stylesheet(css)
@@ -190,6 +205,7 @@ SCSS_NOSHADOW_MIXIN_HEADER = """\
 // fit well with our design.
 @mixin noshadow {
     box-shadow: none;
+    text-shadow: none;
     border-radius: unset;
 }
 """
