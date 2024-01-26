@@ -403,6 +403,7 @@ div[role="main"]{
         tr {
           td {
             padding: 0.5em !important; // :(
+            text-indent: 0 !important; // Used on the /rpc page
           }
         }
       }
