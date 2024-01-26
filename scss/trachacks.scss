@@ -71,10 +71,15 @@ div.trac-content {
   max-width: 1400px;
 }
 
-#changelog h3 {
+#ticketchange h3.change, #changelog h3.change {
   margin-top: 10px;
   margin-bottom: 5px;
   padding: 5px;
+  background: $green-very-light;
+
+  &:target {
+    background: $green-light;
+  }
 }
 
 #changelog p {
