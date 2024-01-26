@@ -111,6 +111,13 @@ div.trac-content {
   clear: both;
 }
 
+.column-container {
+    @include respond-min(768px) {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
 div.change {
   overflow: hidden;
 }
