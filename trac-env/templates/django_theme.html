@@ -17,7 +17,26 @@
 
 # macro main()
 <div role="main">
-  ${navigation('metanav')}
+  <div id="metanav" class="nav">
+    <ul>
+      # if req.is_authenticated:
+        <li>Logged in as ${req.authname}</li>
+        <li>
+          <form action="/github/logout" method="post" id="logout" class="trac-logout">
+            <button type="submit">Logout</button>
+            <input type="hidden" name="__FORM_TOKEN" value="${req.form_token}">
+          </form>
+        </li>
+      # else
+        <li><a href="/github/login">GitHub Login</a></li>
+        <li><a href="/login">DjangoProject Login</a></li>
+      # endif
+      <li><a href="${req.href.prefs()}">Preferences</a></li>
+      # if req.perm.has_permission('XML_RPC'):
+        <li><a href="${req.href.rpc()}">API</a></li>
+      # endif
+    </ul>
+  </div>
   ${navigation('mainnav')}
   <div id="main" ${{'class': {
                     'uisymbols': req.session.get('ui.use_symbols'),
