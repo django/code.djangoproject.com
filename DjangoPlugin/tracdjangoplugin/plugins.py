@@ -1,10 +1,17 @@
+from urlparse import urlparse
+
 from trac.core import Component, implements
 from trac.web.chrome import INavigationContributor
-from trac.web.api import IRequestFilter, IRequestHandler
+from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
+from trac.web.auth import LoginModule
 from trac.wiki.web_ui import WikiModule
 from trac.util import Markup
 from trac.util.html import tag
 from tracext.github import GitHubBrowser
+
+from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
+from django.utils.http import is_safe_url
 
 
 class CustomTheme(Component):
@@ -91,3 +98,45 @@ class GitHubBrowserWithSVNChangesets(GitHubBrowser):
         return super(GitHubBrowserWithSVNChangesets, self)._format_changeset_link(
             formatter, ns, chgset, label, fullmatch
         )
+
+
+class PlainLoginComponent(Component):
+    """
+    Enable login through a plain HTML form (no more HTTP basic auth)
+    """
+
+    implements(IRequestHandler)
+
+    def match_request(self, req):
+        return req.path_info == "/login"
+
+    def process_request(self, req):
+        if req.method == "POST":
+            return self.do_post(req)
+        elif req.method == "GET":
+            return self.do_get(req)
+        else:
+            req.send_response(405)
+            raise RequestDone
+
+    def do_get(self, req):
+        return "plainlogin.html", {
+            "form": AuthenticationForm(),
+            "next": req.args.get("next", ""),
+        }
+
+    def do_post(self, req):
+        form = AuthenticationForm(data=req.args)
+        if form.is_valid():
+            req.environ["REMOTE_USER"] = form.get_user().username
+            LoginModule(self.compmgr)._do_login(req)
+            req.redirect(self._get_safe_redirect_url(req))
+        return "plainlogin.html", {"form": form, "next": req.args.get("next", "")}
+
+    def _get_safe_redirect_url(self, req):
+        host = urlparse(req.base_url).hostname
+        redirect_url = req.args.get("next", "") or settings.LOGIN_REDIRECT_URL
+        if is_safe_url(redirect_url, allowed_hosts=[host]):
+            return redirect_url
+        else:
+            return settings.LOGIN_REDIRECT_URL

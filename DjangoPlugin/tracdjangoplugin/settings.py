@@ -1,8 +1,11 @@
 import json
 import os
 
-with open(os.environ.get("SECRETS_FILE")) as handle:
-    SECRETS = json.load(handle)
+if os.environ.get("SECRETS_FILE"):
+    with open(os.environ.get("SECRETS_FILE")) as handle:
+        SECRETS = json.load(handle)
+else:
+    SECRETS = {}
 
 DEBUG = False
 
@@ -23,6 +26,6 @@ INSTALLED_APPS = [
 ]
 
 
-SECRET_KEY = str(SECRETS["secret_key"])
+SECRET_KEY = str(SECRETS.get("secret_key", ""))
 
-BASIC_AUTH_REALM = "Django's Trac"
+LOGIN_REDIRECT_URL = "/"

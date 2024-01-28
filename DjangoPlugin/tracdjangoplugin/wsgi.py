@@ -4,18 +4,17 @@ import trac.web.main
 
 application = trac.web.main.dispatch_request
 
+import django
+
+django.setup()
+
 # Massive hack to make Trac fast, otherwise every git call tries to close ulimit -n (1e6) fds
 # Python 3 would perform better here, but we are still on 2.7 for Trac, so leak fds for now.
 from tracopt.versioncontrol.git import PyGIT
 
 PyGIT.close_fds = False
 
-from .djangoauth import DjangoAuth
-
-application = DjangoAuth(application)
-
 trac_dsn = os.getenv("SENTRY_DSN")
-
 if trac_dsn:
     import sentry_sdk
     from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
