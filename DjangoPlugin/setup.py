@@ -2,8 +2,8 @@ from setuptools import setup
 
 setup(
     name="Django Plugin",
-    version="1.1",
+    version="1.2",
     packages=["tracdjangoplugin"],
     include_package_data=True,
-    entry_points={"trac.plugins": ["tracdjangoplugin = tracdjangoplugin"]},
+    entry_points={"trac.plugins": ["tracdjangoplugin = tracdjangoplugin.plugins"]},
 )
