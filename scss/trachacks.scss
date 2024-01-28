@@ -90,6 +90,10 @@ div.trac-content {
   float: none;
 }
 
+#changelog .trac-change-panel {
+  margin-top: 0;
+}
+
 #ticketchange .changes, #changelog .changes {
   background: $white;
   border-color: $gray-line;
