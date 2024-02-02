@@ -28,8 +28,7 @@
           </form>
         </li>
       # else
-        <li><a href="/github/login">GitHub Login</a></li>
-        <li><a href="/login">DjangoProject Login</a></li>
+        <li><a href="/login?next=${req.path_info|urlencode()}">Login</a></li>
       # endif
       <li><a href="${req.href.prefs()}">Preferences</a></li>
       # if req.perm.has_permission('XML_RPC'):

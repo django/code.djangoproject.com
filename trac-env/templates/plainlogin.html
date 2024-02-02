@@ -1,0 +1,36 @@
+# extends 'layout.html'
+
+# block title
+  Login ${ super() }
+# endblock title
+
+# block content
+<h1>Choose how you want to log in</h1>
+
+<section class="login-github">
+  <h2>Log in with you GitHub account</h2>
+  <a href="/github/login">Log in with GitHub</a>
+<section>
+
+<section class="login-djangoproject">
+  <h2>Log in with your DjangoProject account</h2>
+  <form action="" method="post" class="plainlogin">
+    ${form.as_p()}
+    <p>
+      <button type="submit">Log in with DjangoProject</button>
+      <input type="hidden" name="__FORM_TOKEN" value="${req.form_token}">{# Trac's CSRF protection #}
+      <input type="hidden" name="next" value="${next|default('/')}">
+    </p>
+  </form>
+</section>
+
+<section class="login-managing">
+  <h2>Account management</h2>
+  <nav>
+    <ul>
+      <li><a href="https://www.djangoproject.com/accounts/register/">Create a new DjangoProject account</a></li>
+      <li><a href="https://www.djangoproject.com/accounts/password_reset/">Reset your password</a></li>
+    </ul>
+  </nav>
+</section>
+# endblock content
