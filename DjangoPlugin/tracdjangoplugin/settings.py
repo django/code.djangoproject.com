@@ -26,6 +26,6 @@ INSTALLED_APPS = [
 ]
 
 
-SECRET_KEY = str(SECRETS.get("secret_key", ""))
+SECRET_KEY = SECRETS.get("secret_key", "")
 
 LOGIN_REDIRECT_URL = "/"
