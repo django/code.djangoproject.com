@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:12-alpine
+    image: postgres:14-alpine
     ports:
       # Port 5435 might be handy for loading trac.sql from the djangoproject.com repo
       - 5435:5432
