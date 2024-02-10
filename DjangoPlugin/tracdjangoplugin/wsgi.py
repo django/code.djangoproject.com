@@ -12,6 +12,11 @@ django.setup()
 # Python 3 would perform better here, but we are still on 2.7 for Trac, so leak fds for now.
 from tracopt.versioncontrol.git import PyGIT
 
+from .middlewares import DjangoDBManagementMiddleware
+
+
+application = DjangoDBManagementMiddleware(application)
+
 PyGIT.close_fds = False
 
 trac_dsn = os.getenv("SENTRY_DSN")
