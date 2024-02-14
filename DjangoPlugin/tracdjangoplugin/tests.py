@@ -1,13 +1,20 @@
 from functools import partial
 
+try:
+    from unittest.mock import Mock
+except ImportError:
+    from mock import Mock
+
+from django.core.signals import request_finished, request_started
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import SimpleTestCase, TestCase
 
 from trac.test import EnvironmentStub, MockRequest
 from trac.web.api import RequestDone
 from trac.web.main import RequestDispatcher
 
+from tracdjangoplugin.middlewares import DjangoDBManagementMiddleware
 from tracdjangoplugin.plugins import PlainLoginComponent
 
 
@@ -127,3 +134,53 @@ class PlainLoginComponentTestCase(TestCase):
     def test_login_invalid_inactive_user(self):
         User.objects.create_user(username="test", password="test", is_active=False)
         self.assertLoginFails(username="test", password="test")
+
+
+class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Remove receivers from the request_started and request_finished signals,
+        # replacing them with a mock object so we can still check if they were called.
+        super(DjangoDBManagementMiddlewareTestCase, cls).setUpClass()
+        cls._original_signal_receivers = {}
+        cls.signals = {}
+        for signal in [request_started, request_finished]:
+            cls.signals[signal] = Mock()
+            cls._original_signal_receivers[signal] = signal.receivers
+            signal.receivers = []
+            signal.connect(cls.signals[signal])
+
+    @classmethod
+    def tearDownClass(cls):
+        # Restore the signals we modified in setUpClass() to what they were before
+        super(DjangoDBManagementMiddlewareTestCase, cls).tearDownClass()
+        for signal, original_receivers in cls._original_signal_receivers.items():
+            # messing about with receivers directly is not an official API, so we need to
+            # call some undocumented methods to make sure caches and such are taken care of.
+            with signal.lock:
+                signal.receivers = original_receivers
+                signal._clear_dead_receivers()
+                signal.sender_receivers_cache.clear()
+
+    def setUp(self):
+        super(DjangoDBManagementMiddlewareTestCase, self).setUp()
+        for mockobj in self.signals.values():
+            mockobj.reset_mock()
+
+    def test_request_start_fired(self):
+        app = DjangoDBManagementMiddleware(lambda environ, start_response: [b"test"])
+        output = b"".join(app(None, None))
+        self.assertEqual(output, b"test")
+        self.signals[request_started].assert_called_once()
+
+    def test_request_finished_fired(self):
+        app = DjangoDBManagementMiddleware(lambda environ, start_response: [b"test"])
+        output = b"".join(app(None, None))
+        self.assertEqual(output, b"test")
+        self.signals[request_finished].assert_called_once()
+
+    def test_request_finished_fired_even_with_error(self):
+        app = DjangoDBManagementMiddleware(lambda environ, start_response: [1 / 0])
+        with self.assertRaises(ZeroDivisionError):
+            list(app(None, None))
+        self.signals[request_finished].assert_called_once()
