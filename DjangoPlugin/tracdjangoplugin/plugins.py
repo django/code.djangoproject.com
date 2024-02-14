@@ -1,12 +1,13 @@
 from urllib.parse import urlparse
 
+from trac.config import ListOption
 from trac.core import Component, implements
 from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
 from trac.wiki.web_ui import WikiModule
 from trac.util.html import tag
-from tracext.github import GitHubBrowser
+from tracext.github import GitHubLoginModule, GitHubBrowser
 
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
@@ -139,3 +140,44 @@ class PlainLoginComponent(Component):
             return redirect_url
         else:
             return settings.LOGIN_REDIRECT_URL
+
+
+class ReservedUsernamesComponent(Component):
+    """
+    Prevents some users from logging in on the website. Useful for example to prevent
+    users whose name clashes with a permission group.
+
+    The list of reserved usernames can be configured in trac.ini by specifying
+    `reserved.usernames` as a comma-separated list under the [djangoplugin] header.
+
+    If such a user tries to log in, they will be logged out and redirected to the login
+    page with a message telling them to choose a different account.
+    """
+
+    implements(IRequestFilter)
+
+    reserved_names = ListOption(
+        section="djangoplugin",
+        name="reserved_usernames",
+        default="authenticated",
+        doc="A list (comma-separated) of usernames that won't be allowed to log in",
+    )
+
+    def pre_process_request(self, req, handler):
+        if req.authname in self.reserved_names:
+            self.force_logout_and_redirect(req)
+        return handler
+
+    def force_logout_and_redirect(self, req):
+        component = GitHubLoginModule(self.env)
+        # Trac's builtin LoginModule silently ignores logout requests that aren't POST,
+        # so we need to be a bit creative here
+        req.environ["REQUEST_METHOD"] = "POST"
+        try:
+            GitHubLoginModule(self.env)._do_logout(req)
+        except RequestDone:
+            pass  # catch the redirection exception so we can make our own
+        req.redirect("/login?reserved=%s" % req.authname)
+
+    def post_process_request(self, req, template, data, metadata):
+        return template, data, metadata  # required by Trac to exist

@@ -5,6 +5,12 @@
 # endblock title
 
 # block content
+# if 'reserved' in req.args
+  <div class="system-message">
+    Sorry, but the username <strong>${req.args.reserved}</strong> is reserved on this website.
+    Please log in with a different account.
+  </div>
+# endif
 <h1>Choose how you want to log in</h1>
 
 <section class="login-github">

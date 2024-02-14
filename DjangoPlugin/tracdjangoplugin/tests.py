@@ -9,10 +9,9 @@ from django.test import SimpleTestCase, TestCase
 
 from trac.test import EnvironmentStub, MockRequest
 from trac.web.api import RequestDone
-from trac.web.main import RequestDispatcher
 
 from tracdjangoplugin.middlewares import DjangoDBManagementMiddleware
-from tracdjangoplugin.plugins import PlainLoginComponent
+from tracdjangoplugin.plugins import PlainLoginComponent, ReservedUsernamesComponent
 
 
 class PlainLoginComponentTestCase(TestCase):
@@ -181,3 +180,37 @@ class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
         with self.assertRaises(ZeroDivisionError):
             list(app(None, None))
         self.signals[request_finished].assert_called_once()
+
+
+class ReservedUsernamesComponentTestCase(TestCase):
+    def setUp(self):
+        self.env = EnvironmentStub(
+            config=[("djangoplugin", "reserved_usernames", "invalid")]
+        )
+        self.component = ReservedUsernamesComponent(self.env)
+        self.request_factory = partial(MockRequest, self.env)
+
+    def test_reserved_name_redirect(self):
+        request = self.request_factory(
+            path_info="/", script_name="", authname="invalid"
+        )
+        with self.assertRaises(RequestDone):
+            self.component.pre_process_request(
+                request, handler=None
+            )  # handler doesn't matter here
+
+        redirect_url = request.headers_sent["Location"]
+        # Trac's EnvironmentStub uses http://example.org by as a base_url
+        self.assertEqual(redirect_url, "http://example.org/login?reserved=invalid")
+
+    def test_non_reserved_name_goes_through(self):
+        request = self.request_factory(path_info="/", authname="valid")
+        handler = object()
+        retval = self.component.pre_process_request(request, handler=handler)
+        self.assertIs(retval, handler)
+
+    def test_anonymous_goes_through(self):
+        request = self.request_factory(path_info="/")
+        handler = object()
+        retval = self.component.pre_process_request(request, handler=handler)
+        self.assertIs(retval, handler)
