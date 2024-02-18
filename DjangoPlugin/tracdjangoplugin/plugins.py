@@ -11,7 +11,8 @@ from tracext.github import GitHubLoginModule, GitHubBrowser
 
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
-from django.utils.http import is_safe_url
+from django.utils.encoding import iri_to_uri
+from django.utils.http import url_has_allowed_host_and_scheme
 
 
 class CustomTheme(Component):
@@ -135,11 +136,14 @@ class PlainLoginComponent(Component):
 
     def _get_safe_redirect_url(self, req):
         host = urlparse(req.base_url).hostname
-        redirect_url = req.args.get("next", "") or settings.LOGIN_REDIRECT_URL
-        if is_safe_url(redirect_url, allowed_hosts=[host]):
-            return redirect_url
-        else:
-            return settings.LOGIN_REDIRECT_URL
+        redirect_url = iri_to_uri(req.args.get("next", ""))
+
+        if not redirect_url:
+            redirect_url = settings.LOGIN_REDIRECT_URL
+        elif not url_has_allowed_host_and_scheme(redirect_url, allowed_hosts=[host]):
+            redirect_url = settings.LOGIN_REDIRECT_URL
+
+        return redirect_url
 
 
 class ReservedUsernamesComponent(Component):

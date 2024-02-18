@@ -24,6 +24,8 @@ jobs:
           python-version: '3.8'
       - run: pip install "tinycss2>=1.2.0"
       - run: python noshadows.py --tests
+        env:
+          PYTHONWARNINGS: error
 
   tracdjangoplugin:
     runs-on: ubuntu-20.04
@@ -39,6 +41,7 @@ jobs:
         run: python -m django test tracdjangoplugin.tests
         env:
           DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
+          PYTHONWARNINGS: error
 
   traccheck:
     runs-on: ubuntu-20.04
@@ -53,6 +56,8 @@ jobs:
       - run: python traccheck.py lint trac-env/
         env:
           DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
+          PYTHONWARNINGS: error
       - run: python traccheck.py components --check .TRACFREEZE.txt trac-env/
         env:
           DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
+          PYTHONWARNINGS: error
