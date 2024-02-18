@@ -39,3 +39,20 @@ jobs:
         run: python -m django test tracdjangoplugin.tests
         env:
           DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
+
+  traccheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Install requirements
+        run: python -m pip install -r requirements.txt
+      - run: python traccheck.py lint trac-env/
+        env:
+          DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
+      - run: python traccheck.py components --check .TRACFREEZE.txt trac-env/
+        env:
+          DJANGO_SETTINGS_MODULE: tracdjangoplugin.settings_tests
