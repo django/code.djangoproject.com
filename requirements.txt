@@ -1,13 +1,11 @@
 # spam-filter doesn't work without babel (but somehow doesn't list it in its requirements)
 Trac[pygments, babel]==1.6.0
-dnspython==1.15
 psycopg2==2.9.9 --no-binary=psycopg2
 Django==1.11.29
 libsass==0.23.0
 
 # Trac plugins
-https://trac.edgewall.org/browser/plugins/trunk/spam-filter?rev=17752&format=zip
-filelock==3.13.1  # required for running tracspamfilter.filters.bayes
+TracSpamFilter[dns,spambayes] @ https://trac.edgewall.org/browser/plugins/trunk/spam-filter?rev=17766&format=zip
 # TracXMLRPC from PyPI does not (yet) have a 1.2.0 release (compatible with Trac >=1.4)
 https://trac-hacks.org/browser/xmlrpcplugin/trunk?rev=18591&format=zip
 
