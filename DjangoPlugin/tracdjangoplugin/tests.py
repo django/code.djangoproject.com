@@ -85,13 +85,27 @@ class PlainLoginComponentTestCase(TestCase):
     def test_login_valid_with_malicious_redirection(self):
         self.env.config.set("trac", "base_url", "http://localhost")
         User.objects.create_user(username="test", password="test")
-        with self.settings(LOGIN_REDIRECT_URL="/test"):
-            self.assertLoginSucceeds(
-                username="test",
-                password="test",
-                check_redirect="http://localhost/test",
-                extra_data={"next": "http://example.com/evil"},
-            )
+
+        # adapted from django/tests/auth_tests/test_views.py
+        for redirect_url in [
+            "http://example.com",
+            "http://example.com/evil",
+            "http:///example.com",
+            "https://example.com",
+            "ftp://example.com",
+            "///example.com",
+            "//example.com",
+            'javascript:alert("XSS")',
+        ]:
+            with self.subTest(url=redirect_url), self.settings(
+                LOGIN_REDIRECT_URL="/test"
+            ):
+                self.assertLoginSucceeds(
+                    username="test",
+                    password="test",
+                    check_redirect="http://localhost/test",
+                    extra_data={"next": redirect_url},
+                )
 
     def assertLoginFails(self, username, password, error_message=None):
         if error_message is None:
