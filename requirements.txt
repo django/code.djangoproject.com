@@ -1,7 +1,7 @@
 # spam-filter doesn't work without babel (but somehow doesn't list it in its requirements)
 Trac[pygments, babel]==1.6.0
 psycopg2==2.9.9 --no-binary=psycopg2
-Django==3.2.24
+Django==3.2.25
 libsass==0.23.0
 
 # Trac plugins
