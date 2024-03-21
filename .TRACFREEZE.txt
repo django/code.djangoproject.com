@@ -22,6 +22,7 @@ trac.mimeview.api.plaintextrenderer
 trac.mimeview.api.wikitextrenderer
 trac.mimeview.patch.patchrenderer
 trac.mimeview.pygments.pygmentsrenderer
+trac.mimeview.rst.restructuredtextrenderer
 trac.notification.api.notificationsystem
 trac.notification.mail.alwaysemailsubscriber
 trac.notification.mail.emaildistributor
