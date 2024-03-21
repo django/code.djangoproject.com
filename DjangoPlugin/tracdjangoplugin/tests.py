@@ -7,6 +7,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.test import SimpleTestCase, TestCase
 
+from trac.mimeview.api import Mimeview
+from trac.mimeview.rst import (
+    ReStructuredTextRenderer,  # noqa: needed for RSTWikiTestCase to work
+)
 from trac.test import EnvironmentStub, MockRequest
 from trac.web.api import RequestDone
 
@@ -228,3 +232,15 @@ class ReservedUsernamesComponentTestCase(TestCase):
         handler = object()
         retval = self.component.pre_process_request(request, handler=handler)
         self.assertIs(retval, handler)
+
+
+class RSTWikiTestCase(SimpleTestCase):
+    def test_wiki_can_render_rst(self):
+        renderer = Mimeview(EnvironmentStub())
+        output = renderer.render(
+            content="====\nTEST\n====\n", mimetype="text/x-rst", context=None
+        )
+        self.assertHTMLEqual(
+            str(output),
+            '<div class="document" id="test"><h1 class="title">TEST</h1></div>',
+        )
