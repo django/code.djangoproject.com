@@ -191,6 +191,10 @@ blockquote.citation {
   margin-left: 0;
 }
 
+#trac-comment-editor textarea {
+  background: inherit;
+}
+
 #ticket {
   #ticketbox {
     background-color: $white;
