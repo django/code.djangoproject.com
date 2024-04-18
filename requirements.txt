@@ -9,6 +9,7 @@ libsass==0.23.0
 TracSpamFilter[dns,spambayes] @ https://trac.edgewall.org/browser/plugins/trunk/spam-filter?rev=17766&format=zip
 # TracXMLRPC from PyPI does not (yet) have a 1.2.0 release (compatible with Trac >=1.4)
 https://trac-hacks.org/browser/xmlrpcplugin/trunk?rev=18591&format=zip
+TracDragDrop @ svn+https://trac-hacks.org/svn/tracdragdropplugin/0.12@18635
 
 # No pypi release compatible with trac 1.6 yet
 trac-github[oauth] @ git+https://github.com/bmispelon/trac-github.git@trac-1.6-py3
