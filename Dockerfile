@@ -10,11 +10,13 @@ ENV PYTHONUNBUFFERED 1
 
 # getting postgres from PGDG (https://wiki.postgresql.org/wiki/Apt)
 # gnupg is required to run apt.postgresql.org.sh
+# subversion needed for some of the requirements (welcome to the year 2000)
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
         git \
         gnupg \
         postgresql-common \
+        subversion \
     && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y\
     && apt-get install --assume-yes --no-install-recommends postgresql-client-14\
     && apt-get purge --assume-yes --auto-remove gnupg\
