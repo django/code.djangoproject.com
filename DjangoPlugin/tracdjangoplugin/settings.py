@@ -29,3 +29,5 @@ INSTALLED_APPS = [
 SECRET_KEY = SECRETS.get("secret_key", "")
 
 LOGIN_REDIRECT_URL = "/"
+
+USE_TZ = False
