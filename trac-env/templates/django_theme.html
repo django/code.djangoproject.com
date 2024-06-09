@@ -31,9 +31,6 @@
         <li><a href="/login?next=${req.path_info|urlencode()}">Login</a></li>
       # endif
       <li><a href="${req.href.prefs()}">Preferences</a></li>
-      # if req.perm.has_permission('XML_RPC'):
-        <li><a href="${req.href.rpc()}">API</a></li>
-      # endif
     </ul>
   </div>
   ${navigation('mainnav')}
