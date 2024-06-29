@@ -121,6 +121,11 @@ class PlainLoginComponent(Component):
             raise RequestDone
 
     def do_get(self, req):
+        # Not 100% sure why, but for some links (RSS especially) Trac likes
+        # to generate URLs pointing to `/login?referer=<the actual link>` when
+        # the user is already authenticated.
+        if req.is_authenticated:
+            req.redirect(self._get_safe_redirect_url(req))
         return "plainlogin.html", {
             "form": AuthenticationForm(),
             "referer": req.args.get("referer", ""),
