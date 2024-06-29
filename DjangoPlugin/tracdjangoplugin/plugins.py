@@ -123,7 +123,7 @@ class PlainLoginComponent(Component):
     def do_get(self, req):
         return "plainlogin.html", {
             "form": AuthenticationForm(),
-            "next": req.args.get("next", ""),
+            "referer": req.args.get("referer", ""),
         }
 
     def do_post(self, req):
@@ -132,11 +132,11 @@ class PlainLoginComponent(Component):
             req.environ["REMOTE_USER"] = form.get_user().username
             LoginModule(self.compmgr)._do_login(req)
             req.redirect(self._get_safe_redirect_url(req))
-        return "plainlogin.html", {"form": form, "next": req.args.get("next", "")}
+        return "plainlogin.html", {"form": form, "referer": req.args.get("referer", "")}
 
     def _get_safe_redirect_url(self, req):
         host = urlparse(req.base_url).hostname
-        redirect_url = iri_to_uri(req.args.get("next", ""))
+        redirect_url = iri_to_uri(req.args.get("referer", ""))
 
         if not redirect_url:
             redirect_url = settings.LOGIN_REDIRECT_URL

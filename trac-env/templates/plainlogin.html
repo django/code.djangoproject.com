@@ -25,7 +25,7 @@
     <p>
       <button type="submit">Log in with DjangoProject</button>
       <input type="hidden" name="__FORM_TOKEN" value="${req.form_token}">{# Trac's CSRF protection #}
-      <input type="hidden" name="next" value="${next|default('/')}">
+      <input type="hidden" name="referer" value="${referer|default('/')}">
     </p>
   </form>
 </section>

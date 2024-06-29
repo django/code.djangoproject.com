@@ -73,7 +73,7 @@ class PlainLoginComponentTestCase(TestCase):
             username="test",
             password="test",
             check_redirect="/test",
-            extra_data={"next": "/test"},
+            extra_data={"referer": "/test"},
         )
 
     def test_login_valid_with_custom_redirection_with_hostname(self):
@@ -83,7 +83,7 @@ class PlainLoginComponentTestCase(TestCase):
             username="test",
             password="test",
             check_redirect="http://localhost/test",
-            extra_data={"next": "http://localhost/test"},
+            extra_data={"referer": "http://localhost/test"},
         )
 
     def test_login_valid_with_malicious_redirection(self):
@@ -108,7 +108,7 @@ class PlainLoginComponentTestCase(TestCase):
                     username="test",
                     password="test",
                     check_redirect="http://localhost/test",
-                    extra_data={"next": redirect_url},
+                    extra_data={"referer": redirect_url},
                 )
 
     def assertLoginFails(self, username, password, error_message=None):
