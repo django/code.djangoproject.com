@@ -149,6 +149,20 @@ class PlainLoginComponentTestCase(TestCase):
         User.objects.create_user(username="test", password="test", is_active=False)
         self.assertLoginFails(username="test", password="test")
 
+    def test_login_page_redirects_if_already_logged_in(self):
+        self.env.config.set("trac", "base_url", "")
+        request = self.request_factory(
+            method="GET",
+            path_info="/login",
+            args={"referer": "/test"},
+            authname="admin",
+        )
+
+        with self.assertRaises(RequestDone):
+            self.component.process_request(request)
+
+        self.assertEqual(request.headers_sent["Location"], "/test")
+
 
 class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
     @classmethod
