@@ -13,6 +13,6 @@ TracDragDrop @ svn+https://trac-hacks.org/svn/tracdragdropplugin/0.12@18635
 trac-github[oauth] @ git+https://github.com/bmispelon/trac-github.git@trac-1.6-py3
 
 gunicorn==22.0.0
-sentry-sdk==1.40.4
+sentry-sdk==2.8.0
 
 -e ./DjangoPlugin
