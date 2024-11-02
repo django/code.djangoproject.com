@@ -5,7 +5,9 @@ psycopg2==2.9.9 --no-binary=psycopg2
 Django==4.2.16
 libsass==0.23.0
 
-# Optional Trac dependencies that make DeprecationWarning go away
+# Optional Trac dependencies that make DeprecationWarning go away.
+# When upgrading Trac or Python, check if these dependencies are still needed
+# by uninstalling them and running the test suite (or CI) with PYTHONWARNINGS=error
 multipart==1.1.0
 passlib==1.7.4
 
