@@ -1,7 +1,7 @@
 # spam-filter doesn't work without babel (but somehow doesn't list it in its requirements)
 # rest is needed to support wiki pages written in rst
 Trac[babel, pygments, rest]==1.6.0
-psycopg2==2.9.9 --no-binary=psycopg2
+psycopg[c]==3.2.3
 Django==4.2.16
 libsass==0.23.0
 
