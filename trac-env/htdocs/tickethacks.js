@@ -121,8 +121,19 @@ $(function() {
                                 async: false,
                                 success: function (data) {
                                     if (data.length > 0) {
-                                        build_state = data[0].state;
-                                        link_text += " build:" + build_state;
+                                        var statuses = data.map(function(status) {
+                                            return status.state;
+                                        });
+                                        if (statuses.includes('pending')) {
+                                            build_state = 'building';
+                                        } else if (statuses.includes('failure') || statuses.includes('error')) {
+                                            build_state = 'error';
+                                        } else if (statuses.every(function(status) { return status === 'success'; })) {
+                                            build_state = 'success';
+                                        } else {
+                                            build_state = 'unknown';
+                                        }
+                                        link_text += ' build:' + build_state;
                                     }
                                 }
                             });
