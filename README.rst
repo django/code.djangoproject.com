@@ -20,7 +20,6 @@ Using Docker
 ------------
 
 * Install Docker
-* ``pip install docker-compose``
 * Create a ``secrets.json`` file at the root of the repository (next to `Dockerfile`), containing
   something like::
 
@@ -30,14 +29,14 @@ Using Docker
       "db_password": "secret"
     }
 
-* ``docker-compose up --build``
+* ``docker compose up --build``
 * Follow instructions above to create/load the DB, grant permissions, create the
   config, etc. For example::
 
-    docker-compose up --build
+    docker compose up --build
     export DATABASE_URL=postgres://code.djangoproject:secret@db/code.djangoproject
-    docker-compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
-    docker-compose exec trac trac-admin /code/trac-env/ permission add anonymous TRAC_ADMIN
+    docker compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
+    docker compose exec trac trac-admin /code/trac-env/ permission add anonymous TRAC_ADMIN
 
 Using Podman
 ------------
@@ -45,7 +44,7 @@ Using Podman
 It may be possible to use Podman for local development to more closely simulate
 production. The above Docker instructions should work for Podman as well,
 however, be aware that ``podman-compose`` is not as well battle-tested as
-``docker-compose`` (e.g., it may require pruning or forcefully stopping a
+``docker compose`` (e.g., it may require pruning or forcefully stopping a
 container before it will rebuild properly).
 
 How to port the CSS from djangoproject.com
@@ -69,16 +68,16 @@ How to recreate `trac.sql` after upgrading Trac
 
 Start with a clean slate::
 
-  docker-compose down
+  docker compose down
   sh -c 'cd ../djangoproject.com && git checkout tracdb/trac.sql'
 
-Bring up database and Trac via docker-compose::
+Bring up database and Trac via docker compose::
 
-  docker-compose up --build -d
+  docker compose up --build -d
   export DATABASE_URL=postgres://code.djangoproject:secret@db/code.djangoproject
-  docker-compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
-  docker-compose exec trac /venv/bin/trac-admin /code/trac-env/ upgrade
-  docker-compose exec db pg_dump --column-inserts -d $DATABASE_URL > ../djangoproject.com/tracdb/trac.sql
+  docker compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
+  docker compose exec trac /venv/bin/trac-admin /code/trac-env/ upgrade
+  docker compose exec db pg_dump --column-inserts -d $DATABASE_URL > ../djangoproject.com/tracdb/trac.sql
 
 
 Note:
