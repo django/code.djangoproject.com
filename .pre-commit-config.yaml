@@ -22,6 +22,7 @@ repos:
             exclude_types: [json, sql]
           - id: fix-byte-order-marker
           - id: mixed-line-ending
+          - id: trailing-whitespace
 
     - repo: https://github.com/asottile/pyupgrade
       rev: "v3.19.0"
