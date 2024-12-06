@@ -12,4 +12,9 @@ repos:
       rev: "1.22.2"
       hooks:
           - id: django-upgrade
-            args: [--target-version, "5.0"]
+            args: [
+              --target-version, "5.0",
+              # Trac needs psycopg2
+              # https://github.com/adamchainz/django-upgrade?tab=readme-ov-file#databases
+              --skip, "settings_database_postgresql",
+            ]
