@@ -115,15 +115,36 @@ $(function() {
                         dataType: 'json',
                         async: false,
                         success: function (data) {
+                            // Get status for the pull request
                             $.ajax({
                                 url: data.statuses_url,
                                 dataType: 'json',
                                 async: false,
-                                success: function (data) {
-                                    if (data.length > 0) {
-                                        build_state = data[0].state;
-                                        link_text += " build:" + build_state;
+                                success: function (statuses) {
+                                    let hasError = false;
+                                    let isBuilding = false;
+                                    let allSuccess = true;
+
+                                    statuses.forEach(status => {
+                                        if (status.state === "error") {
+                                            hasError = true;
+                                        } else if (status.state === "building") {
+                                            isBuilding = true;
+                                        } else if (status.state !== "success") {
+                                            allSuccess = false;
+                                        }
+                                    });
+
+                                    let overall_status;
+                                    if (hasError) {
+                                        overall_status = "error";
+                                    } else if (isBuilding) {
+                                        overall_status = "building";
+                                    } else if (allSuccess) {
+                                        overall_status = "success";
                                     }
+
+                                    link_text += " build state: " + overall_status;
                                 }
                             });
                         }
