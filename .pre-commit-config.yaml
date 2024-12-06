@@ -43,3 +43,9 @@ repos:
               # https://github.com/adamchainz/django-upgrade?tab=readme-ov-file#databases
               --skip, "settings_database_postgresql",
             ]
+
+    - repo: https://github.com/psf/black
+      rev: 24.10.0
+      hooks:
+          - id: black
+            exclude: '(\/migrations\/)'
