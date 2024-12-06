@@ -96,7 +96,7 @@ class GitHubBrowserWithSVNChangesets(GitHubBrowser):
             return tag.a(label, class_="changeset", href=href)
 
         # Fallback to the default implementation.
-        return super(GitHubBrowserWithSVNChangesets, self)._format_changeset_link(
+        return super()._format_changeset_link(
             formatter, ns, chgset, label, fullmatch
         )
 
