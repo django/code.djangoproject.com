@@ -18,6 +18,8 @@ repos:
             args: ["--allow-multiple-documents"]
           - id: debug-statements
           - id: detect-private-key
+          - id: end-of-file-fixer
+            exclude_types: [json, sql]
           - id: mixed-line-ending
 
     - repo: https://github.com/asottile/pyupgrade
