@@ -20,6 +20,7 @@ repos:
           - id: detect-private-key
           - id: end-of-file-fixer
             exclude_types: [json, sql]
+          - id: fix-byte-order-marker
           - id: mixed-line-ending
 
     - repo: https://github.com/asottile/pyupgrade
