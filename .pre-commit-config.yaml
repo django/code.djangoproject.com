@@ -7,3 +7,9 @@ repos:
       hooks:
           - id: pyupgrade
             args: [--py312]
+
+    - repo: https://github.com/adamchainz/django-upgrade
+      rev: "1.22.2"
+      hooks:
+          - id: django-upgrade
+            args: [--target-version, "5.0"]
