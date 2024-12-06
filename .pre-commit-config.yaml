@@ -46,3 +46,8 @@ repos:
       hooks:
           - id: prettier
             exclude_types: [html, css, javascript, json, scss]
+
+    - repo: https://github.com/tox-dev/pyproject-fmt
+      rev: "v2.5.0"
+      hooks:
+          - id: pyproject-fmt
