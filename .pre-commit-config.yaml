@@ -40,3 +40,9 @@ repos:
       rev: 24.10.0
       hooks:
           - id: black
+
+    - repo: https://github.com/rbubley/mirrors-prettier
+      rev: "v3.4.2"
+      hooks:
+          - id: prettier
+            exclude_types: [html, css, javascript, json, scss]
