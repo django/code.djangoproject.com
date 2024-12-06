@@ -48,4 +48,3 @@ repos:
       rev: 24.10.0
       hooks:
           - id: black
-            exclude: '(\/migrations\/)'
