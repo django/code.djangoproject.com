@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   trac:
     image: ghcr.io/django/code.djangoproject.com:latest
