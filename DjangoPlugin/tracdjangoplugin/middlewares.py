@@ -16,7 +16,6 @@ class DjangoDBManagementMiddleware:
     def __call__(self, environ, start_response):
         request_started.send(sender=self.__class__)
         try:
-            for data in self.application(environ, start_response):
-                yield data
+            yield from self.application(environ, start_response)
         finally:
             request_finished.send(sender=self.__class__)

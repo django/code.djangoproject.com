@@ -169,7 +169,7 @@ class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
     def setUpClass(cls):
         # Remove receivers from the request_started and request_finished signals,
         # replacing them with a mock object so we can still check if they were called.
-        super(DjangoDBManagementMiddlewareTestCase, cls).setUpClass()
+        super().setUpClass()
         cls._original_signal_receivers = {}
         cls.signals = {}
         for signal in [request_started, request_finished]:
@@ -181,7 +181,7 @@ class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
     @classmethod
     def tearDownClass(cls):
         # Restore the signals we modified in setUpClass() to what they were before
-        super(DjangoDBManagementMiddlewareTestCase, cls).tearDownClass()
+        super().tearDownClass()
         for signal, original_receivers in cls._original_signal_receivers.items():
             # messing about with receivers directly is not an official API, so we need to
             # call some undocumented methods to make sure caches and such are taken care of.
@@ -191,7 +191,7 @@ class DjangoDBManagementMiddlewareTestCase(SimpleTestCase):
                 signal.sender_receivers_cache.clear()
 
     def setUp(self):
-        super(DjangoDBManagementMiddlewareTestCase, self).setUp()
+        super().setUp()
         for mockobj in self.signals.values():
             mockobj.reset_mock()
 
