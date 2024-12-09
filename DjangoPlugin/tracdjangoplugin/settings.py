@@ -11,7 +11,7 @@ DEBUG = False
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "djangoproject",
         "USER": "djangoproject",
         "HOST": SECRETS.get("db_host", ""),
