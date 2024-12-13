@@ -1,26 +1,33 @@
 services:
-  trac:
-    image: ghcr.io/django/code.djangoproject.com:latest
-    # Comment out to use the ghcr.io image:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    command: ["gunicorn", "--bind", "0:9000", "--reload", "tracdjangoplugin.wsgi"]
-    environment:
-     - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
-     - SECRETS_FILE=/code/secrets.json
-    volumes:
-      - ./:/code/
-    ports:
-      - 9000:9000
-    depends_on:
-      - db
-  db:
-    image: postgres:14-alpine
-    ports:
-      # Port 5435 might be handy for loading trac.sql from the djangoproject.com repo
-      - 5435:5432
-    environment:
-      - POSTGRES_USER=code.djangoproject
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=code.djangoproject
+    trac:
+        image: ghcr.io/django/code.djangoproject.com:latest
+        # Comment out to use the ghcr.io image:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        command:
+            [
+                "gunicorn",
+                "--bind",
+                "0:9000",
+                "--reload",
+                "tracdjangoplugin.wsgi",
+            ]
+        environment:
+            - TRAC_INI_database=postgres://code.djangoproject:secret@db/code.djangoproject
+            - SECRETS_FILE=/code/secrets.json
+        volumes:
+            - ./:/code/
+        ports:
+            - 9000:9000
+        depends_on:
+            - db
+    db:
+        image: postgres:14-alpine
+        ports:
+            # Port 5435 might be handy for loading trac.sql from the djangoproject.com repo
+            - 5435:5432
+        environment:
+            - POSTGRES_USER=code.djangoproject
+            - POSTGRES_PASSWORD=secret
+            - POSTGRES_DB=code.djangoproject

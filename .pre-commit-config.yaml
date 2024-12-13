@@ -1,0 +1,53 @@
+default_language_version:
+    python: python3
+
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: "v5.0.0"
+      hooks:
+          - id: check-added-large-files
+            args: ["--maxkb=1024"]
+          - id: check-case-conflict
+          - id: check-docstring-first
+          - id: check-executables-have-shebangs
+          - id: check-json
+          - id: check-merge-conflict
+          - id: check-shebang-scripts-are-executable
+          - id: check-toml
+          - id: check-yaml
+            args: ["--allow-multiple-documents"]
+          - id: debug-statements
+          - id: detect-private-key
+          - id: end-of-file-fixer
+            exclude_types: [json, sql]
+          - id: fix-byte-order-marker
+          - id: mixed-line-ending
+          - id: trailing-whitespace
+
+    - repo: https://github.com/asottile/pyupgrade
+      rev: "v3.19.0"
+      hooks:
+          - id: pyupgrade
+            args: [--py312]
+
+    - repo: https://github.com/adamchainz/django-upgrade
+      rev: "1.22.2"
+      hooks:
+          - id: django-upgrade
+            args: [--target-version, "5.0"]
+
+    - repo: https://github.com/psf/black
+      rev: 24.10.0
+      hooks:
+          - id: black
+
+    - repo: https://github.com/rbubley/mirrors-prettier
+      rev: "v3.4.2"
+      hooks:
+          - id: prettier
+            exclude_types: [html, css, javascript, json, scss]
+
+    - repo: https://github.com/tox-dev/pyproject-fmt
+      rev: "v2.5.0"
+      hooks:
+          - id: pyproject-fmt
