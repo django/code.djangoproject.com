@@ -187,36 +187,36 @@ $(function() {
         if (!has_patch) {
              next_steps.push(
                 "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/'>" +
-                "To provide a patch</a> by sending a pull request. " +
+                "To send a pull request</a>. " +
                 "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#claiming-tickets'>" +
                 "Claim the ticket</a> when you start working so that someone else doesn't duplicate effort. " +
                 "Before sending a pull request, review your work against the <a href='" +
                 "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist'>" +
-                "patch review checklist</a>. " +
-                "Check the \"Has patch\" flag on the ticket after sending a pull request and " +
+                "contribution review checklist</a>. " +
+                "Check the \"Has pull request\" flag on the ticket after sending a pull request and " +
                 include_link_to_pr_msg
             );
         } else {
             if (needs_tests) {
-                next_steps.push('To add tests to the patch, then uncheck the "Needs tests" flag on the ticket.');
+                next_steps.push('To add tests to the pull request, then uncheck the "Needs tests" flag on the ticket.');
             }
             if (needs_docs) {
-                next_steps.push('To write documentation for the patch, then uncheck "Needs documentation" on the ticket.');
+                next_steps.push('To write documentation for the pull request, then uncheck "Needs documentation" on the ticket.');
             }
             if (patch_needs_improvement) {
                 next_steps.push(
-                    "To improve the patch as described in the pull request review " +
+                    "To improve the pull request as described in the pull request review " +
                     "comments or on this ticket, then uncheck \"Patch needs improvement\"."
                 );
             }
             if (!needs_tests && !needs_docs && !patch_needs_improvement) {
                 next_steps.push(
-                    'For anyone except the patch author to review the patch using the ' +
+                    'For anyone except the pull request author to review the pull request using the ' +
                     '<a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist">' +
-                    'patch review checklist</a> and either ' +
+                    'pull request review checklist</a> and either ' +
                     'mark the ticket as "Ready for checkin" if everything looks good, ' +
                     'or leave comments for improvement and mark the ticket as ' +
-                    '"Patch needs improvement".'
+                    '"Pull request needs improvement".'
                 );
             } else {
                 next_steps.push("<p>If creating a new pull request, " + include_link_to_pr_msg);
@@ -224,7 +224,7 @@ $(function() {
         }
     } else if (stage == 'Ready for checkin') {
         next_steps.push(
-            'For a Django committer to do a final review of the patch and merge ' +
+            'For a Django committer to do a final review of the pull request and merge ' +
             'it if all looks good.'
         );
     } else if (stage == 'Someday/Maybe') {
@@ -234,7 +234,7 @@ $(function() {
             '<p>It could be an issue that\'s blocked until a future version of Django ' +
             '(if so, Keywords will contain that version number). It could also ' +
             'be an enhancement request that we might consider adding someday to the framework ' +
-            'if an excellent patch is submitted.</p>' +
+            'if an excellent contribution is submitted.</p>' +
             '<p>If you\'re interested in contributing to the issue, ' +
             'raising your ideas on the <a href="http://groups.google.com/group/django-developers">django-developers</a> ' +
             'mailing list certainly wouldn\'t hurt.<p>'
