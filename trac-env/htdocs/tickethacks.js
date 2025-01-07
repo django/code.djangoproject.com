@@ -142,7 +142,15 @@ $(function () {
                   async: false,
                   success: function (data) {
                     if (data.length > 0) {
-                      build_state = data[0].state;
+                      var build_state = 'success';
+                      data.forEach(function (check) {
+                        if (check.state === 'error') {
+                          build_state = 'error';
+                        } else if (check.state === 'building') {
+                          build_state = 'building';
+                        }
+                      });
+
                       link_text += ' build:' + build_state;
                     }
                   },
@@ -167,9 +175,9 @@ $(function () {
         link = links.join(', ');
       }
       $('table.properties').append(
-        '<tr><th>Pull Requests:</th><td>' + link + '</td><tr>',
+        '<tr><th>Pull Requests:</th><td>' + link + '</td><tr>'
       );
-    },
+    }
   );
 
   // Ticket Triage Guidelines: show next steps based on the ticket's status,
@@ -206,14 +214,14 @@ $(function () {
     next_steps.push(
       "For bugs: reproduce the bug. If it's a regression, " +
         "<a href='https://docs.djangoproject.com/en/dev/internals/contributing/triaging-tickets/#bisecting-a-regression'>" +
-        'bisect</a> to find the commit where the behavior changed.',
+        'bisect</a> to find the commit where the behavior changed.'
     );
     next_steps.push(
-      'For new features or cleanups: give a second opinion of the proposal.',
+      'For new features or cleanups: give a second opinion of the proposal.'
     );
     next_steps.push(
       'In either case, mark the Triage Stage as "Accepted" if the issue seems valid, ' +
-        'ask for additional clarification from the reporter, or close the ticket.',
+        'ask for additional clarification from the reporter, or close the ticket.'
     );
   } else if (stage == 'Accepted') {
     if (!has_patch) {
@@ -226,23 +234,23 @@ $(function () {
           "https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/#patch-review-checklist'>" +
           'patch review checklist</a>. ' +
           'Check the "Has patch" flag on the ticket after sending a pull request and ' +
-          include_link_to_pr_msg,
+          include_link_to_pr_msg
       );
     } else {
       if (needs_tests) {
         next_steps.push(
-          'To add tests to the patch, then uncheck the "Needs tests" flag on the ticket.',
+          'To add tests to the patch, then uncheck the "Needs tests" flag on the ticket.'
         );
       }
       if (needs_docs) {
         next_steps.push(
-          'To write documentation for the patch, then uncheck "Needs documentation" on the ticket.',
+          'To write documentation for the patch, then uncheck "Needs documentation" on the ticket.'
         );
       }
       if (patch_needs_improvement) {
         next_steps.push(
           'To improve the patch as described in the pull request review ' +
-            'comments or on this ticket, then uncheck "Patch needs improvement".',
+            'comments or on this ticket, then uncheck "Patch needs improvement".'
         );
       }
       if (!needs_tests && !needs_docs && !patch_needs_improvement) {
@@ -252,18 +260,18 @@ $(function () {
             'patch review checklist</a> and either ' +
             'mark the ticket as "Ready for checkin" if everything looks good, ' +
             'or leave comments for improvement and mark the ticket as ' +
-            '"Patch needs improvement".',
+            '"Patch needs improvement".'
         );
       } else {
         next_steps.push(
-          '<p>If creating a new pull request, ' + include_link_to_pr_msg,
+          '<p>If creating a new pull request, ' + include_link_to_pr_msg
         );
       }
     }
   } else if (stage == 'Ready for checkin') {
     next_steps.push(
       'For a Django committer to do a final review of the patch and merge ' +
-        'it if all looks good.',
+        'it if all looks good.'
     );
   } else if (stage == 'Someday/Maybe') {
     next_steps.push(
@@ -275,7 +283,7 @@ $(function () {
         'if an excellent patch is submitted.</p>' +
         "<p>If you're interested in contributing to the issue, " +
         'raising your ideas on the <a href="http://groups.google.com/group/django-developers">django-developers</a> ' +
-        "mailing list certainly wouldn't hurt.<p>",
+        "mailing list certainly wouldn't hurt.<p>"
     );
   }
   if (next_steps.length) {
@@ -286,7 +294,7 @@ $(function () {
         '<ul><li>' +
         next_steps.join('</li><li>') +
         '</li></ul>' +
-        '</div>',
+        '</div>'
     );
   }
 });
