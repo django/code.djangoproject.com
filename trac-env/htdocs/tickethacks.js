@@ -274,8 +274,8 @@ $(function () {
         'be an enhancement request that we might consider adding someday to the framework ' +
         'if an excellent patch is submitted.</p>' +
         "<p>If you're interested in contributing to the issue, " +
-        'raising your ideas on the <a href="http://groups.google.com/group/django-developers">django-developers</a> ' +
-        "mailing list certainly wouldn't hurt.<p>",
+        'raising your ideas on the <a href="https://forum.djangoproject.com/c/internals/5">Django Forum</a> ' +
+        "would be a great place to start.<p>",
     );
   }
   if (next_steps.length) {
