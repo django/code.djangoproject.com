@@ -18,7 +18,7 @@ TracDragDrop @ svn+https://trac-hacks.org/svn/tracdragdropplugin/0.12@18635
 # No pypi release compatible with trac 1.6 yet
 trac-github[oauth] @ git+https://github.com/bmispelon/trac-github.git@trac-1.6-py3
 
-gunicorn==22.0.0
+gunicorn==23.0.0
 sentry-sdk==2.8.0
 
 -e ./DjangoPlugin
