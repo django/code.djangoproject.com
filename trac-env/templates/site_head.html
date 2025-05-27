@@ -14,3 +14,6 @@
 # if req.path_info.startswith('/ticket/'):
   <script type="text/javascript" src="${href.chrome('site/tickethacks.js')}"></script>
 # endif
+# if req.path_info.startswith('/query'):
+  <script type="text/javascript" src="${href.chrome('site/queryhacks.js')}"></script>
+# endif
