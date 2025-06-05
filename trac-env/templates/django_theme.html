@@ -92,6 +92,11 @@
       </div>
     </div>
 
+
+    # if req.authname == 'anonymous' or req.authname == '':
+    <div id="guest"></div>
+    # endif
+
     # if req.path_info == '/':
     <div class="container sidebar-right">
       ${main()}
