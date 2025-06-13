@@ -15,6 +15,31 @@
 </div>
 # endmacro
 
+# macro navigation_queues()
+<div id="mainnav_queues" class="nav">
+  <ul>
+    <li class="first">
+      <a href="/query?stage=Unreviewed&status=!closed&order=priority">Unreviewed</a>
+    </li>
+    <li>
+      <a href="/query?has_patch=0&stage=Accepted&status=!closed&order=priority">Needs Patch</a>
+    </li>
+    <li>
+      <a href="/query?has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted&status=!closed&order=changetime&desc=1">Needs Review</a>
+    </li>
+    <li>
+      <a href="/query?has_patch=1&needs_better_patch=1&stage=Accepted&status=!closed&order=priority">Waiting On Author</a>
+    </li>
+    <li>
+      <a href="/query?stage=Ready+for+checkin&status=!closed&order=priority">Ready For Checkin</a>
+    </li>
+    <li class="last">
+      <a href="/query">Custom Query</a>
+    </li>
+  </ul>
+</div>
+# endmacro
+
 # macro main()
 <div role="main">
   <div id="metanav" class="nav">
@@ -34,6 +59,7 @@
     </ul>
   </div>
   ${navigation('mainnav')}
+  ${navigation_queues()}
   <div id="main" ${{'class': {
                     'uisymbols': req.session.get('ui.use_symbols'),
                     'uinohelp': req.session.get('ui.hide_help'),
