@@ -88,6 +88,57 @@ class CustomNavigationBar(Component):
         ]
 
 
+class CustomSubNavigationBar(Component):
+    """Add queue items for the sub navigation bar."""
+
+    implements(INavigationContributor)
+
+    def get_active_navigation_item(self, req):
+        stage = req.args.get("stage")
+        has_patch = req.args.get("has_patch")
+        needs_better_patch = req.args.get("needs_better_patch")
+
+        if stage == "Ready+for+checkin":
+            return "ready_for_checkin"
+        if stage == "Accepted" and has_patch == "0":
+            return "needs_patch"
+        if stage == "Accepted" and has_patch == "1" and needs_better_patch == "0":
+            return "needs_review"
+        if stage == "Accepted" and has_patch == "1" and needs_better_patch == "1":
+            return "waiting_on_author"
+
+        return "unreviewed"
+
+    def get_navigation_items(self, req):
+        return [
+            (
+                "subnav",
+                "unreviewed",
+                tag.a("Unreviewed", href="/query?stage=Unreviewed&status=!closed&order=changetime&desc=1"),
+            ),
+            (
+                "subnav",
+                "needs_patch",
+                tag.a("Needs Patch", href="/query?has_patch=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
+            ),
+            (
+                "subnav",
+                "needs_review",
+                tag.a("Needs Review", href="/query?has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
+            ),
+            (
+                "subnav",
+                "waiting_on_author",
+                tag.a("Waiting On Author", href="/query?has_patch=1&needs_better_patch=1&stage=Accepted&status=!closed&order=changetime&desc=1"),
+            ),
+            (
+                "subnav",
+                "ready_for_checkin",
+                tag.a("Ready For Checkin", href="/query?stage=Ready+for+checkin&status=!closed&order=changetime&desc=1"),
+            ),
+        ]
+
+
 class GitHubBrowserWithSVNChangesets(GitHubBrowser):
     def _format_changeset_link(self, formatter, ns, chgset, label, fullmatch=None):
         # Dead-simple version for SVN changesets.
