@@ -330,6 +330,24 @@ div[role="main"]{
     }
   }
 
+  #subnav {
+    @include sans-serif;
+
+    ul {
+      text-align: left;
+
+      li {
+        &.active {
+          background: $green-medium;
+          a {
+            background: none;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
   #main {
     @include sans-serif;
 
