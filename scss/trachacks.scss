@@ -434,3 +434,20 @@ div[role="main"]{
     }
   }
 }
+
+#query-quick-links {
+  li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  li:before {
+    content: '\00a0\2022\00a0\00a0';
+    color:rgba(0,0,0,0.5);
+    font-size:11px;
+  }
+
+  li:first-child:before {
+    content: '';
+  }
+}
