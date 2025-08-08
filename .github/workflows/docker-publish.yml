@@ -31,9 +31,9 @@ jobs:
               uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
               with:
                   images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-                  flavor: |
-                      latest=true
                   tags: |
+                      # set latest tag for main branch only
+                      type=raw,value=latest,enable=main
                       type=ref,event=branch
                       type=sha
 
