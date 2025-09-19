@@ -114,7 +114,7 @@ class CustomSubNavigationBar(Component):
             (
                 "subnav",
                 "unreviewed",
-                tag.a("Unreviewed", href="/query?stage=Unreviewed&status=!closed&order=changetime&desc=1"),
+                tag.a("Needs Triage", href="/query?stage=Unreviewed&status=!closed&order=changetime&desc=1"),
             ),
             (
                 "subnav",
