@@ -124,7 +124,7 @@ class CustomSubNavigationBar(Component):
             (
                 "subnav",
                 "needs_review",
-                tag.a("Needs Review", href="/query?has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
+                tag.a("Needs PR Review", href="/query?has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
             ),
             (
                 "subnav",
