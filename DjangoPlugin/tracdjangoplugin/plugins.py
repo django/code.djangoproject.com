@@ -129,7 +129,7 @@ class CustomSubNavigationBar(Component):
             (
                 "subnav",
                 "waiting_on_author",
-                tag.a("Waiting On Author", href="/query?has_patch=1&needs_better_patch=1&stage=Accepted&status=!closed&order=changetime&desc=1"),
+                tag.a("Waiting On Author", href="/query?has_patch=0&stage=Accepted&status=!closed&or&needs_better_patch=1&stage=Accepted&status=!closed&or&needs_docs=1&stage=Accepted&status=!closed&or&needs_tests=1&stage=Accepted&status=!closed&order=priority"),
             ),
             (
                 "subnav",
