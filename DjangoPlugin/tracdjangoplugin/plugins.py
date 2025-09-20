@@ -131,23 +131,18 @@ class CustomSubNavigationBar(Component):
 
     def get_active_navigation_item(self, req):
         stage = req.args.get("stage")
-        has_patch = req.args.get("has_patch")
-        needs_better_patch = req.args.get("needs_better_patch")
-        needs_docs = req.args.get("needs_docs")
-        needs_tests = req.args.get("needs_tests")
 
         if stage == "Unreviewed":
             return "unreviewed"
         if stage == "Ready for checkin":
             return "ready_for_checkin"
-        if stage == "Accepted" and has_patch == "0":
-            return "needs_patch"
-        if (stage == "Accepted" and has_patch == "1" and needs_better_patch == "0"
-            and needs_docs == "0" and needs_tests == "0"
-        ):
-            return "needs_pr_review"
-        if stage == "Accepted" and has_patch == "1":
-            return "waiting_on_author"
+        if stage == "Accepted":
+            if req.query_string == self.queues[1]["params"]:
+                return "needs_patch"
+            elif req.query_string == self.queues[2]["params"]:
+                return "needs_pr_review"
+            elif req.query_string == self.queues[3]["params"]:
+                return "waiting_on_author"
 
         return ""
 
