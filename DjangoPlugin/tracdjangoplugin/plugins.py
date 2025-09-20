@@ -93,50 +93,82 @@ class CustomSubNavigationBar(Component):
 
     implements(INavigationContributor)
 
+    queues = [
+        {
+            "name": "unreviewed",
+            "label": "Needs Triage",
+            "params": "stage=Unreviewed&status=!closed&order=changetime&desc=1",
+        },
+        {
+            "name": "needs_patch",
+            "label": "Needs Patch",
+            "params": "has_patch=0&stage=Accepted&status=!closed&order=changetime&desc=1",
+        },
+        {
+            "name": "needs_pr_review",
+            "label": "Needs PR Review",
+            "params": (
+                "has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted"
+                "&status=!closed&order=changetime&desc=1"
+            ),
+        },
+        {
+            "name": "waiting_on_author",
+            "label": "Waiting On Author",
+            "params": (
+                "has_patch=1&needs_better_patch=1&stage=Accepted&status=assigned"
+                "&status=new&or&has_patch=1&needs_docs=1&stage=Accepted&status=assigned"
+                "&status=new&or&has_patch=1&needs_better_patch=1&stage=Accepted"
+                "&status=assigned&status=new&order=changetime&desc=1"
+            ),
+        },
+        {
+            "name": "ready_for_checkin",
+            "label": "Ready For Checkin",
+            "params": "stage=Ready+for+checkin&status=!closed&order=changetime&desc=1",
+        },
+    ]
+
     def get_active_navigation_item(self, req):
         stage = req.args.get("stage")
         has_patch = req.args.get("has_patch")
         needs_better_patch = req.args.get("needs_better_patch")
+        needs_docs = req.args.get("needs_docs")
+        needs_tests = req.args.get("needs_tests")
 
-        if stage == "Ready+for+checkin":
+        if stage == "Unreviewed":
+            return "unreviewed"
+        if stage == "Ready for checkin":
             return "ready_for_checkin"
         if stage == "Accepted" and has_patch == "0":
             return "needs_patch"
-        if stage == "Accepted" and has_patch == "1" and needs_better_patch == "0":
-            return "needs_review"
-        if stage == "Accepted" and has_patch == "1" and needs_better_patch == "1":
+        if (stage == "Accepted" and has_patch == "1" and needs_better_patch == "0"
+            and needs_docs == "0" and needs_tests == "0"
+        ):
+            return "needs_pr_review"
+        if stage == "Accepted" and has_patch == "1":
             return "waiting_on_author"
 
-        return "unreviewed"
+        return ""
+
+    def _get_active_class(self, active_item, subnav_name):
+        return 'active' if active_item == subnav_name else None
 
     def get_navigation_items(self, req):
-        return [
-            (
-                "subnav",
-                "unreviewed",
-                tag.a("Needs Triage", href="/query?stage=Unreviewed&status=!closed&order=changetime&desc=1"),
-            ),
-            (
-                "subnav",
-                "needs_patch",
-                tag.a("Needs Patch", href="/query?has_patch=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
-            ),
-            (
-                "subnav",
-                "needs_review",
-                tag.a("Needs PR Review", href="/query?has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted&status=!closed&order=changetime&desc=1"),
-            ),
-            (
-                "subnav",
-                "waiting_on_author",
-                tag.a("Waiting On Author", href="/query?has_patch=0&stage=Accepted&status=!closed&or&needs_better_patch=1&stage=Accepted&status=!closed&or&needs_docs=1&stage=Accepted&status=!closed&or&needs_tests=1&stage=Accepted&status=!closed&order=priority"),
-            ),
-            (
-                "subnav",
-                "ready_for_checkin",
-                tag.a("Ready For Checkin", href="/query?stage=Ready+for+checkin&status=!closed&order=changetime&desc=1"),
-            ),
-        ]
+        if req.path_info.startswith('/query'):
+            active_item = self.get_active_navigation_item(req)
+            return [
+                (
+                    "subnav",
+                    queue["name"],
+                    tag.a(
+                        queue["label"],
+                        href="/query?" + queue["params"],
+                        class_=self._get_active_class(active_item, queue["name"]),
+                    ),
+                )
+                for queue in self.queues
+            ]
 
 
 class GitHubBrowserWithSVNChangesets(GitHubBrowser):
