@@ -116,10 +116,10 @@ class CustomSubNavigationBar(Component):
             "name": "waiting_on_author",
             "label": "Waiting On Author",
             "params": (
-                "has_patch=1&needs_better_patch=1&stage=Accepted&status=assigned"
-                "&status=new&or&has_patch=1&needs_docs=1&stage=Accepted&status=assigned"
-                "&status=new&or&has_patch=1&needs_better_patch=1&stage=Accepted"
-                "&status=assigned&status=new&order=changetime&desc=1"
+                "has_patch=1&needs_better_patch=1&stage=Accepted&status=assigned&status=new"
+                "&or&has_patch=1&needs_docs=1&stage=Accepted&status=assigned&status=new"
+                "&or&has_patch=1&needs_tests=1&stage=Accepted&status=assigned&status=new"
+                "&order=changetime&desc=1"
             ),
         },
         {
