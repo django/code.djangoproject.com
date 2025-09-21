@@ -31,10 +31,10 @@ repos:
             args: [--py312]
 
     - repo: https://github.com/adamchainz/django-upgrade
-      rev: "1.22.2"
+      rev: "1.28.0"
       hooks:
           - id: django-upgrade
-            args: [--target-version, "5.0"]
+            args: [--target-version, "5.2"]
 
     - repo: https://github.com/psf/black
       rev: 24.10.0
