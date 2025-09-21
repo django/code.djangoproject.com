@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-trixie
 
 # set work directory
 WORKDIR /code
@@ -20,13 +20,13 @@ RUN apt-get update \
     && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y\
     && apt-get install --assume-yes --no-install-recommends postgresql-client-17\
     && apt-get purge --assume-yes --auto-remove gnupg\
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get distclean
 
 # install deb packages
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
         make \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get distclean
 
 # install python dependencies
 COPY ./requirements.txt ./requirements.txt
