@@ -275,7 +275,7 @@ $(function () {
         'if an excellent patch is submitted.</p>' +
         "<p>If you're interested in contributing to the issue, " +
         'raising your ideas on the <a href="https://forum.djangoproject.com/c/internals/5">Django Forum</a> ' +
-        "would be a great place to start.<p>",
+        'would be a great place to start.<p>',
     );
   }
   if (next_steps.length) {

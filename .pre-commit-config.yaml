@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: "v5.0.0"
+      rev: "v6.0.0"
       hooks:
           - id: check-added-large-files
             args: ["--maxkb=1024"]
@@ -25,30 +25,30 @@ repos:
           - id: trailing-whitespace
 
     - repo: https://github.com/asottile/pyupgrade
-      rev: "v3.19.0"
+      rev: "v3.20.0"
       hooks:
           - id: pyupgrade
             args: [--py312]
 
     - repo: https://github.com/adamchainz/django-upgrade
-      rev: "1.28.0"
+      rev: "1.29.0"
       hooks:
           - id: django-upgrade
             args: [--target-version, "5.2"]
 
     - repo: https://github.com/psf/black
-      rev: 24.10.0
+      rev: 25.9.0
       hooks:
           - id: black
 
     - repo: https://github.com/rbubley/mirrors-prettier
-      rev: "v3.4.2"
+      rev: "v3.6.2"
       hooks:
           - id: prettier
             exclude_types: [html, css, json, scss]
             exclude: '(^trac-env\/htdocs\/js\/lib\/.*$)'
 
     - repo: https://github.com/tox-dev/pyproject-fmt
-      rev: "v2.5.0"
+      rev: "v2.7.0"
       hooks:
           - id: pyproject-fmt
