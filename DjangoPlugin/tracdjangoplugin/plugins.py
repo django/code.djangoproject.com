@@ -147,10 +147,10 @@ class CustomSubNavigationBar(Component):
         return ""
 
     def _get_active_class(self, active_item, subnav_name):
-        return 'active' if active_item == subnav_name else None
+        return "active" if active_item == subnav_name else None
 
     def get_navigation_items(self, req):
-        if req.path_info.startswith('/query'):
+        if req.path_info.startswith("/query"):
             active_item = self.get_active_navigation_item(req)
             return [
                 (

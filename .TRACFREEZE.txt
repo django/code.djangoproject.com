@@ -102,6 +102,7 @@ trac.wiki.web_api.wikirenderer
 trac.wiki.web_ui.defaultwikipolicy
 tracdjangoplugin.plugins.customnavigationbar
 tracdjangoplugin.plugins.customnewticket
+tracdjangoplugin.plugins.customsubnavigationbar
 tracdjangoplugin.plugins.customtheme
 tracdjangoplugin.plugins.customwikimodule
 tracdjangoplugin.plugins.githubbrowserwithsvnchangesets
