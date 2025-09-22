@@ -5,14 +5,42 @@ from trac.core import Component, implements
 from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
+from trac.wiki.macros import WikiMacroBase
 from trac.wiki.web_ui import WikiModule
-from trac.util.html import tag
+from trac.util.html import Markup, tag
 from tracext.github import GitHubLoginModule, GitHubBrowser
 
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.encoding import iri_to_uri
 from django.utils.http import url_has_allowed_host_and_scheme
+
+
+class MarkupMacro(WikiMacroBase):
+    """
+    For trusted users (TODO: new/more appropriate permission bit?),
+    allow composing interactive HTML inside a Trac Wiki page, to
+    facilitate faster iteration on user experiences.
+
+    Example usage in a Trac wiki page:
+    {{{#!Markup
+    <div id="target">Response code</div>
+
+    <script>
+    fetch("/timeline").then(
+        resp => document.getElementById("target").innerHTML = resp.status
+    );
+    </script>
+    }}}
+
+    Trac data could be fetched or markup could be rendered server-side
+    and called via `args`:
+    See https://trac.edgewall.org/wiki/WikiMacros#Macrowitharguments
+    """
+    def expand_macro(self, formatter, name, content, args=None):
+        if "TICKET_EDIT_CC" in formatter.perm:   # supertriagers
+            return Markup(content)
+        return Markup("<p>Not authorized</p>")  # or raise?
 
 
 class CustomTheme(Component):
