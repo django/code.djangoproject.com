@@ -88,6 +88,84 @@ class CustomNavigationBar(Component):
         ]
 
 
+class CustomSubNavigationBar(Component):
+    """Add queue items for the sub navigation bar."""
+
+    implements(INavigationContributor)
+
+    queues = [
+        {
+            "name": "unreviewed",
+            "label": "Needs Triage",
+            "params": "stage=Unreviewed&status=!closed&order=changetime&desc=1",
+        },
+        {
+            "name": "needs_patch",
+            "label": "Needs Patch",
+            "params": "has_patch=0&stage=Accepted&status=!closed&order=changetime&desc=1",
+        },
+        {
+            "name": "needs_pr_review",
+            "label": "Needs PR Review",
+            "params": (
+                "has_patch=1&needs_better_patch=0&needs_docs=0&needs_tests=0&stage=Accepted"
+                "&status=!closed&order=changetime&desc=1"
+            ),
+        },
+        {
+            "name": "waiting_on_author",
+            "label": "Waiting On Author",
+            "params": (
+                "has_patch=1&needs_better_patch=1&stage=Accepted&status=assigned&status=new"
+                "&or&has_patch=1&needs_docs=1&stage=Accepted&status=assigned&status=new"
+                "&or&has_patch=1&needs_tests=1&stage=Accepted&status=assigned&status=new"
+                "&order=changetime&desc=1"
+            ),
+        },
+        {
+            "name": "ready_for_checkin",
+            "label": "Ready For Checkin",
+            "params": "stage=Ready+for+checkin&status=!closed&order=changetime&desc=1",
+        },
+    ]
+
+    def get_active_navigation_item(self, req):
+        stage = req.args.get("stage")
+
+        if stage == "Unreviewed":
+            return "unreviewed"
+        if stage == "Ready for checkin":
+            return "ready_for_checkin"
+        if stage == "Accepted":
+            if req.query_string == self.queues[1]["params"]:
+                return "needs_patch"
+            elif req.query_string == self.queues[2]["params"]:
+                return "needs_pr_review"
+            elif req.query_string == self.queues[3]["params"]:
+                return "waiting_on_author"
+
+        return ""
+
+    def _get_active_class(self, active_item, subnav_name):
+        return "active" if active_item == subnav_name else None
+
+    def get_navigation_items(self, req):
+        if req.path_info.startswith("/query"):
+            active_item = self.get_active_navigation_item(req)
+            return [
+                (
+                    "subnav",
+                    queue["name"],
+                    tag.a(
+                        queue["label"],
+                        href="/query?" + queue["params"],
+                        class_=self._get_active_class(active_item, queue["name"]),
+                    ),
+                )
+                for queue in self.queues
+            ]
+
+
 class GitHubBrowserWithSVNChangesets(GitHubBrowser):
     def _format_changeset_link(self, formatter, ns, chgset, label, fullmatch=None):
         # Dead-simple version for SVN changesets.
