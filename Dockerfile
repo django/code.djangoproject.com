@@ -5,8 +5,8 @@ FROM python:3.11-slim-bookworm
 WORKDIR /code
 
 # set environment varibles
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # getting postgres from PGDG (https://wiki.postgresql.org/wiki/Apt)
 # gnupg is required to run apt.postgresql.org.sh
