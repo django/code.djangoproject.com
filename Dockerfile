@@ -18,7 +18,7 @@ RUN apt-get update \
         postgresql-common \
         subversion \
     && /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y\
-    && apt-get install --assume-yes --no-install-recommends postgresql-client-14\
+    && apt-get install --assume-yes --no-install-recommends postgresql-client-17\
     && apt-get purge --assume-yes --auto-remove gnupg\
     && rm -rf /var/lib/apt/lists/*
 
