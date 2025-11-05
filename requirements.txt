@@ -2,7 +2,7 @@
 # rest is needed to support wiki pages written in rst
 Trac[babel, pygments, rest]==1.6.0
 psycopg2==2.9.9 --no-binary=psycopg2
-Django==5.2.7
+Django==5.2.8
 libsass==0.23.0
 
 # Optional Trac dependencies that make DeprecationWarning go away.
