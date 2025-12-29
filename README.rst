@@ -54,11 +54,11 @@ Assumes that `code.djangoproject.com` and `djangoproject.com` are stored in the
 same directory (adjust paths if needed).
 
 1. Copy the generated CSS:
-   ``cp ../djangoproject.com/static/css/*.css trac-env/htdocs/css/``
+   ``cp ../djangoproject.com/djangoproject/static/css/*.css trac-env/htdocs/css/``
 2. Copy _utils.scss (needed by trackahacks.scss):
-   ``cp ../djangoproject.com/static/scss/_utils.scss scss/``
+   ``cp ../djangoproject.com/djangoproject/scss/_utils.scss scss/``
 3. Copy the javascript directory:
-   ``cp -rT ../djangoproject.com/static/js trac-env/htdocs/js``
+   ``cp -rT ../djangoproject.com/djangoproject/static/js trac-env/htdocs/js``
 4. Compile trackhacks.scss:
    ``make compile-scss``
 
