@@ -12,7 +12,10 @@ from trac.mimeview.rst import (
     ReStructuredTextRenderer,  # noqa: needed for RSTWikiTestCase to work
 )
 from trac.test import EnvironmentStub, MockRequest
+from trac.ticket.web_ui import TicketModule  # Imported for side effects
+from trac.ticket.query import QueryModule  # Imported for side effects
 from trac.web.api import RequestDone
+from trac.web.main import RequestDispatcher
 
 from tracdjangoplugin.middlewares import DjangoDBManagementMiddleware
 from tracdjangoplugin.plugins import PlainLoginComponent, ReservedUsernamesComponent
@@ -257,4 +260,66 @@ class RSTWikiTestCase(SimpleTestCase):
         self.assertHTMLEqual(
             str(output),
             '<div class="document" id="test"><h1 class="title">TEST</h1></div>',
+        )
+
+
+class _TracRequestWrapper:
+    """
+    Wrap a Trac request object to make it look like a Django response (so it
+    can be used with assertContains)
+    """
+
+    streaming = False
+    charset = "utf8"
+
+    def __init__(self, request):
+        self._request = request
+
+    @property
+    def status_code(self):
+        status_str, _ = self._request._status.split(" ", 1)
+        return int(status_str)
+
+    @property
+    def content(self):
+        return self._request.response_sent.getvalue()
+
+
+class RenameQueryTitleComponentTestCase(TestCase):
+    def setUp(self):
+        self.env = EnvironmentStub(
+            enable=[
+                "trac.ticket.*",
+                "trac.ticket.query.*",
+                "trac.web.*",
+                "tracdjangoplugin.plugins.renamequerytitlecomponent",
+            ],
+            disable=[
+                "trac.ticket.query.querymodule",
+            ],
+        )
+        self.request_factory = partial(MockRequest, self.env)
+        self.dispatcher = RequestDispatcher(self.env)
+
+    def get_response(self, **kwargs):
+        """
+        Build a request using the given kwargs and return a Django-like
+        response object.
+        """
+        request = self.request_factory(**kwargs)
+        self.assertRaises(RequestDone, self.dispatcher.dispatch, request)
+        return _TracRequestWrapper(request)
+
+    def test_new_title(self):
+        response = self.get_response(path_info="/query")
+
+        self.assertContains(
+            response,
+            '<h1>View Tickets <span class="numrows">(0 matches)</span></h1>',
+            html=True,
+        )
+        self.assertNotContains(
+            response,
+            '<h1>Custom Query <span class="numrows">(0 matches)</span></h1>',
+            html=True,
         )
