@@ -177,6 +177,44 @@ class GitHubBrowserWithSVNChangesets(GitHubBrowser):
         return super()._format_changeset_link(formatter, ns, chgset, label, fullmatch)
 
 
+class TimelineTicketComponentFilter(Component):
+    """Filter timeline events to only show tickets for a given ticket component.
+
+    Activated when the request includes a ``component`` query argument, e.g.
+    /timeline?component=contrib.staticfiles&format=rss
+
+    Non-ticket events (wiki edits, commits, milestones, attachments) are
+    hidden when ``component`` is set.
+
+    ``batchmodify`` events are excluded because a single batch operation may
+    span multiple ticket components, making it ambiguous which filter to apply.
+    """
+
+    implements(IRequestFilter)
+
+    _TICKET_COMPONENT_INDEX = 8  # see trac/ticket/web_ui.py produce_event()
+    _TICKET_KINDS = frozenset(
+        ["newticket", "editedticket", "closedticket", "reopenedticket"]
+    )
+
+    def pre_process_request(self, req, handler):
+        return handler
+
+    def post_process_request(self, req, template, data, metadata):
+        if req.path_info != "/timeline" or data is None:
+            return template, data, metadata
+        components = set(req.args.getlist("component"))
+        if not components:
+            return template, data, metadata
+        data["events"] = [
+            event
+            for event in data["events"]
+            if event["kind"] in self._TICKET_KINDS
+            and event["data"][self._TICKET_COMPONENT_INDEX] in components
+        ]
+        return template, data, metadata
+
+
 class PlainLoginComponent(Component):
     """
     Enable login through a plain HTML form (no more HTTP basic auth)

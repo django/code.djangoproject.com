@@ -15,7 +15,11 @@ from trac.test import EnvironmentStub, MockRequest
 from trac.web.api import RequestDone
 
 from tracdjangoplugin.middlewares import DjangoDBManagementMiddleware
-from tracdjangoplugin.plugins import PlainLoginComponent, ReservedUsernamesComponent
+from tracdjangoplugin.plugins import (
+    PlainLoginComponent,
+    ReservedUsernamesComponent,
+    TimelineTicketComponentFilter,
+)
 
 
 class PlainLoginComponentTestCase(TestCase):
@@ -246,6 +250,72 @@ class ReservedUsernamesComponentTestCase(TestCase):
         handler = object()
         retval = self.component.pre_process_request(request, handler=handler)
         self.assertIs(retval, handler)
+
+
+class TimelineTicketComponentFilterTestCase(SimpleTestCase):
+    def setUp(self):
+        self.env = EnvironmentStub()
+        self.filter = TimelineTicketComponentFilter(self.env)
+        self.request_factory = partial(MockRequest, self.env)
+
+    def make_ticket_event(self, kind, component):
+        data = [None] * 11
+        data[TimelineTicketComponentFilter._TICKET_COMPONENT_INDEX] = component
+        return {"kind": kind, "data": tuple(data)}
+
+    def make_non_ticket_event(self, kind="wiki"):
+        return {"kind": kind, "data": ()}
+
+    def post_process(self, req, events):
+        return self.filter.post_process_request(
+            req, "timeline.rss", {"events": events}, {}
+        )
+
+    def test_keeps_matching_component(self):
+        req = self.request_factory(
+            path_info="/timeline", args={"component": "contrib.staticfiles"}
+        )
+        matching = self.make_ticket_event("newticket", "contrib.staticfiles")
+        non_matching = self.make_ticket_event("newticket", "contrib.auth")
+        _, data, _ = self.filter.post_process_request(
+            req, "timeline.rss", {"events": [matching, non_matching]}, {}
+        )
+        self.assertEqual(data["events"], [matching])
+
+    def test_filters_out_non_ticket_events(self):
+        req = self.request_factory(
+            path_info="/timeline", args={"component": "contrib.staticfiles"}
+        )
+        ticket_event = self.make_ticket_event("newticket", "contrib.staticfiles")
+        wiki_event = self.make_non_ticket_event("wiki")
+        _, data, _ = self.post_process(req, [ticket_event, wiki_event])
+        self.assertEqual(data["events"], [ticket_event])
+
+    def test_all_ticket_kinds_match(self):
+        req = self.request_factory(
+            path_info="/timeline", args={"component": "contrib.staticfiles"}
+        )
+        events = [
+            self.make_ticket_event(kind, "contrib.staticfiles")
+            for kind in ("newticket", "editedticket", "closedticket", "reopenedticket")
+        ]
+        _, data, _ = self.post_process(req, events)
+        self.assertEqual(len(data["events"]), 4)
+
+    def test_multiple_components(self):
+        req = self.request_factory(
+            path_info="/timeline",
+            args={"component": ["contrib.staticfiles", "contrib.auth"]},
+        )
+        matching_staticfiles = self.make_ticket_event(
+            "newticket", "contrib.staticfiles"
+        )
+        matching_auth = self.make_ticket_event("newticket", "contrib.auth")
+        non_matching = self.make_ticket_event("newticket", "contrib.admin")
+        _, data, _ = self.post_process(
+            req, [matching_staticfiles, matching_auth, non_matching]
+        )
+        self.assertEqual(data["events"], [matching_staticfiles, matching_auth])
 
 
 class RSTWikiTestCase(SimpleTestCase):
