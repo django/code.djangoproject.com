@@ -34,7 +34,7 @@ repos:
       rev: "1.29.0"
       hooks:
           - id: django-upgrade
-            args: [--target-version, "5.2"]
+            args: [--target-version, "6.0"]
 
     - repo: https://github.com/psf/black
       rev: 25.9.0
