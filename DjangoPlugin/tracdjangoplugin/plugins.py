@@ -6,6 +6,7 @@ from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
 from trac.wiki.web_ui import WikiModule
+from trac.ticket.query import QueryModule
 from trac.util.html import tag
 from tracext.github import GitHubLoginModule, GitHubBrowser
 
@@ -266,3 +267,15 @@ class ReservedUsernamesComponent(Component):
 
     def post_process_request(self, req, template, data, metadata):
         return template, data, metadata  # required by Trac to exist
+
+
+class RenameQueryTitleComponent(QueryModule):
+    """
+    Change the title of the /query page so that the navmenu entry matches the
+    page's <h1>.
+    """
+
+    def display_html(self, req, query):
+        template_name, context = super().display_html(req, query)
+        context["title"] = "View Tickets"
+        return template_name, context
