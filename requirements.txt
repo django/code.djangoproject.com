@@ -8,7 +8,7 @@ libsass==0.23.0
 # Optional Trac dependencies that make DeprecationWarning go away.
 # When upgrading Trac or Python, check if these dependencies are still needed
 # by uninstalling them and running the test suite (or CI) with PYTHONWARNINGS=error
-multipart==1.1.0
+multipart==1.2.2
 passlib==1.7.4
 
 # Trac plugins
