@@ -13,6 +13,16 @@ for var in "${!TRAC_INI_@}"; do
     sed -i "s;^${var:9} = .*;${var:9} = ${!var};" /code/trac-env/conf/trac.ini
 done
 
+if ! python <<'PY'
+from importlib.metadata import entry_points
+
+plugins = entry_points(group="trac.plugins")
+raise SystemExit(not any(plugin.name == "tracdjangoplugin" for plugin in plugins))
+PY
+then
+    python -m pip install --no-deps -e ./DjangoPlugin
+fi
+
 if [ "x$TRAC_COLLECT_STATIC" = 'xon' ]; then
     # Collect trac static files to be served by nginx
     trac-admin /code/trac-env/ deploy ./static/
