@@ -14,6 +14,7 @@ passlib==1.7.4
 # Trac plugins
 TracSpamFilter[dns,spambayes] @ svn+https://svn.edgewall.org/repos/trac/plugins/trunk/spam-filter@17766
 TracDragDrop @ svn+https://trac-hacks.org/svn/tracdragdropplugin/0.12@18635
+TracDynamicFields==2.5.0
 
 # No pypi release compatible with trac 1.6 yet
 trac-github[oauth] @ git+https://github.com/bmispelon/trac-github.git@trac-1.6-py3
