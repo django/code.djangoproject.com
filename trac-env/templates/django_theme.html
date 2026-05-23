@@ -81,7 +81,8 @@
 </head>
 
 {#  we don't use the modernizer js lib anymore, but the css still uses some classes from it #}
-<body class="mdzr-boxshadow mdzr-svg">
+# set guest_class = "guest" if not req.is_authenticated else ""
+<body class="mdzr-boxshadow mdzr-svg ${guest_class}">
   # block body
 
   # include 'site_header.html' ignore missing
