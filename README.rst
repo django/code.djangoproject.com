@@ -58,7 +58,7 @@ same directory (adjust paths if needed).
 2. Copy _utils.scss (needed by trachacks.scss):
    ``cp ../djangoproject.com/djangoproject/static/scss/_utils.scss scss/``
 3. Copy the javascript directory:
-   ``cp -rT ../djangoproject.com/djangoproject/static/js trac-env/htdocs/js``
+   ``cp -r ../djangoproject.com/djangoproject/static/js/* trac-env/htdocs/js/``
 4. Compile trachacks.scss::
       docker compose exec trac make compile-scss
       docker compose restart trac
