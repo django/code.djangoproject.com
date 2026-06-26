@@ -61,11 +61,11 @@ same directory (adjust paths if needed).
    ``cp -r ../djangoproject.com/djangoproject/static/js/* trac-env/htdocs/js/``
 4. Compile trachacks.scss::
 
-    docker compose exec trac make compile-scss
-    docker compose restart trac
+     docker compose exec trac make compile-scss
+     docker compose restart trac
 
-   For non-Docker local environments, manually compile the source layout bundle using:
-   ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
+     For non-Docker local environments, manually compile the source layout bundle using:
+     ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
 
 How to recreate `trac.sql` after upgrading Trac
 -----------------------------------------------
