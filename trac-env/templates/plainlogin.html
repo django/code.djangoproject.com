@@ -18,6 +18,7 @@
   <a href="/github/login">Log in with GitHub</a>
 </section>
 
+# if not external_auth_enabled
 <section class="login-djangoproject">
   <h2>Log in with your DjangoProject account</h2>
   <form action="" method="post" class="plainlogin">
@@ -39,4 +40,11 @@
     </ul>
   </nav>
 </section>
+
+# else
+<section class="login-djangoproject">
+  <h2>Log in with your DjangoProject account</h2>
+  <a href="/django-auth/login">Log in with djangoproject.com</a>
+</section>
+# endif
 # endblock content
