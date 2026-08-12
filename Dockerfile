@@ -7,6 +7,7 @@ WORKDIR /code
 # set environment varibles
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DJANGO_TRAC_AUTH_SECRET=examplesecret
 
 # getting postgres from PGDG (https://wiki.postgresql.org/wiki/Apt)
 # gnupg is required to run apt.postgresql.org.sh
@@ -31,6 +32,7 @@ RUN apt-get update \
 # install python dependencies
 COPY ./requirements.txt ./requirements.txt
 COPY ./DjangoPlugin ./DjangoPlugin
+COPY ./ExternalAuthPlugin ./ExternalAuthPlugin
 
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
