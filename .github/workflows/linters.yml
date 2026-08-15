@@ -20,4 +20,4 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: black
-              uses: psf/black@25.9.0
+              uses: psf/black@26.3.0
