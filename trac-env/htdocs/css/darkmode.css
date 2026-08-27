@@ -1,0 +1,1652 @@
+/* Light theme design tokens */
+:root, 
+html[data-theme="light"] {
+    --body-fg: #0C3C26;
+    --body-bg: #f8f8f8;
+    --logo-bg: #ffffff;
+    --menu: #ffffff;
+    --white-color: #ffffff;
+    --primary: #44B78B;
+    --primary-accent: #2B8C67;
+    --secondary: #20AA76;
+    --secondary-accent: #C9F0DD;
+    --link-color: #20AA76;
+    --sidebar-bg: #f8f8f8;
+    --hairline-color: #CFE3DC;
+    --dark-hairline-color: #859D94;
+    --code-bg: #f8f8f8;
+    --code-fg: #0C4B33;
+    --code-border: #EAEAEA;
+    --selection: #C9F0DD;
+    --darkgreen: #0C4B33;
+    --formcss: #f7f7f0;
+    --admincss: #f7f7f0;
+    --code-button: #20AA76;
+    --bg-datepicker: #ffffff;
+    --bg-color: #000000;
+    --footer-text: #f8f8f8;
+    --tablebg: #f7f7f7;
+    --tablehover: #eed;
+    --texttable: #000000;
+    --boxbg: #F1FFF7;
+    --boxtext: #CFE3DC;
+    --textmode: #333;
+    --link-color: #1a7a54; /* Updated: Darker green for > 4.5:1 contrast on white */
+}
+
+/* Dark theme design tokens */
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --body-fg: #C1CAD2;
+    --body-bg: #0e1117;
+    --logo-bg: #0e1117;
+    --menu: #ffffff;
+    --white-color: #0e1117;
+    --text-l10: #93D7B7;
+    --text-l20: #C9F0DD;
+    --text-light: #798780;
+    --primary: #44B78B;
+    --primary-accent: #93D7B7;
+    --secondary: #20AA76;
+    --secondary-accent: #44B78B;
+    --link-color: #93D7B7;
+    --sidebar-bg: #0e1117;
+    --hairline-color: #2b3a32;
+    --dark-hairline-color: #616c67;
+    --code-bg: #0e1117;
+    --code-fg: #f8f8f8;
+    --code-border: #2b3a32;
+    --selection: #0C4B33;
+    --darkgreen: #0C4B33;
+    --formcss: #0e1117;
+    --admincss: #0e1117;
+    --code-button: #20AA76;
+    --bg-datepicker: #0e1117;
+    --bg-color: #ffffff;
+    --footer-text: #f8f8f8;
+    --tablebg: #0e1117;
+    --tablehover: #666;
+    --texttable: #ffffff;
+    --boxbg: #0e1117;
+    --boxtext: #CFE3DC;
+    --textmode: #ffffff;
+}
+
+/* Use dark theme colors when the system prefers dark mode */
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] {
+        color-scheme: dark;
+        --body-fg: #C1CAD2;
+        --body-bg: #0e1117;
+        --logo-bg: #0e1117;
+        --menu: #ffffff;
+        --white-color: #0e1117;
+        --primary: #44B78B;
+        --primary-accent: #93D7B7;
+        --secondary: #20AA76;
+        --secondary-accent: #44B78B;
+        --link-color: #93D7B7;
+        --sidebar-bg: #0e1117;
+        --hairline-color: #2b3a32;
+        --dark-hairline-color: #616c67;
+        --code-bg: #0e1117;
+        --code-fg: #f8f8f8;
+        --code-border: #2b3a32;
+        --selection: #0C4B33;
+        --darkgreen: #0C4B33;
+        --formcss: #0e1117;
+        --admincss: #0e1117;
+        --code-button: #20AA76;
+        --bg-datepicker: #0e1117;
+        --bg-color: #ffffff;
+        --footer-text: #f8f8f8;
+        --tablebg: #0e1117;
+        --tablehover: #666;
+        --texttable: #ffffff;
+        --boxbg: #0e1117;
+        --boxtext: #CFE3DC;
+        --textmode: #ffffff;
+    }
+}
+
+/* Apply theme colors to the main Trac content areas */
+body {
+    background: var(--body-bg) ;
+    color: var(--body-fg) ;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.full-width.container {
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    border-bottom: 1px solid #ddd;
+    background: var(--white-color) ;
+}
+[role="main"], #main, .ticket, #content, .wiki, #ticket, table.wikiTable, div.message {
+    background: var(--white-color) ;
+    color: var(--body-fg) ;
+    border-color: var(--hairline-color) ;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+a, #ticket h2 :link {
+    color: var(--link-color);
+}
+a:hover, a:active, a:focus, #ticket h2 :link:hover {
+    color: var(--primary);
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    color: #f8f8f8 ;
+}
+[role="main"] h1, [role="main"] h2, [role="main"] h3 {
+    color: var(--body-fg) ;
+}
+
+code, pre, tt, .highlight, pre.literal-block, .inlinecode, div.code, table.code {
+    background: var(--code-bg) ;
+    color: var(--code-fg) ;
+    border: 1px solid var(--code-border) ;
+}
+
+/* Header layout */
+#top {
+    width: 100% ;
+    background: #0C4B33 ; 
+}
+
+#top .container {
+    display: flex ;
+    flex-direction: row ;
+    flex-wrap: nowrap ;
+    align-items: center ;
+    justify-content: space-between ;
+    width: 100% ;
+    max-width: none ;    
+    padding-left: 20px ;  
+    padding-right: 20px ;
+    box-sizing: border-box ;
+}
+
+#top nav {
+    margin-left: auto ;
+    display: flex ;
+    float: none ;
+    align-items: center ;
+}
+
+#top nav ul {
+    display: flex ;
+    flex-direction: row ;
+    flex-wrap: nowrap ;
+    align-items: center ;
+    margin: 0 ;
+    padding: 0 ;
+    list-style: none ;
+}
+
+#top nav ul li {
+    float: none ;
+    border-top: 0 ;
+    display: inline-flex ;
+    align-items: center ;
+}
+
+#top nav ul li a {
+    padding: 20px 10px ;
+    white-space: nowrap ;
+}
+
+.header-tools-inline {
+    display: inline-flex ;
+    align-items: center ;
+    justify-content: center ;
+    margin-left: 14px ;
+    padding: 0 ;
+    flex-shrink: 0 ;
+    overflow: visible ;
+}
+
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+button,
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"] {
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--darkgreen, #0C4B33) !important;
+        background-color: var(--darkgreen, #0C4B33) !important;
+        color: #000000 !important; 
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.theme-toggle, 
+button.theme-toggle, 
+#top .theme-toggle {
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: rgba(255, 255, 255, 0.12) !important; 
+        border: 1px solid #ffffff !important;                   
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.theme-toggle, 
+button.theme-toggle, 
+#top .theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important; 
+    border: 1px solid transparent !important; 
+    box-shadow: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0px !important; 
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    box-sizing: border-box !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    transition: background-color 0.1s ease, border-color 0.1s ease !important;
+}
+
+.theme-toggle:hover,
+button.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; 
+}
+
+.theme-toggle:focus {
+    border: 1px solid #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95) !important;
+}
+.theme-toggle .icon, 
+#top .theme-toggle .icon,
+.theme-toggle .icon.theme-icon-when-auto, 
+.theme-toggle .icon.theme-icon-when-dark, 
+.theme-toggle .icon.theme-icon-when-light {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    color: #ffffff !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    display: none;
+    pointer-events: none !important;
+}
+
+html[data-theme="auto"] .theme-toggle .theme-icon-when-auto { display: inline-block !important; }
+html[data-theme="dark"] .theme-toggle .theme-icon-when-dark { display: inline-block !important; }
+html[data-theme="light"] .theme-toggle .theme-icon-when-light { display: inline-block !important; }
+
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+div[role="main"] #main fieldset {
+    background: var(--body-bg) !important;
+    border: 1px solid #CFE3DC;
+}
+
+div[role="main"] #main form input[type="text"],
+div[role="main"] #main form input[type="search"],
+div[role="main"] #main form input[type="email"],
+div[role="main"] #main form input[type="password"],
+div[role="main"] #main form textarea,
+div[role="main"] #main form select,
+#propertyform table.trac-properties td input[type="text"],
+#propertyform table.trac-properties td textarea {
+
+    background-color: var(--white-color) ; 
+    color: var(--body-fg) ;                
+    border: 1px solid var(--hairline-color) ; 
+
+}
+
+/* Placeholder text */
+div[role="main"] #main form ::placeholder {
+    color: var(--text-light, #798780) ;
+    opacity: 0.7 ;
+}
+
+/* Focused inputs */
+div[role="main"] #main form input:focus,
+div[role="main"] #main form textarea:focus,
+div[role="main"] #main form select:focus,
+#propertyform table.trac-properties td input:focus,
+#propertyform table.trac-properties td textarea:focus {
+    border-color: var(--secondary, #20AA76) ;
+    background-color: var(--white-color) ;
+}
+
+div[role="main"] #main form input:disabled,
+div[role="main"] #main form textarea:disabled {
+    opacity: 0.6 ;
+    cursor: not-allowed ;
+    background-color: var(--code-bg, #f8f8f8) ;
+}
+
+/* Tables and query results */
+table.listing,
+table.tickets,
+table.wikiTable,
+.trac-query-results {
+    width: 100% ;
+    border-collapse: collapse ;
+    border-spacing: 0 ;
+    background-color: var(--white-color) ;
+    color: var(--body-fg) ;
+    border: 1px solid var(--hairline-color) ;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Table headers */
+table.listing thead th,
+table.tickets thead th,
+.tickets thead tr.trac-query-heading th {
+    background: var(--secondary-accent, #C9F0DD) ;
+    color: #0C3C26 ; 
+    font-weight: 700 ;
+    padding: 10px 12px ;
+    border-bottom: 2px solid var(--hairline-color) ;
+    text-align: left ;
+}
+
+/* Table rows and cells */
+table.listing tbody tr,
+table.tickets tbody tr,
+.tickets tbody tr {
+    background-color: var(--white-color) ;
+    color: var(--body-fg) ;
+    border-top: 1px solid var(--hairline-color) ;
+    border-bottom: 1px solid var(--hairline-color) ;
+}
+
+table.listing tbody tr.even,
+table.tickets tbody tr.even,
+.tickets tbody tr.even,
+table.listing tbody tr:nth-of-type(even) {
+    background-color: var(--body-bg) ; 
+}
+
+/* Table cells */
+table.listing td,
+table.tickets td,
+.tickets td,
+td.trac-colspan {
+    padding: 10px 12px ;
+    color: var(--body-fg) ;
+    border-left: 1px solid var(--hairline-color) ;
+    border-right: 1px solid var(--hairline-color) ;
+}
+
+table.listing tbody tr:hover td,
+table.tickets tbody tr:hover td,
+.tickets tbody tr:hover td {
+    background: rgba(68, 183, 139, 0.15) ; 
+    color: var(--body-fg) ;
+}
+
+/* Active navigation item */
+div[role="main"] #mainnav ul li.active {
+    background-color: var(--primary, #44B78B) ;
+    color: #000000 ;
+}
+
+div[role="main"] #mainnav ul li.active a,
+div[role="main"] #mainnav ul li.active a:link,
+div[role="main"] #mainnav ul li.active a:visited,
+#mainnav ul li.active a {
+    color: #000000 ;        
+    background: none ;
+    background-color: transparent ;
+    font-weight: 500 ;
+    text-shadow: none ;
+}
+
+div[role="main"] #mainnav ul li:hover a {
+    color: #000000 ;
+}
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+button,
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+.inlinebuttons .trac-button {
+    color: #000000 ;      
+    text-shadow: none ;    
+    font-size: inherit;             
+}
+
+input[type="button"]:hover, 
+input[type="submit"]:hover, 
+input[type="reset"]:hover, 
+button:hover,
+.trac-button:hover,
+.inlinebuttons input:hover,
+.inlinebuttons .trac-button:hover {
+    color: #000000 ;
+    text-shadow: none ;
+}
+div.trac-resizable div.trac-grip,
+div.trac-grip,
+.trac-grip {
+    height: 6px ;
+    cursor: s-resize ;
+    overflow: hidden ;
+    box-sizing: border-box ;
+    color: var(--body-bg) ;     
+    border: 1px solid var(--hairline-color) ; 
+    border-top-width: 0 ;                     
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+
+html[data-theme="dark"] div.trac-grip,
+html[data-theme="auto"] div.trac-grip {
+    filter: invert(0.8) contrast(1.2);
+}
+
+/* Light theme */
+html[data-theme="light"] div.trac-grip {
+    filter: none ;
+}
+
+body.mdzr-boxshadow,
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow [role="main"],
+body.mdzr-boxshadow .sidebar-right [role="main"],
+body.mdzr-boxshadow .container.sidebar-right,
+body.mdzr-boxshadow .container.full-width,
+body.mdzr-boxshadow div.container.sidebar-right,
+body.mdzr-boxshadow div.container.full-width,
+body.mdzr-boxshadow #banner {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    color: var(--body-fg) ;
+    border-color: var(--hairline-color) ;
+    box-shadow: none ;
+    -webkit-box-shadow: none ;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+[role="complementary"],
+.sidebar-right [role="complementary"] {
+    background-color: var(--body-bg) ;
+    background: var(--body-bg) ;
+    color: var(--body-fg) ;
+}
+
+
+.full-width.container {
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    border-bottom: 1px solid var(--hairline-color) ;
+    background: var(--body-bg) ;
+}
+
+/* Create ticket form */
+div[role="main"] #main fieldset,
+#propertyform,
+#propertyform fieldset,
+.ticket #ticketbox,
+#content.ticket #propertyform,
+div.container.full-width form#propertyform,
+#content form fieldset,
+html body.mdzr-boxshadow form fieldset {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    border: 1px solid var(--hairline-color) ;
+    box-shadow: none ;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    padding: 6px 10px ;
+}
+
+#content form div.field,
+#content form .field,
+form label[for="attachment"],
+html body.mdzr-boxshadow form div.field,
+#propertyform + label,
+#propertyform + div {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    color: var(--body-fg) ;
+}
+
+#propertyform fieldset legend,
+#propertyform table.trac-properties th,
+#propertyform label {
+    color: var(--body-fg) ;
+    background: transparent ;
+}
+
+/* Main content backgrounds and spacing */
+#content,
+.ticket,
+#main,
+div[role="main"],
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow #content,
+#content.ticket,
+div.container.full-width,
+div.container.sidebar-right {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    color: var(--body-fg) ;
+    border-color: var(--hairline-color) ;
+    box-shadow: none ;
+    -webkit-box-shadow: none ;
+}
+
+#content p.help,
+#content .trac-help,
+.trac-help,
+#main .backtotop,
+a.backtotop {
+    background: transparent ;
+    background-color: transparent ;
+    color: var(--text-light, #798780) ;
+}
+
+html, 
+html[data-theme] {
+    background-color: var(--body-bg) ;
+}
+
+/* Ticket properties and metadata */
+#ticket table.properties > tbody > tr th,
+#ticket table.properties > tbody > tr th.missing,
+.ticket table.properties tbody tr th,
+#propertyform table.trac-properties td label,
+table.properties th {
+    color: var(--body-fg) ;
+    background: transparent ;
+    background-color: transparent ;
+}
+
+#ticket div.description h2,
+#ticket .properties td,
+.ticket table.properties td,
+#content.ticket #ticketbox h1,
+#ticket h1, #ticket h2 {
+    color: var(--body-fg) ;
+}
+
+#ticketbox .date,
+#ticketbox .author,
+.ticket .date {
+    color: var(--text-light, #798780) ;
+}
+
+/* Standard form buttons */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #44B78B) ;
+        background-color: var(--primary, #44B78B) ;
+        color: #000000 ; 
+        outline: none ;
+        box-shadow: none ;
+    }
+}
+
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) ;
+    background-color: var(--primary, #44B78B) ;
+    color: #000000 ;
+}
+
+
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent ;
+    background-color: transparent ;
+    background-image: none ;
+    border: 1px solid transparent ;
+    box-shadow: none ;
+    outline: none ;
+    transition: background-color 0.15s ease, border-color 0.15s ease ;
+}
+
+/* Keep the toggle transparent while it is focused or pressed */
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent ;
+    background-color: transparent ;
+    border: 1px solid #ffffff ; 
+    outline: none ;
+    box-shadow: none ;
+}
+
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) ;
+    background-color: rgba(255, 255, 255, 0.12) ;
+    border: 1px solid #ffffff ; 
+    outline: none ;
+    box-shadow: none ;
+}
+
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #0C4B33) ;
+        background-color: var(--primary, #0C4B33) ;
+        color: #000000 ; 
+        outline: none ;
+        box-shadow: none ;
+    }
+}
+
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) ;
+    background-color: var(--primary, #44B78B) ;
+    color: #000000 ;
+}
+
+
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent ;
+    background-color: transparent ;
+    background-image: none ;
+    border: 1px solid transparent ;
+    box-shadow: none ;
+    outline: none ;
+    transition: background-color 0.15s ease, border-color 0.15s ease ;
+}
+
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent ;
+    background-color: transparent ;
+    border: 1px solid #ffffff ; 
+    outline: none ;
+    box-shadow: none ;
+}
+
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) ;
+    background-color: rgba(255, 255, 255, 0.12) ;
+    border: 1px solid #ffffff ; 
+    outline: none ;
+    box-shadow: none ;
+}
+
+html[data-theme="dark"] body.mdzr-boxshadow,
+html[data-theme="dark"] table#info.trac-scroll,
+html[data-theme="dark"] table#info,
+html[data-theme="dark"] #info tbody tr,
+html[data-theme="dark"] #info th,
+html[data-theme="dark"] #info td {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    color: var(--body-fg) ;
+    border-color: var(--hairline-color) ;
+    box-shadow: none ;
+}
+
+html[data-theme="dark"] .diff li.entry,
+html[data-theme="dark"] li.entry,
+html[data-theme="dark"] div#preview.wikipage .diff {
+    background: var(--white-color) ; 
+    background-color: var(--white-color) ;
+    border: 1px solid var(--hairline-color) ;
+    color: var(--body-fg) ;
+    box-shadow: none ;
+}
+
+html[data-theme="light"] table#info.trac-scroll,
+html[data-theme="light"] table#info,
+html[data-theme="light"] #info tbody tr,
+html[data-theme="light"] #info td {
+    background: #f7f7f0 ; 
+    color: #0C3C26 ;
+    border-color: #d7d7d7 ;
+}
+
+html[data-theme="light"] #info th {
+    background: #f7f7f0 ;
+    color: #0C3C26 ;
+}
+
+html[data-theme="light"] .diff li.entry,
+html[data-theme="light"] li.entry {
+    background: #ffffff ; 
+    border: 1px solid #d7d7d7 ;
+    color: #0C3C26 ;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05) ;
+}
+
+html[data-theme="dark"] div#preview.wikipage,
+html[data-theme="dark"] #preview.wikipage .trac-content,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft,
+html[data-theme="dark"] body.mdzr-boxshadow #preview.wikipage {
+    background: var(--body-bg) ;
+    background-color: var(--body-bg) ;
+    color: var(--body-fg) ;
+    border: 1px solid var(--hairline-color) ;
+    box-shadow: none ;
+    -webkit-box-shadow: none ;
+    border-radius: 4px ;
+    padding: 20px ;
+}
+
+html[data-theme="dark"] #preview.wikipage .trac-content p,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft p {
+    background: transparent ;
+    background-color: transparent ;
+    color: var(--body-fg) ;
+}
+#prefs {
+    background: var(--formcss, #0e1117) ;
+    border: 1px solid #d4d4d4;
+    border-radius: 11px;
+    box-shadow: .1em .3em .5em 0 #d4d4d4;
+    float: right;
+    font-size: .9em;
+    padding: .8em;
+    position: relative;
+    margin: 0 1em 1em;
+}
+
+
+div#tabs, 
+#content.admin div#tabs {
+    border-radius: 4px ;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+div#tabs ul li a {
+    text-decoration: none ;
+    padding: 4px 8px ;
+    display: block;
+}
+
+html[data-theme="dark"] div#tabs,
+html[data-theme="dark"] #content.admin div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] div#tabs,
+    html[data-theme="auto"] #content.admin div#tabs {
+        background: var(--white-color) ;
+        background-color: var(--white-color) ;
+        border: 1px solid var(--hairline-color) ;
+        box-shadow: none ;
+        
+        li {
+            color: var(--body-fg) ;
+            background: transparent ;
+        }
+        
+        ul li a {
+            color: var(--text-l10, #93D7B7) ;
+        }
+        
+        ul li.active {
+            background-color: rgba(68, 183, 139, 0.15) ;
+            border-radius: 4px;
+            
+            a {
+                color: var(--primary, #44B78B) ;
+                font-weight: 600 ;
+            }
+        }
+    }
+}
+
+html[data-theme="light"] div#tabs,
+html[data-theme="light"] #content.admin div#tabs {
+    background: #f7f7f0 ; 
+    border: 1px solid #d4d4d4 ;
+    box-shadow: none ;
+}
+html[data-theme="light"] div#tabs ul li.active a {
+    color: inherit ;
+}
+#tabs {
+    background: var(--admincss, #f7f7f0);
+    border: 1px solid #d4d4d4;
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    /* box-shadow: .1em .3em .5em 0 #eee; */
+}
+div[role="main"] #main form input:disabled, div[role="main"] #main form textarea:disabled {
+    opacity: 0.6 ;
+    cursor: not-allowed ;
+    background-color: var(--code-button, #f8f8f8) ;
+}
+
+#tabs, 
+div#tabs,
+.full-width.container #tabs,
+#content.prefs #tabs {
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+#tabs li, 
+#tabs ul li a {
+    text-decoration: none ;
+}
+
+html[data-theme="dark"] #tabs,
+html[data-theme="dark"] div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] #tabs,
+    html[data-theme="auto"] div#tabs {
+        background: var(--white-color) ;
+        background-color: var(--white-color) ;
+        border: 1px solid var(--hairline-color) ;
+        box-shadow: none ;
+
+        li {
+            color: var(--body-fg) ;
+            background: transparent ;
+        }
+
+        li a {
+            color: var(--text-l10, #93D7B7) ;
+        }
+
+        li.active {
+            background-color: rgba(68, 183, 139, 0.15) ;
+            border-radius: 4px;
+
+            a {
+                color: var(--primary, #44B78B) ;
+                font-weight: 600 ;
+            }
+        }
+    }
+}
+
+html[data-theme="light"] #tabs,
+html[data-theme="light"] div#tabs {
+    background: var(--admincss, #f7f7f0) ;
+    border: 1px solid #d4d4d4 ;
+    box-shadow: none ;
+}
+
+div[role="main"] #main form input:disabled, 
+div[role="main"] #main form textarea:disabled,
+#main form select:disabled {
+    opacity: 0.6 ;
+    cursor: not-allowed ;
+    background-color: var(--code-bg, #0e1117) ;
+    color: var(--text-light, #798780) ;
+    border: 1px solid var(--hairline-color) ;
+}
+
+html[data-theme="light"] div[role="main"] #main form input:disabled, 
+html[data-theme="light"] div[role="main"] #main form textarea:disabled {
+    background-color: #f8f8f8 ;
+    color: #aaaaaa ;
+    border: 1px solid #CFE3DC ;
+}
+
+/* Datepicker */
+#ui-datepicker-div,
+.ui-datepicker,
+div.ui-datepicker {
+    z-index: 9999 ; 
+    border-radius: 6px ;
+    padding: 8px ;
+    box-sizing: border-box ;
+    font-family: "Roboto", sans-serif ;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+html[data-theme="dark"] #ui-datepicker-div,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] #ui-datepicker-div {
+        background: var(--white-color) ;
+        background-color: var(--white-color) ;
+        border: 1px solid var(--hairline-color) ;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) ;
+
+        .ui-datepicker-header {
+            background: transparent ;
+            border: none ;
+            color: var(--body-fg) ;
+        }
+
+        .ui-datepicker-prev, 
+        .ui-datepicker-next {
+            cursor: pointer ;
+            background-color: var(--body-bg) ;
+            border-radius: 4px ;
+            border: 1px solid var(--hairline-color) ;
+            span { filter: invert(0.9) ; }
+        }
+        .ui-datepicker-prev-hover, 
+        .ui-datepicker-next-hover {
+            background: rgba(68, 183, 139, 0.2) ;
+            top: 2px ; 
+        }
+
+        table.ui-datepicker-calendar thead th span {
+            color: var(--text-light, #798780) ;
+            font-weight: 600 ;
+        }
+
+        table.ui-datepicker-calendar tbody td {
+            background: transparent ;
+            border: none ;
+
+            &.ui-datepicker-other-month span,
+            &.ui-datepicker-unselectable span {
+                color: #3b4a40 ;
+                opacity: 0.4 ;
+            }
+
+            a.ui-state-default,
+            span.ui-state-default {
+                background: var(--body-bg) ;
+                border: 1px solid var(--hairline-color) ;
+                color: var(--body-fg) ;
+                text-align: center ;
+                border-radius: 4px ;
+            }
+
+            a.ui-state-hover,
+            a.ui-state-default:hover {
+                background: rgba(68, 183, 139, 0.2) ;
+                border-color: var(--primary, #44B78B) ;
+                color: var(--primary, #44B78B) ;
+            }
+
+            &.ui-datepicker-current-day a.ui-state-active,
+            &.ui-datepicker-days-cell-over a.ui-state-hover {
+                background: var(--primary, #44B78B) ;
+                border-color: var(--primary, #44B78B) ;
+                color: #000000 ; 
+                font-weight: 700 ;
+            }
+        }
+
+        .ui-datepicker-buttonpane button {
+            background: var(--primary, #44B78B) ;
+            color: #000000 ;
+            border: none ;
+            border-radius: 4px ;
+            font-weight: 600 ;
+            &:hover { background: var(--darkgreen, #0C4B33) ; }
+        }
+    }
+}
+
+html[data-theme="light"] #ui-datepicker-div {
+    background: #ffffff ;
+    border: 1px solid #bbbbbb ;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) ;
+}
+html[data-theme="light"] #ui-datepicker-div table.ui-datepicker-calendar tbody td a.ui-state-default {
+    background: #f6f6f6 ;
+    color: #1c94c4 ;
+    border: 1px solid #cccccc ;
+}
+.ui-widget-content {
+    border: 1px solid #bbbbbb;
+    background: var(--bg-datepicker, #0e1117);
+    color: var(--bg-color, #000000);
+}
+table.listing tbody tr.odd {
+    background-color: var(--tablebg, #f7f7f7);
+}
+table.listing tbody tr:hover td {
+background: var(--tablehover, #eed) !important;
+color: var(--texttable, #ffffff) !important;
+}
+#environmentinfo table th {
+    background: var(--tablebg, #f7f7f7);
+    font-weight: bold;
+    white-space: nowrap;
+}
+#ticket #ticketbox {
+    background: var(--boxbg, #F1FFF7);
+    border-color: #CFE3DC;
+}
+#content.search .filters {
+    color:  var(--textmode, #333);
+    font-size: 85%;
+}
+.theme-toggle, button.theme-toggle, #top .theme-toggle {
+    &:hover, &:focus, &:active, &.active {
+        background-color: #0C4B33 !important;
+        border: 1px solid #ffffff !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Visually hidden content */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+button.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 10px;
+  color: inherit;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Hide icons based on current theme state */
+html[data-theme="auto"] .theme-icon-when-dark,
+html[data-theme="auto"] .theme-icon-when-light,
+html[data-theme="light"] .theme-icon-when-auto,
+html[data-theme="light"] .theme-icon-when-dark,
+html[data-theme="dark"] .theme-icon-when-auto,
+html[data-theme="dark"] .theme-icon-when-light {
+  display: none !important;
+}
+/* 1. Fix Slogan/Deadline text contrast ("The web framework for perfectionists...") */
+#top p.meta,
+#top .meta,
+p.meta {
+  color: #c5e4d6; /* High contrast light green/mint */
+}
+
+#top nav ul li a,
+#top nav a,
+nav.nav-menu-on a {
+  color: #ffffff; /* Base link color */
+}
+
+#top nav ul li.active a,
+#top nav ul li a.active,
+#top nav a[aria-current="page"],
+#top nav a[href="/"] {
+  color: #4ac998; /* Active link color meeting >= 4.5:1 ratio */
+}
+
+/* Banner heading contrast fix */
+.copy-banner {
+  h1 {
+    color: #0c4b33;
+  }
+}
+/* Form submit button contrast fix */
+.buttons input[type="submit"],
+.buttons button,
+input[type="submit"].btn-primary,
+#content .buttons input {
+  background-color: #0c4b33 !important;
+  color: #ffffff !important;
+  border: 1px solid #0c4b33;
+
+  &:hover,
+  &:focus {
+    background-color: #2d7d5f !important;
+    color: #ffffff !important;
+  }
+}
+/* Inline text links styling */
+.ticket-readme a,
+#content p a,
+#content li a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+/* General content links in light & dark mode */
+#content a,
+.ticket-readme a,
+a:link, 
+a:visited {
+  color: var(--link-color);
+}
+
+/* Fix top-level utility links (Login, Preferences) */
+#banner #metanav a,
+.nav-login a,
+#top .meta a {
+  color: #c5e4d6;
+}
+
+/* /Fix metanav (Login / Preferences) links for both themes */
+#metanav a {
+  color: var(--link-color);
+}
+
+html[data-theme="dark"] #metanav a {
+  color: #c5e4d6 !important;
+}
+
+/* // 1. Only top slogan/meta gets light text in the header */
+#top .meta,
+#top .meta a,
+.nav-login a {
+  color: #c5e4d6;
+}
+
+/* 2. Metanav (Login, Preferences) follows theme link colors */
+#banner #metanav a,
+#metanav a {
+  color: var(--link-color);
+}
+
+html[data-theme="dark"] #banner #metanav a,
+html[data-theme="dark"] #metanav a {
+  color: #c5e4d6;
+}
+
+/* Form hint and helper links */
+.trac-textarea-hint a,
+label a,
+.hint a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+ /* Subfooter contrast fix */
+div[role="contentinfo"],
+.subfooter {
+  background-color: #0c4b33;
+
+  h2,
+  .column-container h2 {
+    color: #ffffff;
+  }
+
+  ul li a,
+  a {
+    color: #c9f0dd;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
+    }
+  }
+}
+
+ /* Fix bottom Trac help notice text contrast */
+#content .trac-help,
+.trac-help,
+.trac-help strong {
+  color: #555555;
+}
+
+html[data-theme="dark"] #content .trac-help,
+html[data-theme="dark"] .trac-help,
+html[data-theme="dark"] .trac-help strong {
+  color: #c1cad2;
+}
+ /* Trac help bottom link underline */
+.trac-help a,
+.trac-help a:link,
+.trac-help a:visited {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+/* Footer sponsor labels and links contrast fix */
+div[role="contentinfo"] .thanks,
+div.footer .thanks {
+  span {
+    color: #a8d5c2 !important;
+  }
+
+  a {
+    color: #ffffff !important;
+    text-decoration: underline;
+  }
+}
+/* Footer copyright text and link contrast fix */
+div[role="contentinfo"] p.copyright,
+div.footer p.copyright,
+.copyright {
+  color: #a8d5c2 !important;
+
+  a {
+    color: #c9f0dd !important;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
+    }
+  }
+}
+ /* Custom Query match count text contrast fix */
+h1 .numrows,
+h2 .numrows,
+.numrows {
+  color: #595959;
+}
+
+html[data-theme="dark"] {
+  h1 .numrows,
+  h2 .numrows,
+  .numrows {
+    color: #c1cad2;
+  }
+}
+/* Query filter inline button (-) styling and contrast */
+.inlinebuttons input[type="button"],
+.inlinebuttons input,
+#query fieldset .inlinebuttons input {
+  background-color: var(--code-bg, #f8f8f8);
+  color: var(--body-fg, #0c3c26);
+  border: 1px solid var(--hairline-color, #cfe3dc);
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary, #44b78b);
+    color: #ffffff;
+  }
+}
+
+/* Dark mode and System auto mode */
+html[data-theme="dark"] .inlinebuttons input[type="button"],
+html[data-theme="dark"] .inlinebuttons input,
+html[data-theme="dark"] #query fieldset .inlinebuttons input {
+  background-color: #2b3a32;
+  color: #ffffff;
+  border-color: #616c67;
+
+  &:hover,
+  &:focus {
+    background-color: #44b78b;
+    color: #0e1117;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] .inlinebuttons input[type="button"],
+  html[data-theme="auto"] .inlinebuttons input,
+  html[data-theme="auto"] #query fieldset .inlinebuttons input {
+    background-color: #2b3a32;
+    color: #ffffff;
+    border-color: #616c67;
+
+    &:hover,
+    &:focus {
+      background-color: #44b78b;
+      color: #0e1117;
+    }
+  }
+}
+/* Wiki page path */
+#pagepath,
+#pagepath :link,
+#pagepath :visited,
+#pagepath .pathentry,
+.wikipath a {
+  color: var(--link-color, #1a7a54) !important ;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #pagepath,
+  #pagepath :link,
+  #pagepath :visited,
+  #pagepath .pathentry,
+  .wikipath a {
+    color: var(--link-color, #93d7b7);
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #pagepath,
+    #pagepath :link,
+    #pagepath :visited,
+    #pagepath .pathentry,
+    .wikipath a {
+    color: var(--link-color, #93d7b7) !important ;
+    }
+  }
+}
+/* Search submit button styling and accessible contrast */
+#fullsearch input[type="submit"],
+#content.search input[type="submit"],
+form#fullsearch input[type="submit"],
+div.search input[type="submit"] {
+  background-color: #0c4b33;
+  color: #ffffff;
+  border: 1px solid #0c3c26;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #2b8c67;
+    color: #ffffff;
+  }
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #fullsearch input[type="submit"],
+  #content.search input[type="submit"],
+  form#fullsearch input[type="submit"],
+  div.search input[type="submit"] {
+    background-color: #44b78b;
+    color: #0e1117;
+    border-color: #93d7b7;
+
+    &:hover,
+    &:focus {
+      background-color: #93d7b7;
+      color: #0e1117;
+    }
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #fullsearch input[type="submit"],
+    #content.search input[type="submit"],
+    form#fullsearch input[type="submit"],
+    div.search input[type="submit"] {
+      background-color: #44b78b;
+      color: #0e1117;
+      border-color: #93d7b7;
+
+      &:hover,
+      &:focus {
+        background-color: #93d7b7;
+        color: #0e1117;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Admin Sidebar Navigation Fix (Light, Dark, Auto)
+   ========================================================================== */
+#tabs {
+  background: transparent;
+  border-right: 1px solid var(--hairline-color, #cfe3dc);
+
+  /* Section Categories (General, Ticket System, Version Control) */
+  > ul > li {
+    background: transparent !important;
+    color: var(--body-fg, #0c3c26);
+    font-weight: 700;
+    padding: 8px 10px 4px 10px;
+  }
+
+  /* Sub-navigation links */
+  ul li ul {
+    padding-left: 0;
+    margin: 4px 0;
+
+    li {
+      background: transparent !important;
+      padding: 0;
+      margin: 2px 0;
+
+      a {
+        display: block;
+        padding: 5px 10px;
+        color: var(--link-color, #1a7a54);
+        text-decoration: none;
+        border-radius: 4px;
+        border: 1px solid transparent;
+
+        &:hover,
+        &:focus {
+          background-color: var(--selection, #c9f0dd);
+          color: #0c3c26;
+        }
+      }
+
+      /* Active page pill (Light mode: dark green badge with white text) */
+      &.active a {
+        background-color: #0c4b33 !important;
+        color: #ffffff !important;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+/* Dark theme overrides */
+html[data-theme="dark"] #tabs {
+  border-right-color: #2b3a32;
+
+  > ul > li {
+    color: #c1cad2;
+  }
+
+  ul li ul li {
+    a {
+      color: #93d7b7;
+
+      &:hover,
+      &:focus {
+        background-color: #1a2a22;
+        color: #ffffff;
+      }
+    }
+
+    &.active a {
+      background-color: #20aa76 !important;
+      color: #0e1117 !important;
+    }
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] #tabs {
+    border-right-color: #2b3a32;
+
+    > ul > li {
+      color: #c1cad2;
+    }
+
+    ul li ul li {
+      a {
+        color: #93d7b7;
+
+        &:hover,
+        &:focus {
+          background-color: #1a2a22;
+          color: #ffffff;
+        }
+      }
+
+      &.active a {
+        background-color: #20aa76 !important;
+        color: #0e1117 !important;
+      }
+    }
+  }
+}
+/* Administration active section header contrast fix */
+#tabcontent > h2,
+#tabcontent h2,
+#tabcontent > h2 .trac-count {
+  color: var(--body-fg, #0c3c26);
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #tabcontent > h2,
+  #tabcontent h2,
+  #tabcontent > h2 .trac-count {
+    color: #ffffff;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #tabcontent > h2,
+    #tabcontent h2,
+    #tabcontent > h2 .trac-count {
+      color: #ffffff;
+    }
+  }
+}
+/* Form hint & helper text contrast fix */
+.hint,
+p.hint,
+span.hint,
+form.addnew p.hint,
+form.addnew span.hint {
+  color: #595959;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  .hint,
+  p.hint,
+  span.hint,
+  form.addnew p.hint,
+  form.addnew span.hint {
+    color: #c1cad2;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .hint,
+    p.hint,
+    span.hint,
+    form.addnew p.hint,
+    form.addnew span.hint {
+      color: #c1cad2;
+    }
+  }
+}
+/* Table missing/forbidden status indicator contrast */
+.missing,
+span.missing,
+a.missing:link,
+a.missing:visited,
+.forbidden,
+span.forbidden,
+a.forbidden:link,
+a.forbidden:visited {
+  color: #595959;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  .missing,
+  span.missing,
+  a.missing:link,
+  a.missing:visited,
+  .forbidden,
+  span.forbidden,
+  a.forbidden:link,
+  a.forbidden:visited {
+    color: #c1cad2;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .missing,
+    span.missing,
+    a.missing:link,
+    a.missing:visited,
+    .forbidden,
+    span.forbidden,
+    a.forbidden:link,
+    a.forbidden:visited {
+      color: #c1cad2;
+    }
+  }
+}
+/* Hide unlabelled reassign input when disabled */
+#fieldset_action input#action_create_and_assign_reassign_owner:disabled,
+#action input#action_create_and_assign_reassign_owner:disabled {
+  display: none;
+}
