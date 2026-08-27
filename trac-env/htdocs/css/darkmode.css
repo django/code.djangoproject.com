@@ -31,6 +31,7 @@ html[data-theme="light"] {
     --boxbg: #F1FFF7;
     --boxtext: #CFE3DC;
     --textmode: #333;
+    --link-color: #1a7a54; /* Updated: Darker green for > 4.5:1 contrast on white */
 }
 
 /* Dark theme design tokens */
@@ -299,9 +300,7 @@ button.theme-toggle:hover {
 html[data-theme="auto"] .theme-toggle .theme-icon-when-auto { display: inline-block !important; }
 html[data-theme="dark"] .theme-toggle .theme-icon-when-dark { display: inline-block !important; }
 html[data-theme="light"] .theme-toggle .theme-icon-when-light { display: inline-block !important; }
-.theme-toggle .visually-hidden {
-    display: none !important;
-}
+
 
 .visually-hidden {
     position: absolute !important;
@@ -1127,4 +1126,527 @@ html[data-theme="light"] .theme-icon-when-dark,
 html[data-theme="dark"] .theme-icon-when-auto,
 html[data-theme="dark"] .theme-icon-when-light {
   display: none !important;
+}
+/* 1. Fix Slogan/Deadline text contrast ("The web framework for perfectionists...") */
+#top p.meta,
+#top .meta,
+p.meta {
+  color: #c5e4d6; /* High contrast light green/mint */
+}
+
+#top nav ul li a,
+#top nav a,
+nav.nav-menu-on a {
+  color: #ffffff; /* Base link color */
+}
+
+#top nav ul li.active a,
+#top nav ul li a.active,
+#top nav a[aria-current="page"],
+#top nav a[href="/"] {
+  color: #4ac998; /* Active link color meeting >= 4.5:1 ratio */
+}
+
+/* Banner heading contrast fix */
+.copy-banner {
+  h1 {
+    color: #0c4b33;
+  }
+}
+/* Form submit button contrast fix */
+.buttons input[type="submit"],
+.buttons button,
+input[type="submit"].btn-primary,
+#content .buttons input {
+  background-color: #0c4b33 !important;
+  color: #ffffff !important;
+  border: 1px solid #0c4b33;
+
+  &:hover,
+  &:focus {
+    background-color: #2d7d5f !important;
+    color: #ffffff !important;
+  }
+}
+/* Inline text links styling */
+.ticket-readme a,
+#content p a,
+#content li a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+/* General content links in light & dark mode */
+#content a,
+.ticket-readme a,
+a:link, 
+a:visited {
+  color: var(--link-color);
+}
+
+/* Fix top-level utility links (Login, Preferences) */
+#banner #metanav a,
+.nav-login a,
+#top .meta a {
+  color: #c5e4d6;
+}
+
+/* /Fix metanav (Login / Preferences) links for both themes */
+#metanav a {
+  color: var(--link-color);
+}
+
+html[data-theme="dark"] #metanav a {
+  color: #c5e4d6 !important;
+}
+
+/* // 1. Only top slogan/meta gets light text in the header */
+#top .meta,
+#top .meta a,
+.nav-login a {
+  color: #c5e4d6;
+}
+
+/* 2. Metanav (Login, Preferences) follows theme link colors */
+#banner #metanav a,
+#metanav a {
+  color: var(--link-color);
+}
+
+html[data-theme="dark"] #banner #metanav a,
+html[data-theme="dark"] #metanav a {
+  color: #c5e4d6;
+}
+
+/* Form hint and helper links */
+.trac-textarea-hint a,
+label a,
+.hint a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+ /* Subfooter contrast fix */
+div[role="contentinfo"],
+.subfooter {
+  background-color: #0c4b33;
+
+  h2,
+  .column-container h2 {
+    color: #ffffff;
+  }
+
+  ul li a,
+  a {
+    color: #c9f0dd;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
+    }
+  }
+}
+
+ /* Fix bottom Trac help notice text contrast */
+#content .trac-help,
+.trac-help,
+.trac-help strong {
+  color: #555555;
+}
+
+html[data-theme="dark"] #content .trac-help,
+html[data-theme="dark"] .trac-help,
+html[data-theme="dark"] .trac-help strong {
+  color: #c1cad2;
+}
+ /* Trac help bottom link underline */
+.trac-help a,
+.trac-help a:link,
+.trac-help a:visited {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+/* Footer sponsor labels and links contrast fix */
+div[role="contentinfo"] .thanks,
+div.footer .thanks {
+  span {
+    color: #a8d5c2 !important;
+  }
+
+  a {
+    color: #ffffff !important;
+    text-decoration: underline;
+  }
+}
+/* Footer copyright text and link contrast fix */
+div[role="contentinfo"] p.copyright,
+div.footer p.copyright,
+.copyright {
+  color: #a8d5c2 !important;
+
+  a {
+    color: #c9f0dd !important;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #ffffff;
+    }
+  }
+}
+ /* Custom Query match count text contrast fix */
+h1 .numrows,
+h2 .numrows,
+.numrows {
+  color: #595959;
+}
+
+html[data-theme="dark"] {
+  h1 .numrows,
+  h2 .numrows,
+  .numrows {
+    color: #c1cad2;
+  }
+}
+/* Query filter inline button (-) styling and contrast */
+.inlinebuttons input[type="button"],
+.inlinebuttons input,
+#query fieldset .inlinebuttons input {
+  background-color: var(--code-bg, #f8f8f8);
+  color: var(--body-fg, #0c3c26);
+  border: 1px solid var(--hairline-color, #cfe3dc);
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary, #44b78b);
+    color: #ffffff;
+  }
+}
+
+/* Dark mode and System auto mode */
+html[data-theme="dark"] .inlinebuttons input[type="button"],
+html[data-theme="dark"] .inlinebuttons input,
+html[data-theme="dark"] #query fieldset .inlinebuttons input {
+  background-color: #2b3a32;
+  color: #ffffff;
+  border-color: #616c67;
+
+  &:hover,
+  &:focus {
+    background-color: #44b78b;
+    color: #0e1117;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] .inlinebuttons input[type="button"],
+  html[data-theme="auto"] .inlinebuttons input,
+  html[data-theme="auto"] #query fieldset .inlinebuttons input {
+    background-color: #2b3a32;
+    color: #ffffff;
+    border-color: #616c67;
+
+    &:hover,
+    &:focus {
+      background-color: #44b78b;
+      color: #0e1117;
+    }
+  }
+}
+/* Wiki page path */
+#pagepath,
+#pagepath :link,
+#pagepath :visited,
+#pagepath .pathentry,
+.wikipath a {
+  color: var(--link-color, #1a7a54) !important ;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #pagepath,
+  #pagepath :link,
+  #pagepath :visited,
+  #pagepath .pathentry,
+  .wikipath a {
+    color: var(--link-color, #93d7b7);
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #pagepath,
+    #pagepath :link,
+    #pagepath :visited,
+    #pagepath .pathentry,
+    .wikipath a {
+    color: var(--link-color, #93d7b7) !important ;
+    }
+  }
+}
+/* Search submit button styling and accessible contrast */
+#fullsearch input[type="submit"],
+#content.search input[type="submit"],
+form#fullsearch input[type="submit"],
+div.search input[type="submit"] {
+  background-color: #0c4b33;
+  color: #ffffff;
+  border: 1px solid #0c3c26;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #2b8c67;
+    color: #ffffff;
+  }
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #fullsearch input[type="submit"],
+  #content.search input[type="submit"],
+  form#fullsearch input[type="submit"],
+  div.search input[type="submit"] {
+    background-color: #44b78b;
+    color: #0e1117;
+    border-color: #93d7b7;
+
+    &:hover,
+    &:focus {
+      background-color: #93d7b7;
+      color: #0e1117;
+    }
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #fullsearch input[type="submit"],
+    #content.search input[type="submit"],
+    form#fullsearch input[type="submit"],
+    div.search input[type="submit"] {
+      background-color: #44b78b;
+      color: #0e1117;
+      border-color: #93d7b7;
+
+      &:hover,
+      &:focus {
+        background-color: #93d7b7;
+        color: #0e1117;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Admin Sidebar Navigation Fix (Light, Dark, Auto)
+   ========================================================================== */
+#tabs {
+  background: transparent;
+  border-right: 1px solid var(--hairline-color, #cfe3dc);
+
+  /* Section Categories (General, Ticket System, Version Control) */
+  > ul > li {
+    background: transparent !important;
+    color: var(--body-fg, #0c3c26);
+    font-weight: 700;
+    padding: 8px 10px 4px 10px;
+  }
+
+  /* Sub-navigation links */
+  ul li ul {
+    padding-left: 0;
+    margin: 4px 0;
+
+    li {
+      background: transparent !important;
+      padding: 0;
+      margin: 2px 0;
+
+      a {
+        display: block;
+        padding: 5px 10px;
+        color: var(--link-color, #1a7a54);
+        text-decoration: none;
+        border-radius: 4px;
+        border: 1px solid transparent;
+
+        &:hover,
+        &:focus {
+          background-color: var(--selection, #c9f0dd);
+          color: #0c3c26;
+        }
+      }
+
+      /* Active page pill (Light mode: dark green badge with white text) */
+      &.active a {
+        background-color: #0c4b33 !important;
+        color: #ffffff !important;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+/* Dark theme overrides */
+html[data-theme="dark"] #tabs {
+  border-right-color: #2b3a32;
+
+  > ul > li {
+    color: #c1cad2;
+  }
+
+  ul li ul li {
+    a {
+      color: #93d7b7;
+
+      &:hover,
+      &:focus {
+        background-color: #1a2a22;
+        color: #ffffff;
+      }
+    }
+
+    &.active a {
+      background-color: #20aa76 !important;
+      color: #0e1117 !important;
+    }
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] #tabs {
+    border-right-color: #2b3a32;
+
+    > ul > li {
+      color: #c1cad2;
+    }
+
+    ul li ul li {
+      a {
+        color: #93d7b7;
+
+        &:hover,
+        &:focus {
+          background-color: #1a2a22;
+          color: #ffffff;
+        }
+      }
+
+      &.active a {
+        background-color: #20aa76 !important;
+        color: #0e1117 !important;
+      }
+    }
+  }
+}
+/* Administration active section header contrast fix */
+#tabcontent > h2,
+#tabcontent h2,
+#tabcontent > h2 .trac-count {
+  color: var(--body-fg, #0c3c26);
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  #tabcontent > h2,
+  #tabcontent h2,
+  #tabcontent > h2 .trac-count {
+    color: #ffffff;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #tabcontent > h2,
+    #tabcontent h2,
+    #tabcontent > h2 .trac-count {
+      color: #ffffff;
+    }
+  }
+}
+/* Form hint & helper text contrast fix */
+.hint,
+p.hint,
+span.hint,
+form.addnew p.hint,
+form.addnew span.hint {
+  color: #595959;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  .hint,
+  p.hint,
+  span.hint,
+  form.addnew p.hint,
+  form.addnew span.hint {
+    color: #c1cad2;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .hint,
+    p.hint,
+    span.hint,
+    form.addnew p.hint,
+    form.addnew span.hint {
+      color: #c1cad2;
+    }
+  }
+}
+/* Table missing/forbidden status indicator contrast */
+.missing,
+span.missing,
+a.missing:link,
+a.missing:visited,
+.forbidden,
+span.forbidden,
+a.forbidden:link,
+a.forbidden:visited {
+  color: #595959;
+}
+
+/* Dark mode */
+html[data-theme="dark"] {
+  .missing,
+  span.missing,
+  a.missing:link,
+  a.missing:visited,
+  .forbidden,
+  span.forbidden,
+  a.forbidden:link,
+  a.forbidden:visited {
+    color: #c1cad2;
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .missing,
+    span.missing,
+    a.missing:link,
+    a.missing:visited,
+    .forbidden,
+    span.forbidden,
+    a.forbidden:link,
+    a.forbidden:visited {
+      color: #c1cad2;
+    }
+  }
+}
+/* Hide unlabelled reassign input when disabled */
+#fieldset_action input#action_create_and_assign_reassign_owner:disabled,
+#action input#action_create_and_assign_reassign_owner:disabled {
+  display: none;
 }
