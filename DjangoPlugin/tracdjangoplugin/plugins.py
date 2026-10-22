@@ -2,6 +2,9 @@ from urllib.parse import urlparse
 
 from trac.config import ListOption
 from trac.core import Component, implements
+from trac.perm import PermissionSystem
+from trac.ticket.api import ITicketManipulator
+from trac.ticket.query import Query
 from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
@@ -304,3 +307,112 @@ class ReservedUsernamesComponent(Component):
 
     def post_process_request(self, req, template, data, metadata):
         return template, data, metadata  # required by Trac to exist
+
+
+class TicketAssignmentValidator(Component):
+    implements(ITicketManipulator)
+
+    exempt_groups = {"admins", "fellows", "supertriagers"}
+    assignment_limit = 3
+
+    def prepare_ticket(self, req, ticket, fields, actions):
+        pass
+
+    def validate_ticket(self, req, ticket):
+        if not ticket.exists:
+            # New tickets must start unreviewed.
+            if ticket["stage"] != "Unreviewed":
+                return [
+                    (
+                        "stage",
+                        "New tickets must have the Unreviewed triage stage.",
+                    )
+                ]
+            # Creators may assign themselves regardless of the ticket limit.
+            return []
+
+        errors = self.validate_triage_stage_change(req, ticket)
+        if errors:
+            return errors
+
+        return self.validate_owner_change(req, ticket)
+
+    def validate_triage_stage_change(self, req, ticket):
+        username = req.authname
+        stage = ticket["stage"]
+        previous_stage = ticket._old.get("stage", stage)
+
+        if stage == previous_stage:
+            return []
+
+        if stage == "Accepted" and ticket["reporter"] == username:
+            return [
+                (
+                    "stage",
+                    "You cannot accept your own ticket. "
+                    "Please leave it for another contributor to triage.",
+                )
+            ]
+
+        owner = ticket["owner"]
+        previous_owner = ticket._old.get("owner", owner)
+
+        if stage == "Ready for checkin" and username in {previous_owner, owner}:
+            return [
+                (
+                    "stage",
+                    "You cannot mark a ticket assigned to you as ready for checkin. "
+                    "Please leave it for another contributor to review.",
+                )
+            ]
+
+        return []
+
+    def validate_owner_change(self, req, ticket):
+        username = req.authname
+        owner = ticket["owner"]
+        previous_owner = ticket._old.get("owner", owner)
+
+        # Only restrict claiming a ticket for yourself.
+        # Assigning to others and retaining ownership are allowed.
+        if owner != username or previous_owner == username:
+            return []
+
+        stage = ticket["stage"]
+        if stage == "Unreviewed" and ticket["reporter"] != username:
+            return [
+                (
+                    "owner",
+                    "Only the ticket's reporter may assign themselves before the "
+                    "ticket is accepted.",
+                )
+            ]
+
+        if stage == "Accepted":
+            groups = PermissionSystem(self.env).get_groups_dict()
+            # These groups are exempt from the assignment limit.
+            if any(username in groups.get(group, ()) for group in self.exempt_groups):
+                return []
+
+            count = Query(
+                self.env,
+                constraints=[
+                    {
+                        "owner": [username],
+                        "stage": ["Accepted"],
+                        "status": ["!closed"],
+                    }
+                ],
+            ).count(req)
+            if count >= self.assignment_limit:
+                return [
+                    (
+                        "owner",
+                        f"You already have {self.assignment_limit} or more open, "
+                        "accepted tickets assigned to you. Please finish or "
+                        "release an existing assignment before taking another "
+                        "ticket.",
+                    )
+                ]
+
+        return []

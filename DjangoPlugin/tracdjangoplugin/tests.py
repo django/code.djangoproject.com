@@ -11,13 +11,16 @@ from trac.mimeview.api import Mimeview
 from trac.mimeview.rst import (
     ReStructuredTextRenderer,  # noqa: needed for RSTWikiTestCase to work
 )
+from trac.perm import PermissionSystem
 from trac.test import EnvironmentStub, MockRequest
+from trac.ticket.model import Ticket
 from trac.web.api import RequestDone
 
 from tracdjangoplugin.middlewares import DjangoDBManagementMiddleware
 from tracdjangoplugin.plugins import (
     PlainLoginComponent,
     ReservedUsernamesComponent,
+    TicketAssignmentValidator,
     TimelineTicketComponentFilter,
 )
 
@@ -328,3 +331,287 @@ class RSTWikiTestCase(SimpleTestCase):
             str(output),
             '<div class="document" id="test"><h1 class="title">TEST</h1></div>',
         )
+
+
+class TicketAssignmentValidatorTestCase(SimpleTestCase):
+    new_ticket_error = (
+        "stage",
+        "New tickets must have the Unreviewed triage stage.",
+    )
+    accept_error = (
+        "stage",
+        "You cannot accept your own ticket. "
+        "Please leave it for another contributor to triage.",
+    )
+    ready_error = (
+        "stage",
+        "You cannot mark a ticket assigned to you as ready for checkin. "
+        "Please leave it for another contributor to review.",
+    )
+    unreviewed_error = (
+        "owner",
+        "Only the ticket's reporter may assign themselves before the "
+        "ticket is accepted.",
+    )
+    limit_error = (
+        "owner",
+        "You already have 3 or more open, accepted tickets assigned to you. "
+        "Please finish or release an existing assignment before taking another "
+        "ticket.",
+    )
+
+    def setUp(self):
+        self.env = EnvironmentStub(
+            default_data=True,
+            config=[
+                ("ticket-custom", "stage", "select"),
+                (
+                    "ticket-custom",
+                    "stage.options",
+                    "Unreviewed|Accepted|Ready for checkin|Someday/Maybe",
+                ),
+                ("ticket-custom", "stage.value", "Unreviewed"),
+            ],
+        )
+        self.addCleanup(self.env.reset_db)
+        self.validator = TicketAssignmentValidator(self.env)
+        self.permissions = PermissionSystem(self.env)
+        self.request = self.make_request("alice")
+
+    def make_request(self, username):
+        # Query.count(req) must run with permission to view the tickets.
+        self.permissions.grant_permission(username, "TICKET_VIEW")
+        return MockRequest(self.env, authname=username)
+
+    def make_ticket(self, *, insert=True, **values):
+        ticket = Ticket(self.env)
+        ticket.populate(
+            {
+                "summary": "Test ticket",
+                "reporter": "bob",
+                "owner": "",
+                "status": "new",
+                "stage": "Accepted",
+                **values,
+            }
+        )
+        if insert:
+            ticket.insert()
+            # Reload so only subsequent edits appear in ticket._old.
+            ticket = Ticket(self.env, ticket.id)
+        return ticket
+
+    def make_assignments(self, count, *, owner="alice"):
+        for _ in range(count):
+            self.make_ticket(owner=owner)
+
+    def test_new_ticket_must_be_unreviewed(self):
+        for stage in ("Accepted", "Ready for checkin", "Someday/Maybe"):
+            with self.subTest(stage=stage):
+                ticket = self.make_ticket(insert=False, reporter="alice", stage=stage)
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket),
+                    [self.new_ticket_error],
+                )
+
+    def test_new_unreviewed_ticket_allowed(self):
+        ticket = self.make_ticket(insert=False, reporter="alice", stage="Unreviewed")
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_new_ticket_self_assignment_allowed_at_limit(self):
+        self.make_assignments(3)
+        ticket = self.make_ticket(
+            insert=False,
+            reporter="alice",
+            owner="alice",
+            stage="Unreviewed",
+        )
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_reporter_cannot_accept_own_ticket(self):
+        ticket = self.make_ticket(reporter="alice", stage="Unreviewed")
+        ticket["stage"] = "Accepted"
+        self.assertEqual(
+            self.validator.validate_ticket(self.request, ticket),
+            [self.accept_error],
+        )
+
+    def test_other_user_can_accept_ticket(self):
+        ticket = self.make_ticket(stage="Unreviewed")
+        ticket["stage"] = "Accepted"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_owner_cannot_mark_ticket_ready_for_checkin(self):
+        for new_owner in ("alice", "", "bob"):
+            with self.subTest(new_owner=new_owner):
+                ticket = self.make_ticket(owner="alice")
+                ticket["owner"] = new_owner
+                ticket["stage"] = "Ready for checkin"
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket),
+                    [self.ready_error],
+                )
+
+    def test_cannot_claim_ticket_and_mark_ready_for_checkin(self):
+        ticket = self.make_ticket(owner="bob")
+        ticket["owner"] = "alice"
+        ticket["stage"] = "Ready for checkin"
+        self.assertEqual(
+            self.validator.validate_ticket(self.request, ticket),
+            [self.ready_error],
+        )
+
+    def test_other_reviewer_can_mark_ticket_ready_for_checkin(self):
+        ticket = self.make_ticket(owner="bob")
+        ticket["stage"] = "Ready for checkin"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_unreviewed_ticket_assignment(self):
+        for reporter, expected in (
+            ("alice", []),
+            ("bob", [self.unreviewed_error]),
+        ):
+            with self.subTest(reporter=reporter):
+                ticket = self.make_ticket(reporter=reporter, stage="Unreviewed")
+                ticket["owner"] = "alice"
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket), expected
+                )
+
+    def test_assignment_limit(self):
+        # Validate before each additional assignment is inserted into Trac.
+        for existing_count in range(5):
+            with self.subTest(existing_count=existing_count):
+                ticket = self.make_ticket()
+                ticket["owner"] = "alice"
+                expected = [] if existing_count < 3 else [self.limit_error]
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket), expected
+                )
+            self.make_ticket(owner="alice")
+
+    def test_closed_tickets_do_not_count(self):
+        self.make_assignments(2)
+        self.make_ticket(owner="alice", status="closed", resolution="fixed")
+        ticket = self.make_ticket()
+        ticket["owner"] = "alice"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_other_triage_stages_do_not_count(self):
+        self.make_assignments(2)
+        for stage in ("Unreviewed", "Ready for checkin", "Someday/Maybe"):
+            self.make_ticket(owner="alice", stage=stage)
+        ticket = self.make_ticket()
+        ticket["owner"] = "alice"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_other_users_tickets_do_not_count(self):
+        self.make_assignments(2)
+        self.make_assignments(3, owner="bob")
+        ticket = self.make_ticket()
+        ticket["owner"] = "alice"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_exempt_groups_can_exceed_assignment_limit(self):
+        for group in ("admins", "fellows", "supertriagers"):
+            with self.subTest(group=group):
+                username = f"member_{group}"
+                request = self.make_request(username)
+                self.permissions.grant_permission(username, group)
+                self.make_assignments(3, owner=username)
+                ticket = self.make_ticket()
+                ticket["owner"] = username
+                self.assertEqual(self.validator.validate_ticket(request, ticket), [])
+
+    def test_exempt_groups_cannot_accept_own_ticket(self):
+        for group in ("admins", "fellows", "supertriagers"):
+            with self.subTest(group=group):
+                username = f"member_{group}"
+                request = self.make_request(username)
+                self.permissions.grant_permission(username, group)
+                ticket = self.make_ticket(reporter=username, stage="Unreviewed")
+                ticket["stage"] = "Accepted"
+                self.assertEqual(
+                    self.validator.validate_ticket(request, ticket),
+                    [self.accept_error],
+                )
+
+    def test_exempt_groups_cannot_mark_own_ticket_ready_for_checkin(self):
+        for group in ("admins", "fellows", "supertriagers"):
+            with self.subTest(group=group):
+                username = f"member_{group}"
+                request = self.make_request(username)
+                self.permissions.grant_permission(username, group)
+                ticket = self.make_ticket(owner=username)
+                ticket["stage"] = "Ready for checkin"
+                self.assertEqual(
+                    self.validator.validate_ticket(request, ticket),
+                    [self.ready_error],
+                )
+
+    def test_exempt_groups_cannot_claim_others_unreviewed_ticket(self):
+        for group in ("admins", "fellows", "supertriagers"):
+            with self.subTest(group=group):
+                username = f"member_{group}"
+                request = self.make_request(username)
+                self.permissions.grant_permission(username, group)
+                ticket = self.make_ticket(stage="Unreviewed")
+                ticket["owner"] = username
+                self.assertEqual(
+                    self.validator.validate_ticket(request, ticket),
+                    [self.unreviewed_error],
+                )
+
+    def test_exempt_groups_must_create_unreviewed_tickets(self):
+        for group in ("admins", "fellows", "supertriagers"):
+            with self.subTest(group=group):
+                username = f"member_{group}"
+                request = self.make_request(username)
+                self.permissions.grant_permission(username, group)
+                ticket = self.make_ticket(insert=False)
+                self.assertEqual(
+                    self.validator.validate_ticket(request, ticket),
+                    [self.new_ticket_error],
+                )
+
+    def test_ordinary_edits_allowed(self):
+        self.make_assignments(3)
+        for reporter, owner, stage in (
+            ("alice", "alice", "Accepted"),
+            ("bob", "alice", "Ready for checkin"),
+            ("bob", "", "Unreviewed"),
+            ("bob", "alice", "Unreviewed"),
+        ):
+            with self.subTest(reporter=reporter, owner=owner, stage=stage):
+                ticket = self.make_ticket(reporter=reporter, owner=owner, stage=stage)
+                ticket["summary"] = "Updated summary"
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket), []
+                )
+
+    def test_releasing_or_assigning_to_others_allowed_at_limit(self):
+        self.make_assignments(3)
+        for previous_owner in ("alice", "bob"):
+            for owner in ("", "bob", "Django Sprints"):
+                with self.subTest(previous_owner=previous_owner, owner=owner):
+                    ticket = self.make_ticket(owner=previous_owner)
+                    ticket["owner"] = owner
+                    self.assertEqual(
+                        self.validator.validate_ticket(self.request, ticket), []
+                    )
+
+    def test_accepting_existing_self_assignment_allowed_at_limit(self):
+        self.make_assignments(3, owner="bob")
+        ticket = self.make_ticket(owner="bob", stage="Unreviewed")
+        ticket["stage"] = "Accepted"
+        self.assertEqual(self.validator.validate_ticket(self.request, ticket), [])
+
+    def test_claiming_other_triage_stage_allowed_at_limit(self):
+        self.make_assignments(3)
+        for stage in ("Ready for checkin", "Someday/Maybe"):
+            with self.subTest(stage=stage):
+                ticket = self.make_ticket(stage=stage)
+                ticket["owner"] = "alice"
+                self.assertEqual(
+                    self.validator.validate_ticket(self.request, ticket), []
+                )
