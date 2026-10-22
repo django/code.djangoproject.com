@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
 ]
 
+GITHUB_PR_TOKEN = SECRETS.get("github_pr_token")
 
 SECRET_KEY = SECRETS.get("secret_key", "")
 

@@ -26,8 +26,11 @@ Using Docker
     {
       "secret_key": "xyz",
       "db_host": "localhost",
-      "db_password": "secret"
+      "db_password": "secret",
+      "github_pr_token": "github_pat_abcd1234..."
     }
+
+Trac requires a valid Github token to request PR and build details.
 
 * ``docker compose up --build``
 * Follow instructions above to create/load the DB, grant permissions, create the
