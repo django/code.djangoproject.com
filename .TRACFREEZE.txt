@@ -108,6 +108,7 @@ tracdjangoplugin.plugins.customwikimodule
 tracdjangoplugin.plugins.githubbrowserwithsvnchangesets
 tracdjangoplugin.plugins.plainlogincomponent
 tracdjangoplugin.plugins.reservedusernamescomponent
+tracdjangoplugin.plugins.ticketassignmentvalidator
 tracdjangoplugin.plugins.timelineticketcomponentfilter
 tracdragdrop.web_ui.tracdragdropmodule
 tracext.github.githubloginmodule
