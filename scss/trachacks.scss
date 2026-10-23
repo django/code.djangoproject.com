@@ -32,6 +32,9 @@ h1, h2, h3, h4, h5, h6, span {
   &:target {
     background: $green-very-light;
   }
+  &.section:target {
+    background: $green-very-light !important;
+  }
 }
 
 [role="main"] .section {
