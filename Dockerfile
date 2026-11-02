@@ -4,7 +4,7 @@ FROM python:3.11-slim-trixie
 # set work directory
 WORKDIR /code
 
-# set environment varibles
+# set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 

@@ -14,7 +14,6 @@ from tracopt.versioncontrol.git import PyGIT
 
 from .middlewares import DjangoDBManagementMiddleware
 
-
 application = DjangoDBManagementMiddleware(application)
 
 PyGIT.close_fds = False
