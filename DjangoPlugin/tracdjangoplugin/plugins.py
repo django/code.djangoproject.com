@@ -2,6 +2,9 @@ from urllib.parse import urlparse
 
 from trac.config import ListOption
 from trac.core import Component, implements
+from trac.perm import PermissionSystem
+from trac.ticket.api import ITicketManipulator
+from trac.ticket.query import Query
 from trac.web.chrome import INavigationContributor
 from trac.web.api import IRequestFilter, IRequestHandler, RequestDone
 from trac.web.auth import LoginModule
@@ -304,3 +307,134 @@ class ReservedUsernamesComponent(Component):
 
     def post_process_request(self, req, template, data, metadata):
         return template, data, metadata  # required by Trac to exist
+
+
+class TicketChangeValidator(Component):
+    implements(ITicketManipulator)
+
+    exempt_groups = {"admins", "fellows", "supertriagers"}
+    assignment_limit = 3
+
+    def prepare_ticket(self, req, ticket, fields, actions):
+        pass
+
+    def validate_ticket(self, req, ticket):
+        if not ticket.exists:
+            # New tickets must start unreviewed.
+            if ticket["stage"] != "Unreviewed":
+                return [
+                    (
+                        "stage",
+                        "New tickets must have the Unreviewed triage stage.",
+                    )
+                ]
+            # Creators may assign themselves regardless of the ticket limit.
+            return []
+
+        for validate in (
+            self.validate_reporter_change,
+            self.validate_triage_stage_change,
+            self.validate_owner_change,
+        ):
+            errors = validate(req, ticket)
+            if errors:
+                return errors
+        return []
+
+    def is_user_member_of_exempt_group(self, username):
+        groups = PermissionSystem(self.env).get_groups_dict()
+        return any(username in groups.get(group, ()) for group in self.exempt_groups)
+
+    def validate_reporter_change(self, req, ticket):
+        username = req.authname
+        reporter = ticket["reporter"]
+        previous_reporter = ticket._old.get("reporter", reporter)
+        if reporter != previous_reporter and not self.is_user_member_of_exempt_group(
+            username
+        ):
+            # We allow members of exempt groups to update the reporter in case
+            # the reporter is something against the CoC.
+            return [("reporter", "You cannot update the ticket reporter.")]
+        return []
+
+    def validate_triage_stage_change(self, req, ticket):
+        username = req.authname
+        stage = ticket["stage"]
+        previous_stage = ticket._old.get("stage", stage)
+
+        if stage == previous_stage:
+            return []
+
+        if stage == "Accepted" and ticket["reporter"] == username:
+            return [
+                (
+                    "stage",
+                    "You cannot accept your own ticket. "
+                    "Please leave it for another contributor to triage.",
+                )
+            ]
+
+        owner = ticket["owner"]
+        previous_owner = ticket._old.get("owner", owner)
+
+        if (
+            stage == "Ready for checkin"
+            and username in {previous_owner, owner}
+            and not self.is_user_member_of_exempt_group(username)
+        ):
+            # We allow members of exempt groups to mark their own ticket as
+            # "Ready for checkin" as sometimes they receive an approval but the
+            # reviewer forgot to update the Triage stage in Trac.
+            return [
+                (
+                    "stage",
+                    "You cannot mark a ticket assigned to you as ready for checkin. "
+                    "Please leave it for another contributor to review.",
+                )
+            ]
+
+        return []
+
+    def validate_owner_change(self, req, ticket):
+        username = req.authname
+        owner = ticket["owner"]
+        previous_owner = ticket._old.get("owner", owner)
+
+        # Only restrict claiming a ticket for yourself.
+        # Assigning to others and retaining ownership are allowed.
+        if owner != username or previous_owner == username:
+            return []
+
+        stage = ticket["stage"]
+        if stage == "Unreviewed" and ticket["reporter"] != username:
+            return [
+                (
+                    "owner",
+                    "Only the ticket's reporter may assign themselves before the "
+                    "ticket is accepted.",
+                )
+            ]
+
+        if stage == "Accepted" and not self.is_user_member_of_exempt_group(username):
+            count = Query(
+                self.env,
+                constraints=[
+                    {
+                        "owner": [username],
+                        "stage": ["Accepted"],
+                        "status": ["!closed"],
+                    }
+                ],
+            ).count(req)
+            if count >= self.assignment_limit:
+                return [
+                    (
+                        "owner",
+                        f"You already have {self.assignment_limit} or more open, "
+                        "accepted tickets assigned to you. Please finish or "
+                        "release an existing assignment before taking another "
+                        "ticket.",
+                    )
+                ]
+
+        return []
