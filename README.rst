@@ -15,6 +15,14 @@ that can help:
 * If you've modified the ``trackhack.scss`` file, use
   ``sassc scss/trachacks.scss trac-env/htdocs/css/trachacks.css -s compressed``
   to compile it to CSS.
+* Load the local SQL fixtures in dependency order::
+
+    export DATABASE_URL=postgres://code.djangoproject:secret@localhost/code.djangoproject
+    psql "$DATABASE_URL" < sql/00_lookups.sql
+    psql "$DATABASE_URL" < sql/01_ticket_37239_sample.sql
+    psql "$DATABASE_URL" < sql/02_fake_tickets_100.sql
+
+  Restart Trac after loading the lookup data so its cached values are refreshed.
 
 Using Docker
 ------------
@@ -37,6 +45,22 @@ Using Docker
     export DATABASE_URL=postgres://code.djangoproject:secret@db/code.djangoproject
     docker compose exec -T db psql $DATABASE_URL < ../djangoproject.com/tracdb/trac.sql
     docker compose exec trac trac-admin /code/trac-env/ permission add anonymous TRAC_ADMIN
+
+Loading the local SQL fixtures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With the Docker services running, load the SQL files in this order. The second
+file depends on the lookup data from the first, and the third file depends on
+the lookup data as well::
+
+    export DATABASE_URL=postgres://code.djangoproject:secret@db/code.djangoproject
+    docker compose exec -T db psql "$DATABASE_URL" < sql/00_lookups.sql
+    docker compose exec -T db psql "$DATABASE_URL" < sql/01_ticket_37239_sample.sql
+    docker compose exec -T db psql "$DATABASE_URL" < sql/02_fake_tickets_100.sql
+    docker compose restart trac
+
+Restarting Trac refreshes its cached lookup values.
+
 
 Using Podman
 ------------
