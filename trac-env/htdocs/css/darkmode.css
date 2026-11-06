@@ -1708,3 +1708,587 @@ html[data-theme="dark"] {
     }
   }
 }
+/* Provide readable fallback for default Pygments tokens on dark background */
+html[data-theme="dark"] div.code pre {
+  .nc {
+    color: var(--text-l10, #93d7b7); /* High contrast light mint/green */
+    font-weight: bold;
+  }
+}
+/* Ticket next steps box dark mode fix */
+html[data-theme="dark"] {
+  #ticket-next-steps {
+    background-color: #161b22 !important;
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+
+    p,
+    ul,
+    li,
+    span {
+      color: var(--body-fg, #c1cad2) !important;
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: var(--primary, #44b78b) !important;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: var(--primary-accent, #93d7b7) !important;
+      }
+    }
+
+    code,
+    tt {
+      background-color: #0e1117 !important;
+      color: #f0f6fc !important;
+      border: 1px solid #2b3a32 !important;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  }
+}
+
+/* System auto mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #ticket-next-steps {
+      background-color: #161b22 !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      p,
+      ul,
+      li,
+      span {
+        color: var(--body-fg, #c1cad2) !important;
+      }
+
+      a,
+      a:link,
+      a:visited {
+        color: var(--primary, #44b78b) !important;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+          color: var(--primary-accent, #93d7b7) !important;
+        }
+      }
+
+      code,
+      tt {
+        background-color: #0e1117 !important;
+        color: #f0f6fc !important;
+        border: 1px solid #2b3a32 !important;
+        padding: 1px 4px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   1. Foldable Buttons Text Color Fix
+   Only target the link text inside without touching borders, padding, or widths
+   ========================================================================== */
+#content .foldable a,
+#content .foldable :link,
+#content .foldable :visited,
+#content h3.foldable a,
+#content legend.foldable a {
+  color: #0c3c26 !important;
+  text-decoration: none !important;
+
+  &:hover,
+  &:focus {
+    color: #0c3c26 !important;
+    text-decoration: none !important;
+  }
+}
+
+/* ==========================================================================
+   2. Comment Header: "comment:X by anonymous, Y ago"
+   Fix contrast for the comment number and timeline links on the green bar
+   ========================================================================== */
+#changelog h3.change,
+#changelog h3.change a,
+#changelog h3.change .cnum,
+#changelog h3.change .cnum a,
+#changelog h3.change a.timeline,
+#changelog h3.change span.threading {
+  color: #0c3c26 !important;
+
+  &:hover,
+  &:focus {
+    color: #052215 !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* ==========================================================================
+   3. Ticket Next Steps Box (Light gray on beige fix)
+   ========================================================================== */
+/* ==========================================================================
+   1. Light Theme & Base Scope
+   Fixes Jacob's "light gray on beige" issue in light mode
+   ========================================================================== */
+:root,
+html[data-theme="light"] {
+  #ticket-next-steps {
+    background-color: #fffdf1 !important;
+    border: 1px solid #cfe3dc !important;
+    color: #0c3c26 !important;
+
+    /* Override faded gray paragraph and list text */
+    p,
+    ul,
+    li,
+    span {
+      color: #0c3c26 !important;
+    }
+
+    /* Links inside next steps (bisect, claim the ticket, etc.) */
+    a,
+    a:link,
+    a:visited {
+      color: #1a7a54 !important;
+      text-decoration: underline !important;
+
+      &:hover,
+      &:focus {
+        color: #0c3c26 !important;
+      }
+    }
+
+    /* PR badges and code tags */
+    code,
+    tt {
+      background-color: #f1f1f1 !important;
+      color: #0c4b33 !important;
+      border: 1px solid #cfe3dc !important;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  }
+
+  /* Ensure foldable button links stay clear in light mode */
+  #content .foldable a,
+  #content h3.foldable a,
+  #content legend.foldable a {
+    color: #0c3c26 !important;
+  }
+}
+
+/* ==========================================================================
+   2. Dark Theme Scope
+   Applied strictly when dark mode is active
+   ========================================================================== */
+html[data-theme="dark"] {
+  #ticket-next-steps {
+    background-color: #161b22 !important;
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+
+    p,
+    ul,
+    li,
+    span {
+      color: var(--body-fg, #c1cad2) !important;
+    }
+
+    a,
+    a:link,
+    a:visited {
+      color: var(--primary, #44b78b) !important;
+      text-decoration: underline !important;
+
+      &:hover,
+      &:focus {
+        color: var(--primary-accent, #93d7b7) !important;
+      }
+    }
+
+    code,
+    tt {
+      background-color: #0e1117 !important;
+      color: #f0f6fc !important;
+      border: 1px solid #2b3a32 !important;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  }
+}
+
+/* ==========================================================================
+   3. Auto Scheme (When OS prefers dark)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #ticket-next-steps {
+      background-color: #161b22 !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      p,
+      ul,
+      li,
+      span {
+        color: var(--body-fg, #c1cad2) !important;
+      }
+
+      a,
+      a:link,
+      a:visited {
+        color: var(--primary, #44b78b) !important;
+        text-decoration: underline !important;
+
+        &:hover,
+        &:focus {
+          color: var(--primary-accent, #93d7b7) !important;
+        }
+      }
+
+      code,
+      tt {
+        background-color: #0e1117 !important;
+        color: #f0f6fc !important;
+        border: 1px solid #2b3a32 !important;
+        padding: 1px 4px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Trac Code Blocks & Pygments Container Overrides
+   Fixes the white background and kills rogue hover states on syntax tokens
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* 1. Force the code container wrappers to dark #161b22 */
+  #content .wiki-code,
+  #content div.code,
+  #content div.code pre,
+  #content pre.literal-block,
+  #content table.code,
+  div.description .wiki-code,
+  div.description div.code,
+  div.description div.code pre,
+  div.description pre {
+    background: #161b22 !important;
+    background-color: #161b22 !important;
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: #e6edf3 !important;
+  }
+
+  /* 2. Base text and whitespace colors inside pre */
+  div.code pre,
+  div.code pre span {
+    text-shadow: none !important;
+  }
+
+  div.code pre .w {
+    color: inherit !important;
+  }
+
+  /* 3. Strip hover backgrounds from code blocks, spans, and tokens */
+  div.code:hover,
+  div.code pre:hover,
+  div.code pre span:hover,
+  div.code pre span:focus,
+  .wiki-code span:hover,
+  .wiki-code pre:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* System auto preference */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #content .wiki-code,
+    #content div.code,
+    #content div.code pre,
+    #content pre.literal-block,
+    #content table.code,
+    div.description .wiki-code,
+    div.description div.code,
+    div.description div.code pre,
+    div.description pre {
+      background: #161b22 !important;
+      background-color: #161b22 !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: #e6edf3 !important;
+    }
+
+    div.code pre .w {
+      color: inherit !important;
+    }
+
+    div.code:hover,
+    div.code pre:hover,
+    div.code pre span:hover,
+    div.code pre span:focus,
+    .wiki-code span:hover,
+    .wiki-code pre:hover {
+      background: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+}
+/* ==========================================================================
+   Trac Diff Tables in Ticket Descriptions & Changesets (table.trac-diff)
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* Diff container, list, and table shell */
+  div.diff,
+  ul.entries,
+  li.entry,
+  table.trac-diff {
+    background-color: #161b22 !important;
+    border-color: var(--code-border, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+  }
+
+  /* Table headers (a, b, file paths, line numbers) */
+  table.trac-diff th,
+  table.trac-diff thead tr th,
+  table.trac-diff thead tr td {
+    background-color: #1e252e !important;
+    border-color: var(--code-border, #2b3a32) !important;
+    color: #9f9d9d !important;
+
+    a {
+      color: #93d7b7 !important;
+    }
+  }
+
+  /* Default table cells (neutral/context lines) */
+  table.trac-diff tbody tr td,
+  table.trac-diff tbody tr th {
+    background-color: #161b22 !important;
+    border-color: #2b3a32 !important;
+    color: var(--body-fg, #c1cad2) !important;
+  }
+
+  /* Deleted / Modified old lines */
+  table.trac-diff tbody.mod tr.first td,
+  table.trac-diff tbody.rem tr td,
+  table.trac-diff tbody tr td.rem,
+  table.trac-diff tbody tr th.rem {
+    background-color: rgba(248, 81, 73, 0.18) !important;
+    color: #ff7b72 !important;
+
+    /* Highlighted changed characters */
+    em {
+      background-color: rgba(248, 81, 73, 0.4) !important;
+      color: #ffa198 !important;
+      font-style: normal;
+    }
+  }
+
+  /* Added / Modified new lines */
+  table.trac-diff tbody.mod tr.last td,
+  table.trac-diff tbody.add tr td,
+  table.trac-diff tbody tr td.add,
+  table.trac-diff tbody tr th.add {
+    background-color: rgba(46, 160, 67, 0.18) !important;
+    color: #7ee787 !important;
+
+    /* Highlighted changed characters */
+    em {
+      background-color: rgba(46, 160, 67, 0.4) !important;
+      color: #aff5b4 !important;
+      font-style: normal;
+    }
+  }
+
+  /* Unified / Tabular switch bar on top right of diff block */
+  div.diff .overview,
+  div.diff ul.nav {
+    color: #9f9d9d !important;
+
+    a {
+      color: var(--primary, #44b78b) !important;
+    }
+  }
+}
+
+/* System auto preference */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    div.diff,
+    ul.entries,
+    li.entry,
+    table.trac-diff {
+      background-color: #161b22 !important;
+      border-color: var(--code-border, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+    }
+
+    table.trac-diff th,
+    table.trac-diff thead tr th,
+    table.trac-diff thead tr td {
+      background-color: #1e252e !important;
+      border-color: var(--code-border, #2b3a32) !important;
+      color: #9f9d9d !important;
+
+      a {
+        color: #93d7b7 !important;
+      }
+    }
+
+    table.trac-diff tbody tr td,
+    table.trac-diff tbody tr th {
+      background-color: #161b22 !important;
+      border-color: #2b3a32 !important;
+      color: var(--body-fg, #c1cad2) !important;
+    }
+
+    table.trac-diff tbody.mod tr.first td,
+    table.trac-diff tbody.rem tr td,
+    table.trac-diff tbody tr td.rem,
+    table.trac-diff tbody tr th.rem {
+      background-color: rgba(248, 81, 73, 0.18) !important;
+      color: #ff7b72 !important;
+
+      em {
+        background-color: rgba(248, 81, 73, 0.4) !important;
+        color: #ffa198 !important;
+        font-style: normal;
+      }
+    }
+
+    table.trac-diff tbody.mod tr.last td,
+    table.trac-diff tbody.add tr td,
+    table.trac-diff tbody tr td.add,
+    table.trac-diff tbody tr th.add {
+      background-color: rgba(46, 160, 67, 0.18) !important;
+      color: #7ee787 !important;
+
+      em {
+        background-color: rgba(46, 160, 67, 0.4) !important;
+        color: #aff5b4 !important;
+        font-style: normal;
+      }
+    }
+
+    div.diff .overview,
+    div.diff ul.nav {
+      color: #9f9d9d !important;
+
+      a {
+        color: var(--primary, #44b78b) !important;
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Code Block Token Hover & Selection Fix
+   Kills rogue background highlights on syntax tokens and lines
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* Prevent code containers from changing background on hover */
+  #content div.code:hover,
+  #content div.code pre:hover,
+  #content .wiki-code:hover,
+  #content .wiki-code pre:hover,
+  div.description div.code:hover,
+  div.description div.code pre:hover {
+    background-color: #161b22 !important;
+  }
+
+  /* Prevent any child element (spans, tokens, links) from showing a hover background */
+  #content div.code *:hover,
+  #content div.code *:focus,
+  #content div.code pre *:hover,
+  #content div.code pre *:focus,
+  #content .wiki-code *:hover,
+  #content .wiki-code *:focus,
+  #content .wiki-code pre *:hover,
+  #content .wiki-code pre *:focus,
+  div.description div.code *:hover,
+  div.description div.code *:focus,
+  div.description div.code pre *:hover,
+  div.description div.code pre *:focus {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Fix mouse selection highlight so selected code remains high contrast */
+  #content div.code ::selection,
+  #content div.code *::selection,
+  #content .wiki-code ::selection,
+  #content .wiki-code *::selection,
+  div.description div.code ::selection,
+  div.description div.code *::selection {
+    background-color: #264f78 !important;
+    color: #ffffff !important;
+  }
+
+  #content div.code ::-moz-selection,
+  #content div.code *::-moz-selection,
+  #content .wiki-code ::-moz-selection,
+  #content .wiki-code *::-moz-selection,
+  div.description div.code ::-moz-selection,
+  div.description div.code *::-moz-selection {
+    background-color: #264f78 !important;
+    color: #ffffff !important;
+  }
+}
+
+/* System auto preference */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #content div.code:hover,
+    #content div.code pre:hover,
+    #content .wiki-code:hover,
+    #content .wiki-code pre:hover,
+    div.description div.code:hover,
+    div.description div.code pre:hover {
+      background-color: #161b22 !important;
+    }
+
+    #content div.code *:hover,
+    #content div.code *:focus,
+    #content div.code pre *:hover,
+    #content div.code pre *:focus,
+    #content .wiki-code *:hover,
+    #content .wiki-code *:focus,
+    #content .wiki-code pre *:hover,
+    #content .wiki-code pre *:focus,
+    div.description div.code *:hover,
+    div.description div.code *:focus,
+    div.description div.code pre *:hover,
+    div.description div.code pre *:focus {
+      background: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    #content div.code ::selection,
+    #content div.code *::selection,
+    #content .wiki-code ::selection,
+    #content .wiki-code *::selection,
+    div.description div.code ::selection,
+    div.description div.code *::selection {
+      background-color: #264f78 !important;
+      color: #ffffff !important;
+    }
+
+    #content div.code ::-moz-selection,
+    #content div.code *::-moz-selection,
+    #content .wiki-code ::-moz-selection,
+    #content .wiki-code *::-moz-selection,
+    div.description div.code ::-moz-selection,
+    div.description div.code *::-moz-selection {
+      background-color: #264f78 !important;
+      color: #ffffff !important;
+    }
+  }
+}
