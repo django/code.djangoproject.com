@@ -1,3 +1,4 @@
+import os
 from urllib.parse import urlparse
 
 from trac.config import ListOption
@@ -246,6 +247,7 @@ class PlainLoginComponent(Component):
         return "plainlogin.html", {
             "form": AuthenticationForm(),
             "referer": req.args.get("referer", ""),
+            "external_auth_enabled": bool(os.environ.get("DJANGO_TRAC_AUTH_SECRET")),
         }
 
     def do_post(self, req):

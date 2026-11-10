@@ -7,6 +7,7 @@ WORKDIR /code
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DJANGO_TRAC_AUTH_SECRET=examplesecret
 
 # Upgrade to a pip version that bundles a secure `certifi`.
 # https://discuss.python.org/t/information-for-python-users-regarding-emudhra-emsign-ca-certificate-security-incident/109576
@@ -35,6 +36,7 @@ RUN apt-get update \
 # install python dependencies
 COPY ./requirements.txt ./requirements.txt
 COPY ./DjangoPlugin ./DjangoPlugin
+COPY ./ExternalAuthPlugin ./ExternalAuthPlugin
 
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
