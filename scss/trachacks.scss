@@ -445,6 +445,47 @@ div[role="main"]{
       }
     }
 
+    @media screen and (max-width: 767px) {
+      #filters {
+        padding: 0.75em;
+
+        table,
+        tbody,
+        tr,
+        th,
+        td {
+          display: block;
+          width: auto;
+        }
+
+        tr {
+          padding: 0.5em 0;
+          border-bottom: 1px solid $gray-line;
+        }
+
+        th,
+        td {
+          padding: 0.2em 0;
+          text-align: left;
+        }
+
+        select,
+        input[type="text"] {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+      }
+
+      #query-results {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      table.listing {
+        min-width: 42rem;
+      }
+    }
+
     .timeline h1 {
       margin: 0;
     }
