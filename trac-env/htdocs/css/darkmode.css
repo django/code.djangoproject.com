@@ -1,5 +1,5 @@
 /* Light theme design tokens */
-:root, 
+:root,
 html[data-theme="light"] {
     --body-fg: #0C3C26;
     --body-bg: #f8f8f8;
@@ -114,8 +114,8 @@ html[data-theme="dark"] {
 
 /* Apply theme colors to the main Trac content areas */
 body {
-    background: var(--body-bg) ;
-    color: var(--body-fg) ;
+    background: var(--body-bg);
+    color: var(--body-fg);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .full-width.container {
@@ -123,12 +123,12 @@ body {
     padding: 0;
     max-width: none;
     border-bottom: 1px solid #ddd;
-    background: var(--white-color) ;
+    background: var(--white-color);
 }
 [role="main"], #main, .ticket, #content, .wiki, #ticket, table.wikiTable, div.message {
-    background: var(--white-color) ;
-    color: var(--body-fg) ;
-    border-color: var(--hairline-color) ;
+    background: var(--white-color);
+    color: var(--body-fg);
+    border-color: var(--hairline-color);
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -140,79 +140,79 @@ a:hover, a:active, a:focus, #ticket h2 :link:hover {
 }
 
 h1, h2, h3, h4, h5, h6, legend {
-    color: #f8f8f8 ;
+    color: #f8f8f8;
 }
 [role="main"] h1, [role="main"] h2, [role="main"] h3 {
-    color: var(--body-fg) ;
+    color: var(--body-fg);
 }
 
 code, pre, tt, .highlight, pre.literal-block, .inlinecode, div.code, table.code {
-    background: var(--code-bg) ;
-    color: var(--code-fg) ;
-    border: 1px solid var(--code-border) ;
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border: 1px solid var(--code-border);
 }
 
 /* Header layout */
 #top {
-    width: 100% ;
-    background: #0C4B33 ; 
+    width: 100%;
+    background: #0C4B33;
 }
 
 #top .container {
-    display: flex ;
-    flex-direction: row ;
-    flex-wrap: nowrap ;
-    align-items: center ;
-    justify-content: space-between ;
-    width: 100% ;
-    max-width: none ;    
-    padding-left: 20px ;  
-    padding-right: 20px ;
-    box-sizing: border-box ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
 }
 
 #top nav {
-    margin-left: auto ;
-    display: flex ;
-    float: none ;
-    align-items: center ;
+    margin-left: auto;
+    display: flex;
+    float: none;
+    align-items: center;
 }
 
 #top nav ul {
-    display: flex ;
-    flex-direction: row ;
-    flex-wrap: nowrap ;
-    align-items: center ;
-    margin: 0 ;
-    padding: 0 ;
-    list-style: none ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 #top nav ul li {
-    float: none ;
-    border-top: 0 ;
-    display: inline-flex ;
-    align-items: center ;
+    float: none;
+    border-top: 0;
+    display: inline-flex;
+    align-items: center;
 }
 
 #top nav ul li a {
-    padding: 20px 10px ;
-    white-space: nowrap ;
+    padding: 20px 10px;
+    white-space: nowrap;
 }
 
 .header-tools-inline {
-    display: inline-flex ;
-    align-items: center ;
-    justify-content: center ;
-    margin-left: 14px ;
-    padding: 0 ;
-    flex-shrink: 0 ;
-    overflow: visible ;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 14px;
+    padding: 0;
+    flex-shrink: 0;
+    overflow: visible;
 }
 
-input[type="button"], 
-input[type="submit"], 
-input[type="reset"], 
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
 button,
 .trac-button,
 .buttons input,
@@ -224,33 +224,33 @@ div[role="main"] #main input[type="submit"] {
     &:hover:active {
         background: var(--darkgreen, #0C4B33) !important;
         background-color: var(--darkgreen, #0C4B33) !important;
-        color: #000000 !important; 
+        color: #000000 !important;
         outline: none !important;
         box-shadow: none !important;
     }
 }
 
-.theme-toggle, 
-button.theme-toggle, 
+.theme-toggle,
+button.theme-toggle,
 #top .theme-toggle {
     transition: background-color 0.15s ease, border-color 0.15s ease !important;
     &:hover,
     &:focus,
     &:active,
     &.active {
-        background-color: rgba(255, 255, 255, 0.12) !important; 
-        border: 1px solid #ffffff !important;                   
+        background-color: rgba(255, 255, 255, 0.12) !important;
+        border: 1px solid #ffffff !important;
         outline: none !important;
         box-shadow: none !important;
     }
 }
 
-.theme-toggle, 
-button.theme-toggle, 
+.theme-toggle,
+button.theme-toggle,
 #top .theme-toggle {
     background: transparent !important;
-    background-color: transparent !important; 
-    border: 1px solid transparent !important; 
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
     box-shadow: none !important;
     cursor: pointer !important;
     padding: 0 !important;
@@ -258,7 +258,7 @@ button.theme-toggle,
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 0px !important; 
+    border-radius: 0px !important;
     width: 30px !important;
     height: 30px !important;
     min-width: 30px !important;
@@ -273,7 +273,7 @@ button.theme-toggle,
 .theme-toggle:hover,
 button.theme-toggle:hover {
     background-color: rgba(255, 255, 255, 0.12) !important;
-    border: 1px solid #ffffff !important; 
+    border: 1px solid #ffffff !important;
 }
 
 .theme-toggle:focus {
@@ -284,10 +284,10 @@ button.theme-toggle:hover {
 .theme-toggle:active {
     transform: scale(0.95) !important;
 }
-.theme-toggle .icon, 
+.theme-toggle .icon,
 #top .theme-toggle .icon,
-.theme-toggle .icon.theme-icon-when-auto, 
-.theme-toggle .icon.theme-icon-when-dark, 
+.theme-toggle .icon.theme-icon-when-auto,
+.theme-toggle .icon.theme-icon-when-dark,
 .theme-toggle .icon.theme-icon-when-light {
     font-size: 16px !important;
     width: 16px !important;
@@ -330,16 +330,16 @@ div[role="main"] #main form select,
 #propertyform table.trac-properties td input[type="text"],
 #propertyform table.trac-properties td textarea {
 
-    background-color: var(--white-color) ; 
-    color: var(--body-fg) ;                
-    border: 1px solid var(--hairline-color) ; 
+    background-color: var(--white-color);
+    color: var(--body-fg);
+    border: 1px solid var(--hairline-color);
 
 }
 
 /* Placeholder text */
 div[role="main"] #main form ::placeholder {
-    color: var(--text-light, #798780) ;
-    opacity: 0.7 ;
+    color: var(--text-light, #798780);
+    opacity: 0.7;
 }
 
 /* Focused inputs */
@@ -348,15 +348,15 @@ div[role="main"] #main form textarea:focus,
 div[role="main"] #main form select:focus,
 #propertyform table.trac-properties td input:focus,
 #propertyform table.trac-properties td textarea:focus {
-    border-color: var(--secondary, #20AA76) ;
-    background-color: var(--white-color) ;
+    border-color: var(--secondary, #20AA76);
+    background-color: var(--white-color);
 }
 
 div[role="main"] #main form input:disabled,
 div[role="main"] #main form textarea:disabled {
-    opacity: 0.6 ;
-    cursor: not-allowed ;
-    background-color: var(--code-bg, #f8f8f8) ;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--code-bg, #f8f8f8);
 }
 
 /* Tables and query results */
@@ -364,12 +364,12 @@ table.listing,
 table.tickets,
 table.wikiTable,
 .trac-query-results {
-    width: 100% ;
-    border-collapse: collapse ;
-    border-spacing: 0 ;
-    background-color: var(--white-color) ;
-    color: var(--body-fg) ;
-    border: 1px solid var(--hairline-color) ;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: var(--white-color);
+    color: var(--body-fg);
+    border: 1px solid var(--hairline-color);
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -377,29 +377,29 @@ table.wikiTable,
 table.listing thead th,
 table.tickets thead th,
 .tickets thead tr.trac-query-heading th {
-    background: var(--secondary-accent, #C9F0DD) ;
-    color: #0C3C26 ; 
-    font-weight: 700 ;
-    padding: 10px 12px ;
-    border-bottom: 2px solid var(--hairline-color) ;
-    text-align: left ;
+    background: var(--secondary-accent, #C9F0DD);
+    color: #0C3C26;
+    font-weight: 700;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--hairline-color);
+    text-align: left;
 }
 
 /* Table rows and cells */
 table.listing tbody tr,
 table.tickets tbody tr,
 .tickets tbody tr {
-    background-color: var(--white-color) ;
-    color: var(--body-fg) ;
-    border-top: 1px solid var(--hairline-color) ;
-    border-bottom: 1px solid var(--hairline-color) ;
+    background-color: var(--white-color);
+    color: var(--body-fg);
+    border-top: 1px solid var(--hairline-color);
+    border-bottom: 1px solid var(--hairline-color);
 }
 
 table.listing tbody tr.even,
 table.tickets tbody tr.even,
 .tickets tbody tr.even,
 table.listing tbody tr:nth-of-type(even) {
-    background-color: var(--body-bg) ; 
+    background-color: var(--body-bg);
 }
 
 /* Table cells */
@@ -407,72 +407,72 @@ table.listing td,
 table.tickets td,
 .tickets td,
 td.trac-colspan {
-    padding: 10px 12px ;
-    color: var(--body-fg) ;
-    border-left: 1px solid var(--hairline-color) ;
-    border-right: 1px solid var(--hairline-color) ;
+    padding: 10px 12px;
+    color: var(--body-fg);
+    border-left: 1px solid var(--hairline-color);
+    border-right: 1px solid var(--hairline-color);
 }
 
 table.listing tbody tr:hover td,
 table.tickets tbody tr:hover td,
 .tickets tbody tr:hover td {
-    background: rgba(68, 183, 139, 0.15) ; 
-    color: var(--body-fg) ;
+    background: rgba(68, 183, 139, 0.15);
+    color: var(--body-fg);
 }
 
 /* Active navigation item */
 div[role="main"] #mainnav ul li.active {
-    background-color: var(--primary, #44B78B) ;
-    color: #000000 ;
+    background-color: var(--primary, #44B78B);
+    color: #000000;
 }
 
 div[role="main"] #mainnav ul li.active a,
 div[role="main"] #mainnav ul li.active a:link,
 div[role="main"] #mainnav ul li.active a:visited,
 #mainnav ul li.active a {
-    color: #000000 ;        
-    background: none ;
-    background-color: transparent ;
-    font-weight: 500 ;
-    text-shadow: none ;
+    color: #000000;
+    background: none;
+    background-color: transparent;
+    font-weight: 500;
+    text-shadow: none;
 }
 
 div[role="main"] #mainnav ul li:hover a {
-    color: #000000 ;
+    color: #000000;
 }
-input[type="button"], 
-input[type="submit"], 
-input[type="reset"], 
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
 button,
 .trac-button,
 .buttons input,
 .inlinebuttons input,
 .inlinebuttons .trac-button {
-    color: #000000 ;      
-    text-shadow: none ;    
-    font-size: inherit;             
+    color: #000000;
+    text-shadow: none;
+    font-size: inherit;
 }
 
-input[type="button"]:hover, 
-input[type="submit"]:hover, 
-input[type="reset"]:hover, 
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
 button:hover,
 .trac-button:hover,
 .inlinebuttons input:hover,
 .inlinebuttons .trac-button:hover {
-    color: #000000 ;
-    text-shadow: none ;
+    color: #000000;
+    text-shadow: none;
 }
 div.trac-resizable div.trac-grip,
 div.trac-grip,
 .trac-grip {
-    height: 6px ;
-    cursor: s-resize ;
-    overflow: hidden ;
-    box-sizing: border-box ;
-    color: var(--body-bg) ;     
-    border: 1px solid var(--hairline-color) ; 
-    border-top-width: 0 ;                     
+    height: 6px;
+    cursor: s-resize;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: var(--body-bg);
+    border: 1px solid var(--hairline-color);
+    border-top-width: 0;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -484,7 +484,7 @@ html[data-theme="auto"] div.trac-grip {
 
 /* Light theme */
 html[data-theme="light"] div.trac-grip {
-    filter: none ;
+    filter: none;
 }
 
 body.mdzr-boxshadow,
@@ -496,20 +496,20 @@ body.mdzr-boxshadow .container.full-width,
 body.mdzr-boxshadow div.container.sidebar-right,
 body.mdzr-boxshadow div.container.full-width,
 body.mdzr-boxshadow #banner {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    color: var(--body-fg) ;
-    border-color: var(--hairline-color) ;
-    box-shadow: none ;
-    -webkit-box-shadow: none ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
+    border-color: var(--hairline-color);
+    box-shadow: none;
+    -webkit-box-shadow: none;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 [role="complementary"],
 .sidebar-right [role="complementary"] {
-    background-color: var(--body-bg) ;
-    background: var(--body-bg) ;
-    color: var(--body-fg) ;
+    background-color: var(--body-bg);
+    background: var(--body-bg);
+    color: var(--body-fg);
 }
 
 
@@ -517,8 +517,8 @@ body.mdzr-boxshadow #banner {
     width: 100%;
     padding: 0;
     max-width: none;
-    border-bottom: 1px solid var(--hairline-color) ;
-    background: var(--body-bg) ;
+    border-bottom: 1px solid var(--hairline-color);
+    background: var(--body-bg);
 }
 
 /* Create ticket form */
@@ -530,12 +530,12 @@ div[role="main"] #main fieldset,
 div.container.full-width form#propertyform,
 #content form fieldset,
 html body.mdzr-boxshadow form fieldset {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    border: 1px solid var(--hairline-color) ;
-    box-shadow: none ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    border: 1px solid var(--hairline-color);
+    box-shadow: none;
     transition: background-color 0.2s ease, border-color 0.2s ease;
-    padding: 6px 10px ;
+    padding: 6px 10px;
 }
 
 #content form div.field,
@@ -544,16 +544,16 @@ form label[for="attachment"],
 html body.mdzr-boxshadow form div.field,
 #propertyform + label,
 #propertyform + div {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    color: var(--body-fg) ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
 }
 
 #propertyform fieldset legend,
 #propertyform table.trac-properties th,
 #propertyform label {
-    color: var(--body-fg) ;
-    background: transparent ;
+    color: var(--body-fg);
+    background: transparent;
 }
 
 /* Main content backgrounds and spacing */
@@ -566,12 +566,12 @@ body.mdzr-boxshadow #content,
 #content.ticket,
 div.container.full-width,
 div.container.sidebar-right {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    color: var(--body-fg) ;
-    border-color: var(--hairline-color) ;
-    box-shadow: none ;
-    -webkit-box-shadow: none ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
+    border-color: var(--hairline-color);
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 #content p.help,
@@ -579,14 +579,14 @@ div.container.sidebar-right {
 .trac-help,
 #main .backtotop,
 a.backtotop {
-    background: transparent ;
-    background-color: transparent ;
-    color: var(--text-light, #798780) ;
+    background: transparent;
+    background-color: transparent;
+    color: var(--text-light, #798780);
 }
 
-html, 
+html,
 html[data-theme] {
-    background-color: var(--body-bg) ;
+    background-color: var(--body-bg);
 }
 
 /* Ticket properties and metadata */
@@ -595,9 +595,9 @@ html[data-theme] {
 .ticket table.properties tbody tr th,
 #propertyform table.trac-properties td label,
 table.properties th {
-    color: var(--body-fg) ;
-    background: transparent ;
-    background-color: transparent ;
+    color: var(--body-fg);
+    background: transparent;
+    background-color: transparent;
 }
 
 #ticket div.description h2,
@@ -605,55 +605,55 @@ table.properties th {
 .ticket table.properties td,
 #content.ticket #ticketbox h1,
 #ticket h1, #ticket h2 {
-    color: var(--body-fg) ;
+    color: var(--body-fg);
 }
 
 #ticketbox .date,
 #ticketbox .author,
 .ticket .date {
-    color: var(--text-light, #798780) ;
+    color: var(--text-light, #798780);
 }
 
 /* Standard form buttons */
-input[type="button"], 
-input[type="submit"], 
-input[type="reset"], 
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
 .trac-button,
 .buttons input,
 .inlinebuttons input,
 div[role="main"] #main button,
 div[role="main"] #main input[type="submit"],
 #main button:not(#theme-toggle-btn) {
-    
+
     &:focus,
     &:active,
     &:hover:active {
-        background: var(--primary, #44B78B) ;
-        background-color: var(--primary, #44B78B) ;
-        color: #000000 ; 
-        outline: none ;
-        box-shadow: none ;
+        background: var(--primary, #44B78B);
+        background-color: var(--primary, #44B78B);
+        color: #000000;
+        outline: none;
+        box-shadow: none;
     }
 }
 
 input.trac-disable-on-submit:focus,
 input.trac-disable-on-submit:active {
-    background: var(--primary, #44B78B) ;
-    background-color: var(--primary, #44B78B) ;
-    color: #000000 ;
+    background: var(--primary, #44B78B);
+    background-color: var(--primary, #44B78B);
+    color: #000000;
 }
 
 
 #top button#theme-toggle-btn.theme-toggle,
 .theme-toggle,
 button.theme-toggle {
-    background: transparent ;
-    background-color: transparent ;
-    background-image: none ;
-    border: 1px solid transparent ;
-    box-shadow: none ;
-    outline: none ;
-    transition: background-color 0.15s ease, border-color 0.15s ease ;
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 /* Keep the toggle transparent while it is focused or pressed */
@@ -661,25 +661,25 @@ button.theme-toggle {
 #top button#theme-toggle-btn.theme-toggle:active,
 #top button#theme-toggle-btn.theme-toggle:hover:active,
 #top button#theme-toggle-btn.theme-toggle:focus:active {
-    background: transparent ;
-    background-color: transparent ;
-    border: 1px solid #ffffff ; 
-    outline: none ;
-    box-shadow: none ;
+    background: transparent;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    outline: none;
+    box-shadow: none;
 }
 
 #top button#theme-toggle-btn.theme-toggle:hover,
 #top button#theme-toggle-btn.theme-toggle.active {
-    background: rgba(255, 255, 255, 0.12) ;
-    background-color: rgba(255, 255, 255, 0.12) ;
-    border: 1px solid #ffffff ; 
-    outline: none ;
-    box-shadow: none ;
+    background: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid #ffffff;
+    outline: none;
+    box-shadow: none;
 }
 
-input[type="button"], 
-input[type="submit"], 
-input[type="reset"], 
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
 .trac-button,
 .buttons input,
 .inlinebuttons input,
@@ -689,52 +689,52 @@ div[role="main"] #main input[type="submit"],
     &:focus,
     &:active,
     &:hover:active {
-        background: var(--primary, #0C4B33) ;
-        background-color: var(--primary, #0C4B33) ;
-        color: #000000 ; 
-        outline: none ;
-        box-shadow: none ;
+        background: var(--primary, #0C4B33);
+        background-color: var(--primary, #0C4B33);
+        color: #000000;
+        outline: none;
+        box-shadow: none;
     }
 }
 
 input.trac-disable-on-submit:focus,
 input.trac-disable-on-submit:active {
-    background: var(--primary, #44B78B) ;
-    background-color: var(--primary, #44B78B) ;
-    color: #000000 ;
+    background: var(--primary, #44B78B);
+    background-color: var(--primary, #44B78B);
+    color: #000000;
 }
 
 
 #top button#theme-toggle-btn.theme-toggle,
 .theme-toggle,
 button.theme-toggle {
-    background: transparent ;
-    background-color: transparent ;
-    background-image: none ;
-    border: 1px solid transparent ;
-    box-shadow: none ;
-    outline: none ;
-    transition: background-color 0.15s ease, border-color 0.15s ease ;
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 #top button#theme-toggle-btn.theme-toggle:focus,
 #top button#theme-toggle-btn.theme-toggle:active,
 #top button#theme-toggle-btn.theme-toggle:hover:active,
 #top button#theme-toggle-btn.theme-toggle:focus:active {
-    background: transparent ;
-    background-color: transparent ;
-    border: 1px solid #ffffff ; 
-    outline: none ;
-    box-shadow: none ;
+    background: transparent;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    outline: none;
+    box-shadow: none;
 }
 
 #top button#theme-toggle-btn.theme-toggle:hover,
 #top button#theme-toggle-btn.theme-toggle.active {
-    background: rgba(255, 255, 255, 0.12) ;
-    background-color: rgba(255, 255, 255, 0.12) ;
-    border: 1px solid #ffffff ; 
-    outline: none ;
-    box-shadow: none ;
+    background: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid #ffffff;
+    outline: none;
+    box-shadow: none;
 }
 
 html[data-theme="dark"] body.mdzr-boxshadow,
@@ -743,67 +743,67 @@ html[data-theme="dark"] table#info,
 html[data-theme="dark"] #info tbody tr,
 html[data-theme="dark"] #info th,
 html[data-theme="dark"] #info td {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    color: var(--body-fg) ;
-    border-color: var(--hairline-color) ;
-    box-shadow: none ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
+    border-color: var(--hairline-color);
+    box-shadow: none;
 }
 
 html[data-theme="dark"] .diff li.entry,
 html[data-theme="dark"] li.entry,
 html[data-theme="dark"] div#preview.wikipage .diff {
-    background: var(--white-color) ; 
-    background-color: var(--white-color) ;
-    border: 1px solid var(--hairline-color) ;
-    color: var(--body-fg) ;
-    box-shadow: none ;
+    background: var(--white-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--hairline-color);
+    color: var(--body-fg);
+    box-shadow: none;
 }
 
 html[data-theme="light"] table#info.trac-scroll,
 html[data-theme="light"] table#info,
 html[data-theme="light"] #info tbody tr,
 html[data-theme="light"] #info td {
-    background: #f7f7f0 ; 
-    color: #0C3C26 ;
-    border-color: #d7d7d7 ;
+    background: #f7f7f0;
+    color: #0C3C26;
+    border-color: #d7d7d7;
 }
 
 html[data-theme="light"] #info th {
-    background: #f7f7f0 ;
-    color: #0C3C26 ;
+    background: #f7f7f0;
+    color: #0C3C26;
 }
 
 html[data-theme="light"] .diff li.entry,
 html[data-theme="light"] li.entry {
-    background: #ffffff ; 
-    border: 1px solid #d7d7d7 ;
-    color: #0C3C26 ;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05) ;
+    background: #ffffff;
+    border: 1px solid #d7d7d7;
+    color: #0C3C26;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
 }
 
 html[data-theme="dark"] div#preview.wikipage,
 html[data-theme="dark"] #preview.wikipage .trac-content,
 html[data-theme="dark"] .wikipage .trac-content.trac-draft,
 html[data-theme="dark"] body.mdzr-boxshadow #preview.wikipage {
-    background: var(--body-bg) ;
-    background-color: var(--body-bg) ;
-    color: var(--body-fg) ;
-    border: 1px solid var(--hairline-color) ;
-    box-shadow: none ;
-    -webkit-box-shadow: none ;
-    border-radius: 4px ;
-    padding: 20px ;
+    background: var(--body-bg);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
+    border: 1px solid var(--hairline-color);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-radius: 4px;
+    padding: 20px;
 }
 
 html[data-theme="dark"] #preview.wikipage .trac-content p,
 html[data-theme="dark"] .wikipage .trac-content.trac-draft p {
-    background: transparent ;
-    background-color: transparent ;
-    color: var(--body-fg) ;
+    background: transparent;
+    background-color: transparent;
+    color: var(--body-fg);
 }
 #prefs {
-    background: var(--formcss, #0e1117) ;
+    background: var(--formcss, #0e1117);
     border: 1px solid #d4d4d4;
     border-radius: 11px;
     box-shadow: .1em .3em .5em 0 #d4d4d4;
@@ -815,15 +815,15 @@ html[data-theme="dark"] .wikipage .trac-content.trac-draft p {
 }
 
 
-div#tabs, 
+div#tabs,
 #content.admin div#tabs {
-    border-radius: 4px ;
+    border-radius: 4px;
     transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 div#tabs ul li a {
-    text-decoration: none ;
-    padding: 4px 8px ;
+    text-decoration: none;
+    padding: 4px 8px;
     display: block;
 }
 
@@ -832,27 +832,27 @@ html[data-theme="dark"] #content.admin div#tabs,
 @media (prefers-color-scheme: dark) {
     html[data-theme="auto"] div#tabs,
     html[data-theme="auto"] #content.admin div#tabs {
-        background: var(--white-color) ;
-        background-color: var(--white-color) ;
-        border: 1px solid var(--hairline-color) ;
-        box-shadow: none ;
-        
+        background: var(--white-color);
+        background-color: var(--white-color);
+        border: 1px solid var(--hairline-color);
+        box-shadow: none;
+
         li {
-            color: var(--body-fg) ;
-            background: transparent ;
+            color: var(--body-fg);
+            background: transparent;
         }
-        
+
         ul li a {
-            color: var(--text-l10, #93D7B7) ;
+            color: var(--text-l10, #93D7B7);
         }
-        
+
         ul li.active {
-            background-color: rgba(68, 183, 139, 0.15) ;
+            background-color: rgba(68, 183, 139, 0.15);
             border-radius: 4px;
-            
+
             a {
-                color: var(--primary, #44B78B) ;
-                font-weight: 600 ;
+                color: var(--primary, #44B78B);
+                font-weight: 600;
             }
         }
     }
@@ -860,12 +860,12 @@ html[data-theme="dark"] #content.admin div#tabs,
 
 html[data-theme="light"] div#tabs,
 html[data-theme="light"] #content.admin div#tabs {
-    background: #f7f7f0 ; 
-    border: 1px solid #d4d4d4 ;
-    box-shadow: none ;
+    background: #f7f7f0;
+    border: 1px solid #d4d4d4;
+    box-shadow: none;
 }
 html[data-theme="light"] div#tabs ul li.active a {
-    color: inherit ;
+    color: inherit;
 }
 #tabs {
     background: var(--admincss, #f7f7f0);
@@ -879,12 +879,12 @@ html[data-theme="light"] div#tabs ul li.active a {
     /* box-shadow: .1em .3em .5em 0 #eee; */
 }
 div[role="main"] #main form input:disabled, div[role="main"] #main form textarea:disabled {
-    opacity: 0.6 ;
-    cursor: not-allowed ;
-    background-color: var(--code-button, #f8f8f8) ;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--code-button, #f8f8f8);
 }
 
-#tabs, 
+#tabs,
 div#tabs,
 .full-width.container #tabs,
 #content.prefs #tabs {
@@ -898,9 +898,9 @@ div#tabs,
 }
 
 
-#tabs li, 
+#tabs li,
 #tabs ul li a {
-    text-decoration: none ;
+    text-decoration: none;
 }
 
 html[data-theme="dark"] #tabs,
@@ -908,27 +908,27 @@ html[data-theme="dark"] div#tabs,
 @media (prefers-color-scheme: dark) {
     html[data-theme="auto"] #tabs,
     html[data-theme="auto"] div#tabs {
-        background: var(--white-color) ;
-        background-color: var(--white-color) ;
-        border: 1px solid var(--hairline-color) ;
-        box-shadow: none ;
+        background: var(--white-color);
+        background-color: var(--white-color);
+        border: 1px solid var(--hairline-color);
+        box-shadow: none;
 
         li {
-            color: var(--body-fg) ;
-            background: transparent ;
+            color: var(--body-fg);
+            background: transparent;
         }
 
         li a {
-            color: var(--text-l10, #93D7B7) ;
+            color: var(--text-l10, #93D7B7);
         }
 
         li.active {
-            background-color: rgba(68, 183, 139, 0.15) ;
+            background-color: rgba(68, 183, 139, 0.15);
             border-radius: 4px;
 
             a {
-                color: var(--primary, #44B78B) ;
-                font-weight: 600 ;
+                color: var(--primary, #44B78B);
+                font-weight: 600;
             }
         }
     }
@@ -936,128 +936,128 @@ html[data-theme="dark"] div#tabs,
 
 html[data-theme="light"] #tabs,
 html[data-theme="light"] div#tabs {
-    background: var(--admincss, #f7f7f0) ;
-    border: 1px solid #d4d4d4 ;
-    box-shadow: none ;
+    background: var(--admincss, #f7f7f0);
+    border: 1px solid #d4d4d4;
+    box-shadow: none;
 }
 
-div[role="main"] #main form input:disabled, 
+div[role="main"] #main form input:disabled,
 div[role="main"] #main form textarea:disabled,
 #main form select:disabled {
-    opacity: 0.6 ;
-    cursor: not-allowed ;
-    background-color: var(--code-bg, #0e1117) ;
-    color: var(--text-light, #798780) ;
-    border: 1px solid var(--hairline-color) ;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--code-bg, #0e1117);
+    color: var(--text-light, #798780);
+    border: 1px solid var(--hairline-color);
 }
 
-html[data-theme="light"] div[role="main"] #main form input:disabled, 
+html[data-theme="light"] div[role="main"] #main form input:disabled,
 html[data-theme="light"] div[role="main"] #main form textarea:disabled {
-    background-color: #f8f8f8 ;
-    color: #aaaaaa ;
-    border: 1px solid #CFE3DC ;
+    background-color: #f8f8f8;
+    color: #aaaaaa;
+    border: 1px solid #CFE3DC;
 }
 
 /* Datepicker */
 #ui-datepicker-div,
 .ui-datepicker,
 div.ui-datepicker {
-    z-index: 9999 ; 
-    border-radius: 6px ;
-    padding: 8px ;
-    box-sizing: border-box ;
-    font-family: "Roboto", sans-serif ;
+    z-index: 9999;
+    border-radius: 6px;
+    padding: 8px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 html[data-theme="dark"] #ui-datepicker-div,
 @media (prefers-color-scheme: dark) {
     html[data-theme="auto"] #ui-datepicker-div {
-        background: var(--white-color) ;
-        background-color: var(--white-color) ;
-        border: 1px solid var(--hairline-color) ;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) ;
+        background: var(--white-color);
+        background-color: var(--white-color);
+        border: 1px solid var(--hairline-color);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
 
         .ui-datepicker-header {
-            background: transparent ;
-            border: none ;
-            color: var(--body-fg) ;
+            background: transparent;
+            border: none;
+            color: var(--body-fg);
         }
 
-        .ui-datepicker-prev, 
+        .ui-datepicker-prev,
         .ui-datepicker-next {
-            cursor: pointer ;
-            background-color: var(--body-bg) ;
-            border-radius: 4px ;
-            border: 1px solid var(--hairline-color) ;
+            cursor: pointer;
+            background-color: var(--body-bg);
+            border-radius: 4px;
+            border: 1px solid var(--hairline-color);
             span { filter: invert(0.9) ; }
         }
-        .ui-datepicker-prev-hover, 
+        .ui-datepicker-prev-hover,
         .ui-datepicker-next-hover {
-            background: rgba(68, 183, 139, 0.2) ;
-            top: 2px ; 
+            background: rgba(68, 183, 139, 0.2);
+            top: 2px;
         }
 
         table.ui-datepicker-calendar thead th span {
-            color: var(--text-light, #798780) ;
-            font-weight: 600 ;
+            color: var(--text-light, #798780);
+            font-weight: 600;
         }
 
         table.ui-datepicker-calendar tbody td {
-            background: transparent ;
-            border: none ;
+            background: transparent;
+            border: none;
 
             &.ui-datepicker-other-month span,
             &.ui-datepicker-unselectable span {
-                color: #3b4a40 ;
-                opacity: 0.4 ;
+                color: #3b4a40;
+                opacity: 0.4;
             }
 
             a.ui-state-default,
             span.ui-state-default {
-                background: var(--body-bg) ;
-                border: 1px solid var(--hairline-color) ;
-                color: var(--body-fg) ;
-                text-align: center ;
-                border-radius: 4px ;
+                background: var(--body-bg);
+                border: 1px solid var(--hairline-color);
+                color: var(--body-fg);
+                text-align: center;
+                border-radius: 4px;
             }
 
             a.ui-state-hover,
             a.ui-state-default:hover {
-                background: rgba(68, 183, 139, 0.2) ;
-                border-color: var(--primary, #44B78B) ;
-                color: var(--primary, #44B78B) ;
+                background: rgba(68, 183, 139, 0.2);
+                border-color: var(--primary, #44B78B);
+                color: var(--primary, #44B78B);
             }
 
             &.ui-datepicker-current-day a.ui-state-active,
             &.ui-datepicker-days-cell-over a.ui-state-hover {
-                background: var(--primary, #44B78B) ;
-                border-color: var(--primary, #44B78B) ;
-                color: #000000 ; 
-                font-weight: 700 ;
+                background: var(--primary, #44B78B);
+                border-color: var(--primary, #44B78B);
+                color: #000000;
+                font-weight: 700;
             }
         }
 
         .ui-datepicker-buttonpane button {
-            background: var(--primary, #44B78B) ;
-            color: #000000 ;
-            border: none ;
-            border-radius: 4px ;
-            font-weight: 600 ;
+            background: var(--primary, #44B78B);
+            color: #000000;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
             &:hover { background: var(--darkgreen, #0C4B33) ; }
         }
     }
 }
 
 html[data-theme="light"] #ui-datepicker-div {
-    background: #ffffff ;
-    border: 1px solid #bbbbbb ;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) ;
+    background: #ffffff;
+    border: 1px solid #bbbbbb;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 html[data-theme="light"] #ui-datepicker-div table.ui-datepicker-calendar tbody td a.ui-state-default {
-    background: #f6f6f6 ;
-    color: #1c94c4 ;
-    border: 1px solid #cccccc ;
+    background: #f6f6f6;
+    color: #1c94c4;
+    border: 1px solid #cccccc;
 }
 .ui-widget-content {
     border: 1px solid #bbbbbb;
@@ -1182,7 +1182,7 @@ input[type="submit"].btn-primary,
 /* General content links in light & dark mode */
 #content a,
 .ticket-readme a,
-a:link, 
+a:link,
 a:visited {
   color: var(--link-color);
 }
@@ -1364,7 +1364,7 @@ html[data-theme="dark"] #query fieldset .inlinebuttons input {
 #pagepath :visited,
 #pagepath .pathentry,
 .wikipath a {
-  color: var(--link-color, #1a7a54) !important ;
+  color: var(--link-color, #1a7a54) !important;
 }
 
 /* Dark mode */
@@ -1386,7 +1386,7 @@ html[data-theme="dark"] {
     #pagepath :visited,
     #pagepath .pathentry,
     .wikipath a {
-    color: var(--link-color, #93d7b7) !important ;
+    color: var(--link-color, #93d7b7) !important;
     }
   }
 }
@@ -1833,7 +1833,7 @@ html[data-theme="dark"] {
    ========================================================================== */
 /* ==========================================================================
    1. Light Theme & Base Scope
-   Fixes Jacob's "light gray on beige" issue in light mode
+   Fixes "light gray on beige" issue in light mode
    ========================================================================== */
 :root,
 html[data-theme="light"] {
