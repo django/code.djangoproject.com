@@ -1833,7 +1833,7 @@ html[data-theme="dark"] {
    ========================================================================== */
 /* ==========================================================================
    1. Light Theme & Base Scope
-   Fixes Jacob's "light gray on beige" issue in light mode
+   Fixes "light gray on beige" issue in light mode
    ========================================================================== */
 :root,
 html[data-theme="light"] {
@@ -2292,3 +2292,426 @@ html[data-theme="dark"] {
     }
   }
 }
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+  &:focus,
+  &:focus-visible,
+  &:active,
+  &:hover:active {
+    background: var(--primary, #0C4B33) !important;
+    background-color: var(--primary, #0C4B33) !important;
+    color: #ffffff !important;
+    outline: 2px solid var(--focus-ring, #44b78b);
+    outline-offset: 2px;
+  }
+}
+/* ==========================================================================
+   Ticket & Comment Draft Preview Box (.ticketdraft)
+   ========================================================================== */
+html[data-theme="dark"] {
+  .ticketdraft,
+  div.ticketdraft,
+  #ticketchange.ticketdraft,
+  #ticket.ticketdraft {
+    background-color: #161b22 !important;
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+
+    p,
+    li,
+    div,
+    span {
+      color: var(--body-fg, #c1cad2);
+    }
+
+    /* Keep the comment header bar readable */
+    h3.change {
+      background-color: #1e252e !important;
+      border-bottom: 1px solid #2b3a32 !important;
+      color: #c1cad2 !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .ticketdraft,
+    div.ticketdraft,
+    #ticketchange.ticketdraft,
+    #ticket.ticketdraft {
+      background-color: #161b22 !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      p,
+      li,
+      div,
+      span {
+        color: var(--body-fg, #c1cad2);
+      }
+
+      h3.change {
+        background-color: #1e252e !important;
+        border-bottom: 1px solid #2b3a32 !important;
+        color: #c1cad2 !important;
+      }
+    }
+  }
+}
+/* Fix unreadable light-text on mint selection highlight in dark mode */
+html[data-theme="dark"] ::selection,
+html[data-theme="dark"] input::selection,
+html[data-theme="dark"] textarea::selection {
+  background-color: var(--secondary-accent, #c9f0dd) !important;
+  color: #0c3c26 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] ::selection,
+  html[data-theme="auto"] input::selection,
+  html[data-theme="auto"] textarea::selection {
+    background-color: var(--secondary-accent, #c9f0dd) !important;
+    color: #0c3c26 !important;
+  }
+}
+/* Search result titles (#results dt a) */
+html[data-theme="dark"] {
+  #content.search #results dt a,
+  #content.search #results dt a:link,
+  #results dt a,
+  #results dt a:link {
+    color: var(--link-color, #93d7b7) !important;
+
+    &:visited {
+      color: var(--link-visited-color, #78b89a) !important;
+    }
+
+    &:hover,
+    &:focus {
+      color: #ffffff !important;
+      text-decoration: underline !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #content.search #results dt a,
+    #content.search #results dt a:link,
+    #results dt a,
+    #results dt a:link {
+      color: var(--link-color, #93d7b7) !important;
+
+      &:visited {
+        color: var(--link-visited-color, #78b89a) !important;
+      }
+
+      &:hover,
+      &:focus {
+        color: #ffffff !important;
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+/* 1. "Paste an image to attach" box (.tracdragdrop-paste) */
+html[data-theme="dark"] {
+  .tracdragdrop-paste,
+  div.tracdragdrop-paste {
+    background-color: #161b22 !important;
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+
+    &:focus,
+    &:hover {
+      background-color: #1e252e !important;
+      border-color: var(--primary, #44b78b) !important;
+      color: #ffffff !important;
+    }
+  }
+
+  /* 2. Ticket confirmation banner link ("The ticket #2 has been created...") */
+  #notice a,
+  #notice a:link,
+  #notice a:visited,
+  .system-message a,
+  .system-message a:link,
+  .system-message a:visited {
+    color: #0c3c26 !important;
+    font-weight: 600;
+    text-decoration: underline !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .tracdragdrop-paste,
+    div.tracdragdrop-paste {
+      background-color: #161b22 !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      &:focus,
+      &:hover {
+        background-color: #1e252e !important;
+        border-color: var(--primary, #44b78b) !important;
+        color: #ffffff !important;
+      }
+    }
+
+    #notice a,
+    #notice a:link,
+    #notice a:visited,
+    .system-message a,
+    .system-message a:link,
+    .system-message a:visited {
+      color: #0c3c26 !important;
+      font-weight: 600;
+      text-decoration: underline !important;
+    }
+  }
+}
+/* ==========================================================================
+   Ticket & Comment Draft Preview Box (.ticketdraft) - Dark & Auto Mode Only
+   ========================================================================== */
+html[data-theme="dark"] {
+  .ticketdraft,
+  div.ticketdraft,
+  #ticketchange.ticketdraft,
+  #ticket.ticketdraft {
+    background-color: #161b22 !important;
+    background-image: none !important; /* Removes bright white DRAFT watermark tiles */
+    border: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+
+    p,
+    li,
+    div,
+    span {
+      color: var(--body-fg, #c1cad2);
+    }
+
+    /* Fix light blockquote box inside comment preview */
+    blockquote {
+      background-color: #1e252e !important;
+      border-left: 3px solid var(--primary, #44b78b) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      p {
+        color: var(--body-fg, #c1cad2) !important;
+      }
+    }
+
+    h3.change {
+      background-color: #1e252e !important;
+      border-bottom: 1px solid #2b3a32 !important;
+      color: #c1cad2 !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    .ticketdraft,
+    div.ticketdraft,
+    #ticketchange.ticketdraft,
+    #ticket.ticketdraft {
+      background-color: #161b22 !important;
+      background-image: none !important;
+      border: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+
+      p,
+      li,
+      div,
+      span {
+        color: var(--body-fg, #c1cad2);
+      }
+
+      blockquote {
+        background-color: #1e252e !important;
+        border-left: 3px solid var(--primary, #44b78b) !important;
+        color: var(--body-fg, #c1cad2) !important;
+
+        p {
+          color: var(--body-fg, #c1cad2) !important;
+        }
+      }
+
+      h3.change {
+        background-color: #1e252e !important;
+        border-bottom: 1px solid #2b3a32 !important;
+        color: #c1cad2 !important;
+      }
+    }
+  }
+}
+/* 1. Ticket confirmation banner link ("The ticket #2 has been created...") */
+html[data-theme="dark"] {
+  #notice a,
+  #notice a:link,
+  #notice a:visited,
+  #warning.system-message a,
+  #warning.system-message a:link,
+  #warning.system-message a:visited,
+  .system-message a,
+  .system-message a:link,
+  .system-message a:visited {
+    color: #0c3c26 !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+  }
+
+  /* 2. Diff view toggle (Active view = bright, Inactive link = muted) */
+  div.diff .overview,
+  div.diff ul.nav,
+  div.diff ul.nav li {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+
+    a,
+    a:link,
+    a:visited {
+      color: #8b949e !important;
+      font-weight: 400 !important;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus {
+        color: var(--primary, #44b78b) !important;
+        text-decoration: underline !important;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #notice a,
+    #notice a:link,
+    #notice a:visited,
+    #warning.system-message a,
+    #warning.system-message a:link,
+    #warning.system-message a:visited,
+    .system-message a,
+    .system-message a:link,
+    .system-message a:visited {
+      color: #0c3c26 !important;
+      font-weight: 700 !important;
+      text-decoration: underline !important;
+    }
+
+    div.diff .overview,
+    div.diff ul.nav,
+    div.diff ul.nav li {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+
+      a,
+      a:link,
+      a:visited {
+        color: #8b949e !important;
+        font-weight: 400 !important;
+        text-decoration: none !important;
+
+        &:hover,
+        &:focus {
+          color: var(--primary, #44b78b) !important;
+          text-decoration: underline !important;
+        }
+      }
+    }
+  }
+}
+/* ==========================================================================
+   Timeline Page (#content.timeline) - Date Headers, Links & Hover/Focus
+   ========================================================================== */
+html[data-theme="dark"] {
+  /* 1. Date header bar ("Nov 18, 2026: Today") */
+  #content.timeline h2,
+  .timeline h2 {
+    background-color: #1e252e !important;
+    border-bottom: 1px solid var(--hairline-color, #2b3a32) !important;
+    color: var(--body-fg, #c1cad2) !important;
+  }
+
+  /* 2. Timeline entry links, timestamps, and ticket numbers (<em>) */
+  #content.timeline dl dt a,
+  .timeline dl dt a {
+    color: var(--link-color, #93d7b7) !important;
+
+    span.time {
+      color: #9f9d9d !important;
+    }
+
+    em {
+      color: #ff7b72 !important;
+      font-style: normal;
+    }
+
+    /* 3. Fix pale cream hover/focus box washing out light text */
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      background-color: #1e252e !important;
+      color: #ffffff !important;
+      outline: 1px solid var(--primary, #44b78b);
+
+      span.time {
+        color: #c1cad2 !important;
+      }
+
+      em {
+        color: #ffa198 !important;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    #content.timeline h2,
+    .timeline h2 {
+      background-color: #1e252e !important;
+      border-bottom: 1px solid var(--hairline-color, #2b3a32) !important;
+      color: var(--body-fg, #c1cad2) !important;
+    }
+
+    #content.timeline dl dt a,
+    .timeline dl dt a {
+      color: var(--link-color, #93d7b7) !important;
+
+      span.time {
+        color: #9f9d9d !important;
+      }
+
+      em {
+        color: #ff7b72 !important;
+        font-style: normal;
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: #1e252e !important;
+        color: #ffffff !important;
+        outline: 1px solid var(--primary, #44b78b);
+
+        span.time {
+          color: #c1cad2 !important;
+        }
+
+        em {
+          color: #ffa198 !important;
+        }
+      }
+    }
+  }
+}
+
