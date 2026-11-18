@@ -904,34 +904,67 @@ div#tabs,
 }
 
 html[data-theme="dark"] #tabs,
-html[data-theme="dark"] div#tabs,
+html[data-theme="dark"] div#tabs {
+  background: var(--white-color);
+  background-color: var(--white-color);
+  border: 1px solid var(--hairline-color);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] #tabs li,
+html[data-theme="dark"] div#tabs li {
+  color: var(--body-fg);
+  background: transparent;
+}
+
+html[data-theme="dark"] #tabs li a,
+html[data-theme="dark"] div#tabs li a {
+  color: var(--text-l10, #93D7B7);
+}
+
+html[data-theme="dark"] #tabs li.active,
+html[data-theme="dark"] div#tabs li.active {
+  background-color: rgba(68, 183, 139, 0.15);
+  border-radius: 4px;
+}
+
+html[data-theme="dark"] #tabs li.active a,
+html[data-theme="dark"] div#tabs li.active a {
+  color: var(--primary, #44B78B);
+  font-weight: 600;
+}
+
 @media (prefers-color-scheme: dark) {
-    html[data-theme="auto"] #tabs,
-    html[data-theme="auto"] div#tabs {
-        background: var(--white-color) ;
-        background-color: var(--white-color) ;
-        border: 1px solid var(--hairline-color) ;
-        box-shadow: none ;
+  html[data-theme="auto"] #tabs,
+  html[data-theme="auto"] div#tabs {
+    background: var(--white-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--hairline-color);
+    box-shadow: none;
+  }
 
-        li {
-            color: var(--body-fg) ;
-            background: transparent ;
-        }
+  html[data-theme="auto"] #tabs li,
+  html[data-theme="auto"] div#tabs li {
+    color: var(--body-fg);
+    background: transparent;
+  }
 
-        li a {
-            color: var(--text-l10, #93D7B7) ;
-        }
+  html[data-theme="auto"] #tabs li a,
+  html[data-theme="auto"] div#tabs li a {
+    color: var(--text-l10, #93D7B7);
+  }
 
-        li.active {
-            background-color: rgba(68, 183, 139, 0.15) ;
-            border-radius: 4px;
+  html[data-theme="auto"] #tabs li.active,
+  html[data-theme="auto"] div#tabs li.active {
+    background-color: rgba(68, 183, 139, 0.15);
+    border-radius: 4px;
+  }
 
-            a {
-                color: var(--primary, #44B78B) ;
-                font-weight: 600 ;
-            }
-        }
-    }
+  html[data-theme="auto"] #tabs li.active a,
+  html[data-theme="auto"] div#tabs li.active a {
+    color: var(--primary, #44B78B);
+    font-weight: 600;
+  }
 }
 
 html[data-theme="light"] #tabs,
