@@ -15,7 +15,20 @@
         <li class="active"><a href="/">Issues</a></li>
         <li><a href="https://www.djangoproject.com/foundation/">About</a></li>
         <li><a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a></li>
+        
+        <li class="header-tools-inline">
+          <button class="theme-toggle" type="button">
+            <div class="visually-hidden theme-label-when-auto">Toggle theme (current theme: auto)</div>
+            <div class="visually-hidden theme-label-when-light">Toggle theme (current theme: light)</div>
+            <div class="visually-hidden theme-label-when-dark">Toggle theme (current theme: dark)</div>
+
+            <i aria-hidden="true" class="theme-icon-when-auto icon icon-adjust"></i>
+            <i aria-hidden="true" class="theme-icon-when-dark icon icon-moon-o"></i>
+            <i aria-hidden="true" class="theme-icon-when-light icon icon-sun-o"></i>
+          </button>
+        </li>
       </ul>
     </nav>
   </div>
 </div>
+<script src="${href.chrome('site/js/mod/switch-dark-mode.js')}"></script>
